@@ -1,0 +1,131 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "KEK-TXN-.YYYY.-.#####",
+ "creation": "2026-05-13 13:45:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_profile",
+  "transaction_date",
+  "transaction_type",
+  "column_break_1",
+  "status",
+  "insw_transaksi_id",
+  "section_reference",
+  "erpnext_reference_doctype",
+  "erpnext_reference_name",
+  "section_items",
+  "items",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_profile",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company Profile",
+   "options": "KEK Company Profile",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "transaction_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Transaction Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "transaction_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Transaction Type",
+   "options": "KEK Ref Transaction Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "QUEUED",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "QUEUED\nSENT\nACKNOWLEDGED\nFAILED",
+   "read_only": 1
+  },
+  {
+   "fieldname": "insw_transaksi_id",
+   "fieldtype": "Data",
+   "label": "INSW Transaction ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_reference",
+   "fieldtype": "Section Break",
+   "label": "Source Reference"
+  },
+  {
+   "fieldname": "erpnext_reference_doctype",
+   "fieldtype": "Data",
+   "label": "Source DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "erpnext_reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Source Name",
+   "options": "erpnext_reference_doctype",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_items",
+   "fieldtype": "Section Break",
+   "label": "Line Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "KEK Inventory Transaction Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "KEK Inventory Transaction",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-13 13:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "KEK Inventory Transaction",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

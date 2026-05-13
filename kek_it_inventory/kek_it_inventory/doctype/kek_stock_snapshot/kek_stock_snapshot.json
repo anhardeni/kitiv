@@ -1,0 +1,81 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-05-13 13:55:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_profile",
+  "customs_item_code",
+  "warehouse",
+  "column_break_1",
+  "qty_on_hand",
+  "last_ledger_entry"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_profile",
+   "fieldtype": "Link",
+   "label": "Company Profile",
+   "options": "KEK Company Profile",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customs_item_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customs Item Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qty_on_hand",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty On Hand",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_ledger_entry",
+   "fieldtype": "Link",
+   "label": "Last Ledger Entry",
+   "options": "KEK Stock Ledger",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-13 13:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "KEK Stock Snapshot",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

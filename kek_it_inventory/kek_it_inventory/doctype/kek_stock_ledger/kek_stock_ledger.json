@@ -1,0 +1,133 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-05-13 13:50:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_profile",
+  "posting_datetime",
+  "customs_item_code",
+  "warehouse",
+  "column_break_1",
+  "transaction_type",
+  "voucher_type",
+  "voucher_no",
+  "section_qty",
+  "qty_in",
+  "qty_out",
+  "qty_balance",
+  "section_meta",
+  "origin_type",
+  "insw_transaksi_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_profile",
+   "fieldtype": "Link",
+   "label": "Company Profile",
+   "options": "KEK Company Profile",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posting_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Posting Datetime",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customs_item_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customs Item Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Data",
+   "label": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transaction_type",
+   "fieldtype": "Data",
+   "label": "Transaction Type"
+  },
+  {
+   "fieldname": "voucher_type",
+   "fieldtype": "Data",
+   "label": "Voucher Type"
+  },
+  {
+   "fieldname": "voucher_no",
+   "fieldtype": "Data",
+   "label": "Voucher No"
+  },
+  {
+   "fieldname": "section_qty",
+   "fieldtype": "Section Break",
+   "label": "Quantity Info"
+  },
+  {
+   "fieldname": "qty_in",
+   "fieldtype": "Float",
+   "label": "Qty In"
+  },
+  {
+   "fieldname": "qty_out",
+   "fieldtype": "Float",
+   "label": "Qty Out"
+  },
+  {
+   "fieldname": "qty_balance",
+   "fieldtype": "Float",
+   "label": "Qty Balance",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_meta",
+   "fieldtype": "Section Break",
+   "label": "Metadata"
+  },
+  {
+   "fieldname": "origin_type",
+   "fieldtype": "Data",
+   "label": "Origin Type"
+  },
+  {
+   "fieldname": "insw_transaksi_id",
+   "fieldtype": "Data",
+   "label": "INSW Transaction ID"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-13 13:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "KEK Stock Ledger",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 0
+  }
+ ],
+ "read_only": 1,
+ "sort_field": "posting_datetime",
+ "sort_order": "DESC",
+ "states": []
+}

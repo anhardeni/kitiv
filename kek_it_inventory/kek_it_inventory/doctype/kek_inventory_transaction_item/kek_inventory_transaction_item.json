@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-05-13 13:40:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customs_item_code",
+  "category_code",
+  "item_name_customs",
+  "column_break_1",
+  "qty",
+  "uom_code",
+  "amount_idr",
+  "section_classification",
+  "origin_type",
+  "business_flow_type",
+  "id_barang_transaksi_insw"
+ ],
+ "fields": [
+  {
+   "fieldname": "customs_item_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customs Item Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Category"
+  },
+  {
+   "fieldname": "item_name_customs",
+   "fieldtype": "Data",
+   "label": "Item Name (Customs)"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "uom_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "UOM"
+  },
+  {
+   "fieldname": "amount_idr",
+   "fieldtype": "Currency",
+   "label": "Amount (IDR)"
+  },
+  {
+   "fieldname": "section_classification",
+   "fieldtype": "Section Break",
+   "label": "Classification"
+  },
+  {
+   "fieldname": "origin_type",
+   "fieldtype": "Select",
+   "label": "Origin Type",
+   "options": "IMPORT\nTLDDP\nMIXED",
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_flow_type",
+   "fieldtype": "Select",
+   "label": "Business Flow Type",
+   "options": "PROCESSING\nLOGISTIC\nSERVICE",
+   "reqd": 1
+  },
+  {
+   "fieldname": "id_barang_transaksi_insw",
+   "fieldtype": "Data",
+   "label": "INSW Item ID",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-13 13:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "KEK Inventory Transaction Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
