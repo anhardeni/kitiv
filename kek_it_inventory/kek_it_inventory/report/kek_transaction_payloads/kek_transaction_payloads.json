@@ -1,0 +1,13 @@
+{
+ "name": "KEK Transaction Payloads",
+ "doctype": "Report",
+ "report_type": "Query Report",
+ "ref_doctype": "KEK Inventory Transaction",
+ "is_standard": "Yes",
+ "module": "KEK IT Inventory",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}

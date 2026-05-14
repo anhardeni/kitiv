@@ -62,14 +62,24 @@ class TestPoster(unittest.TestCase):
 	def tearDown(self):
 		frappe.db.rollback()
 
+	@patch('kek_it_inventory.kek_it_inventory.api.poster.requests.get')
 	@patch('kek_it_inventory.kek_it_inventory.api.poster.requests.post')
-	def test_post_transaction_with_real_creds(self, mock_post):
-		# Mock a successful response
-		mock_post.return_value.status_code = 200
-		mock_post.return_value.json.return_value = {
-			"status": "success",
-			"idTransaksi": "SINSW-REAL-123"
+	def test_post_transaction_with_real_creds(self, mock_post, mock_get):
+		# Mock Unique Key response
+		mock_get.return_value.status_code = 200
+		mock_get.return_value.json.return_value = {"uniqueKey": "SECRET-UNIQUE-KEY"}
+
+		# Mock a successful post response
+		success_res = {
+			"status": True,
+			"code": "01",
+			"data": {
+				"resultDataTransaksi": [{"idTransaksi": "SINSW-REAL-123"}]
+			}
 		}
+		mock_post.return_value.status_code = 200
+		mock_post.return_value.json.return_value = success_res
+		mock_post.return_value.text = json.dumps(success_res)
 
 		# Execute
 		post_transaction(self.txn.name)
@@ -80,10 +90,10 @@ class TestPoster(unittest.TestCase):
 		self.assertEqual(headers["X-INSW-Key"], "SECRET-INSW-KEY")
 		self.assertEqual(headers["X-Unique-Key"], "SECRET-UNIQUE-KEY")
 
-		# Verify Payload
+		# Verify Payload (PER-24 Structure)
 		payload = json.loads(kwargs.get('data'))
-		self.assertEqual(payload["npwp"], "012345678901234")
-		self.assertEqual(payload["nib"], "NIB-123")
+		self.assertEqual(payload["data"][0]["npwp"], "012345678901234")
+		self.assertEqual(payload["data"][0]["nib"], "NIB-123")
 
 		# Verify Doc Update
 		self.txn.reload()
@@ -100,10 +110,22 @@ class TestPoster(unittest.TestCase):
 		self.assertEqual(ledger_entries[0].qty_balance, 10)
 		self.assertEqual(ledger_entries[0].customs_item_code, "ITEM001")
 
+	@patch('kek_it_inventory.kek_it_inventory.api.poster.requests.get')
 	@patch('kek_it_inventory.kek_it_inventory.api.poster.requests.post')
-	def test_process_queue(self, mock_post):
+	def test_process_queue(self, mock_post, mock_get):
+		mock_get.return_value.status_code = 200
+		mock_get.return_value.json.return_value = {"uniqueKey": "SECRET-UNIQUE-KEY"}
+
+		success_res = {
+			"status": True,
+			"code": "01",
+			"data": {
+				"resultDataTransaksi": [{"idTransaksi": "999"}]
+			}
+		}
 		mock_post.return_value.status_code = 200
-		mock_post.return_value.json.return_value = {"status": "success", "idTransaksi": "999"}
+		mock_post.return_value.json.return_value = success_res
+		mock_post.return_value.text = json.dumps(success_res)
 		
 		process_queue(sync=True)
 		

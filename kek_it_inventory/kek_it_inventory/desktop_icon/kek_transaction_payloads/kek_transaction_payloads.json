@@ -1,0 +1,11 @@
+{
+  "module_name": "KEK IT Inventory",
+  "type": "Report",
+  "label": "KEK Transaction Payloads",
+  "icon": "fa fa-file-code-o",
+  "link": "/app/kek-transaction-payloads",
+  "badge": {
+    "method": "kek_it_inventory.kek_it_inventory.utils.get_failed_count",
+    "color": "red"
+  }
+}

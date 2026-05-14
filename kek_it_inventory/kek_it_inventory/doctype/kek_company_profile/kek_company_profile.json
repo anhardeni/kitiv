@@ -10,6 +10,7 @@
   "section_basic_info",
   "company_name",
   "erpnext_company",
+  "default_currency",
   "column_break_1",
   "npwp",
   "nib",
@@ -41,6 +42,13 @@
   {
    "fieldname": "column_break_1",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "IDR",
+   "fieldname": "default_currency",
+   "fieldtype": "Link",
+   "label": "Default Currency",
+   "options": "Currency"
   },
   {
    "fieldname": "npwp",

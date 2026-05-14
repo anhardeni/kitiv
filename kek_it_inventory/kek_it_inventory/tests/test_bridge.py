@@ -29,19 +29,29 @@ class TestBridge(unittest.TestCase):
 				"company": "bcmerak"
 			}).insert()
 
+		# Ensure Currency Exchange for INR to IDR exists to avoid 'Exchange Rate is mandatory' error
+		if not frappe.db.exists("Currency Exchange", {"from_currency": "INR", "to_currency": "IDR"}):
+			frappe.get_doc({
+				"doctype": "Currency Exchange",
+				"from_currency": "INR",
+				"to_currency": "IDR",
+				"exchange_rate": 185.0, # Dummy rate
+				"date": frappe.utils.today()
+			}).insert()
+
 	def tearDown(self):
 		frappe.db.rollback()
 
 	def test_purchase_receipt_bridge_with_mapping(self):
-		# 1. Create a Mapping for a specific item
+		# 1. Create a Mapping for a specific item (Ensure it's what we expect)
 		test_item = "_Test Item" # Standard ERPNext test item
-		if not frappe.db.exists("KEK Item Mapping", {"erpnext_item": test_item}):
-			frappe.get_doc({
-				"doctype": "KEK Item Mapping",
-				"erpnext_item": test_item,
-				"customs_item_code": "CUSTOMS-CODE-ABC",
-				"customs_item_name": "Sharp Customs Name"
-			}).insert()
+		frappe.db.delete("KEK Item Mapping", {"erpnext_item": test_item})
+		frappe.get_doc({
+			"doctype": "KEK Item Mapping",
+			"erpnext_item": test_item,
+			"customs_item_code": "CUSTOMS-CODE-ABC",
+			"customs_item_name": "Sharp Customs Name"
+		}).insert()
 
 		# 2. Create and Submit a Purchase Receipt
 		pr = make_purchase_receipt(

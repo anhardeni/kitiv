@@ -11,6 +11,7 @@
   "transaction_date",
   "transaction_type",
   "column_break_1",
+  "currency",
   "status",
   "insw_transaksi_id",
   "section_reference",
@@ -51,6 +52,14 @@
   {
    "fieldname": "column_break_1",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "IDR",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
   },
   {
    "default": "QUEUED",
