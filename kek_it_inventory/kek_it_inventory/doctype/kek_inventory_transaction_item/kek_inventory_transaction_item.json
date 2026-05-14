@@ -16,6 +16,8 @@
   "section_classification",
   "origin_type",
   "business_flow_type",
+  "section_customs_docs",
+  "customs_docs",
   "id_barang_transaksi_insw"
  ],
  "fields": [

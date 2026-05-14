@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-05-14 11:50:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customs_doc_code",
+  "customs_doc_number",
+  "customs_doc_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "customs_doc_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customs Doc Code",
+   "options": "KEK Ref Customs Document",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customs_doc_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customs Doc Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customs_doc_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Customs Doc Date",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "modified": "2026-05-14 11:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "KEK Item Customs Doc",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

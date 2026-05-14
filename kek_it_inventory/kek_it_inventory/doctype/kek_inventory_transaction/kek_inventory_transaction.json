@@ -18,6 +18,9 @@
   "erpnext_reference_name",
   "section_items",
   "items",
+  "section_payload",
+  "request_payload",
+  "response_payload",
   "amended_from"
  ],
  "fields": [
