@@ -4,6 +4,39 @@ import json
 from frappe import _
 from kek_it_inventory.kek_it_inventory.api.ledger import update_ledger
 
+def translate_customs_error(error_msg):
+	"""
+	Translates technical/JSON error messages from Bea Cukai/SINSW API 
+	into clear, human-readable Indonesian operational instructions.
+	"""
+	if not error_msg:
+		return "Terjadi kesalahan pabean tidak dikenal."
+	
+	err = str(error_msg).lower()
+	
+	# 1. Credential & Auth Errors
+	if "insw-key" in err or "unique-key" in err or "auth" in err or "key" in err and "invalid" in err:
+		return "❌ **KESALAHAN OTENTIKASI**: Kredensial API (`x-insw-key` atau `x-unique-key`) tidak valid atau kedaluwarsa. Silakan periksa pengaturan pada **KEK API Credential** Anda."
+	
+	# 2. UOM / Satuan Errors
+	if "uom" in err or "satuan" in err or "kd_satuan" in err or "kdsatuan" in err or "kdsat" in err:
+		return "⚠️ **PEMETAAN SATUAN ERROR**: Kode Satuan (UOM) barang belum dipetakan. Silakan daftarkan pemetaan satuan di modul **KEK Ref Unit** Anda."
+		
+	# 3. Item Code / Mapping Errors
+	if "item" in err or "barang" in err or "kdbarang" in err or "kd_barang" in err or "not match mapped" in err:
+		return "⚠️ **PEMETAAN BARANG ERROR**: Kode barang internal ERPNext belum dipetakan ke Kode Barang Bea Cukai. Silakan daftarkan pemetaan barang di modul **KEK Item Mapping** Anda."
+		
+	# 4. NPWP / NIB Errors
+	if "npwp" in err or "nib" in err:
+		return "❌ **PROFIL PERUSAHAAN ERROR**: Nomor NPWP atau NIB perusahaan tidak cocok dengan profil terdaftar Bea Cukai. Silakan periksa **KEK Company Profile** Anda."
+		
+	# 5. Connection & Timeout
+	if "connection" in err or "timeout" in err or "max retries" in err or "http" in err and "error" in err:
+		return "⚠️ **GANGGUAN KONEKSI**: Koneksi ke server Bea Cukai (SINSW) mengalami gangguan atau *timeout*. Sistem akan mencoba mengirim ulang otomatis beberapa saat lagi. Tidak perlu membatalkan dokumen."
+		
+	# 6. Fallback (If no specific match, clean the string up slightly for humans)
+	return f"❌ **TINDAKAN DIPERLUKAN**: Penolakan dari Bea Cukai/SINSW: {error_msg}"
+
 def get_unique_key(cred):
 	"""
 	Retrieves the dynamic X-Unique-Key from SINSW.
@@ -130,19 +163,22 @@ def post_transaction(docname):
 			else:
 				frappe.db.set_value("KEK Inventory Transaction", doc.name, "status", "FAILED")
 				msg = res_data.get("message") or "Unknown SINSW error"
-				doc.add_comment("Comment", f"❌ SINSW Rejection: {msg}")
+				translated_msg = translate_customs_error(msg)
+				doc.add_comment("Comment", translated_msg)
 				
 		else:
 			frappe.db.set_value("KEK Inventory Transaction", doc.name, "status", "FAILED")
 			error_msg = response.text
-			doc.add_comment("Comment", f"❌ API Error ({response.status_code}): {error_msg[:200]}")
+			translated_msg = translate_customs_error(error_msg)
+			doc.add_comment("Comment", f"❌ API Error ({response.status_code}): {translated_msg}")
 			
 			# Track failure on credential
 			frappe.db.set_value("KEK API Credential", cred.name, "failure_count", cred.failure_count + 1)
 
 	except Exception as e:
 		frappe.db.set_value("KEK Inventory Transaction", doc.name, "status", "FAILED")
-		doc.add_comment("Comment", f"⚠️ Connection Error: {str(e)}")
+		translated_msg = translate_customs_error(f"Connection Error: {str(e)}")
+		doc.add_comment("Comment", translated_msg)
 		frappe.log_error(frappe.get_traceback(), "KEK Integration Connection Error")
 
 def process_queue(sync=False):
