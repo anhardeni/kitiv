@@ -12,5 +12,8 @@ def sync_schema():
     frappe.reload_doc('kek_it_inventory', 'doctype', 'kek_item_customs_doc', force=True)
     print("3. KEK Item Customs Doc tersinkronisasi.")
     
+    frappe.reload_doc('kek_it_inventory', 'doctype', 'kek_item_tolerance', force=True)
+    print("4. KEK Item Tolerance tersinkronisasi.")
+    
     frappe.db.commit()
     print("Sinkronisasi selesai dan disimpan.")

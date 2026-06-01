@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-06-01 06:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_basic_info",
+  "item_code",
+  "customs_item_code",
+  "column_break_1",
+  "tolerance_percentage",
+  "allow_alternative_bom",
+  "is_active",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_basic_info",
+   "fieldtype": "Section Break",
+   "label": "Toleransi Item Kepabeanan KEK"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "ERPNext Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customs_item_code",
+   "fieldtype": "Data",
+   "label": "Customs Item Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "2.0000",
+   "fieldname": "tolerance_percentage",
+   "fieldtype": "Float",
+   "label": "Batas Toleransi (%)",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_alternative_bom",
+   "fieldtype": "Check",
+   "label": "Izinkan BOM Alternatif (Jika Deviasi)"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Aktif"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "KEK Item Tolerance",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-01 06:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "KEK Item Tolerance",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
