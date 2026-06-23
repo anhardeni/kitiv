@@ -16,8 +16,10 @@ after_install = "kek_it_inventory.kek_it_inventory.setup.seed_master_data"
 
 doc_events = {
 	"Purchase Receipt": {
-		"on_submit": "kek_it_inventory.kek_it_inventory.api.bridge.create_kek_transaction"
-	},
+		"on_submit": "kek_it_inventory.kek_it_inventory.api.bridge.create_kek_transaction",
+		"on_submit": "kek_it_inventory.services.kek_service.process_pr"	
+		},
+
 	"Delivery Note": {
 		"on_submit": "kek_it_inventory.kek_it_inventory.api.bridge.create_kek_transaction"
 	}
