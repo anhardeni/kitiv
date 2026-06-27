@@ -7,7 +7,7 @@ def create_kek_transaction(doc, method=None):
 	"""
 	# Map Transaction Type
 	txn_type = None
-	if doc.doctype == "Purchase Receipt":
+	if doc.doctype in ["Purchase Receipt", "Purchase Order", "Subcontracting Order"]:
 		txn_type = "30"
 	elif doc.doctype == "Delivery Note":
 		txn_type = "31"
@@ -24,7 +24,7 @@ def create_kek_transaction(doc, method=None):
 	kek_txn = frappe.get_doc({
 		"doctype": "KEK Inventory Transaction",
 		"company_profile": profile,
-		"transaction_date": doc.posting_date,
+		"transaction_date": doc.get("posting_date") or doc.get("transaction_date"),
 		"transaction_type": txn_type,
 		"erpnext_reference_doctype": doc.doctype,
 		"erpnext_reference_name": doc.name,
@@ -58,4 +58,48 @@ def create_kek_transaction(doc, method=None):
 		})
 
 	kek_txn.insert(ignore_permissions=True)
+
+	# Populate customs docs if present
+	if doc.get("custom_bc_registration_no"):
+		doc_type_raw = doc.get("custom_bc_document_type") or "Lainnya"
+		
+		# Map ERPNext Select value to SINSW numeric code
+		bc_doc_mapping = {
+			"BC23": "0407611",   # PPKEK Pemasukan LDP
+			"BC40": "0407613",   # PPKEK Pemasukan TLDDP
+			"BC16": "0407613",   # PPKEK Pemasukan TLDDP (fallback)
+			"BC262": "0407000",  # Dokumen Pabean (General)
+			"Lainnya": "0407000"
+		}
+		doc_code = bc_doc_mapping.get(doc_type_raw, "0407000")
+		
+		# Format date to YYYY-MM-DD for database storage
+		doc_date = doc.get("custom_bc_registration_date") or doc.get("posting_date") or doc.get("transaction_date")
+		
+		for item_row in kek_txn.items:
+			frappe.get_doc({
+				"doctype": "KEK Item Customs Doc",
+				"parent": item_row.name,
+				"parenttype": "KEK Inventory Transaction Item",
+				"parentfield": "customs_docs",
+				"customs_doc_code": doc_code,
+				"customs_doc_number": doc.custom_bc_registration_no,
+				"customs_doc_date": doc_date
+			}).insert(ignore_permissions=True)
+
+	# Update fields in parent document if they exist
+	if doc.doctype in ["Purchase Receipt", "Delivery Note", "Purchase Order", "Subcontracting Order"]:
+		meta = frappe.get_meta(doc.doctype)
+		update_dict = {}
+		if meta.has_field("kek_status"):
+			if doc.get("bypass_kek_validation"):
+				update_dict["kek_status"] = "BYPASSED"
+			else:
+				update_dict["kek_status"] = "PENDING" if doc.doctype in ["Purchase Order", "Subcontracting Order"] else "QUEUED"
+		if meta.has_field("kek_transaction"):
+			update_dict["kek_transaction"] = kek_txn.name
+		if update_dict:
+			frappe.db.set_value(doc.doctype, doc.name, update_dict, update_modified=False)
+
 	frappe.msgprint(f"KEK Transaction {kek_txn.name} created automatically.")
+

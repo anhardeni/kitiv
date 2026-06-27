@@ -45,7 +45,7 @@ def get_unique_key(cred):
 	insw_key = cred.get_password("x_insw_key")
 	
 	try:
-		response = requests.get(endpoint, headers={"X-INSW-Key": insw_key}, timeout=10)
+		response = requests.get(endpoint, headers={"x-insw-key": insw_key}, timeout=10)
 		if response.status_code == 200:
 			data = response.json()
 			return data.get("uniqueKey") or data.get("unique_key")
@@ -55,6 +55,29 @@ def get_unique_key(cred):
 	
 	return None
 
+def update_reference_doc(doc, status, insw_id=None, error_msg=None):
+	"""
+	Propagates status back to the source ERPNext document.
+	"""
+	if doc.erpnext_reference_doctype and doc.erpnext_reference_name:
+		try:
+			meta = frappe.get_meta(doc.erpnext_reference_doctype)
+			update_dict = {}
+			if meta.has_field("kek_status"):
+				update_dict["kek_status"] = status
+			if meta.has_field("kek_transaction"):
+				update_dict["kek_transaction"] = doc.name
+			if meta.has_field("kek_insw_id"):
+				update_dict["kek_insw_id"] = insw_id or ""
+			if meta.has_field("kek_error"):
+				update_dict["kek_error"] = error_msg or ""
+			
+			if update_dict:
+				frappe.db.set_value(doc.erpnext_reference_doctype, doc.erpnext_reference_name, update_dict, update_modified=False)
+		except Exception as e:
+			frappe.log_error(f"Failed to update reference doc {doc.erpnext_reference_doctype} {doc.erpnext_reference_name}: {str(e)}", "KEK Reference Update Error")
+
+@frappe.whitelist()
 def post_transaction(docname):
 	"""
 	Posts a KEK Inventory Transaction to SINSW Gateway following KEK PDF standards.
@@ -68,6 +91,7 @@ def post_transaction(docname):
 	if not cred_name:
 		frappe.db.set_value("KEK Inventory Transaction", doc.name, "status", "FAILED")
 		doc.add_comment("Comment", "❌ No active API Credentials found.")
+		update_reference_doc(doc, "FAILED", error_msg="No active API Credentials found.")
 		return
 
 	cred = frappe.get_doc("KEK API Credential", cred_name)
@@ -79,9 +103,6 @@ def post_transaction(docname):
 	payload = {
 		"data": [
 			{
-				"nomorAju": doc.name,
-				"npwp": profile.npwp,
-				"nib": profile.nib,
 				"kdKegiatan": doc.transaction_type, 
 				"dokumenKegiatan": [
 					{
@@ -124,8 +145,8 @@ def post_transaction(docname):
 	# 2. Execute Request
 	headers = {
 		"Content-Type": "application/json",
-		"X-INSW-Key": insw_key,
-		"X-Unique-Key": unique_key
+		"x-insw-key": insw_key,
+		"x-unique-key": unique_key
 	}
 	
 	# Determine endpoint based on activity (Mapping from doc.transaction_type)
@@ -154,6 +175,9 @@ def post_transaction(docname):
 					"insw_transaksi_id": insw_id
 				})
 				
+				# Update Reference document status
+				update_reference_doc(doc, "SENT", insw_id=insw_id)
+				
 				# Trigger Ledger Update only on successful report
 				update_ledger(doc.name)
 				
@@ -165,12 +189,14 @@ def post_transaction(docname):
 				msg = res_data.get("message") or "Unknown SINSW error"
 				translated_msg = translate_customs_error(msg)
 				doc.add_comment("Comment", translated_msg)
+				update_reference_doc(doc, "FAILED", error_msg=translated_msg)
 				
 		else:
 			frappe.db.set_value("KEK Inventory Transaction", doc.name, "status", "FAILED")
 			error_msg = response.text
 			translated_msg = translate_customs_error(error_msg)
 			doc.add_comment("Comment", f"❌ API Error ({response.status_code}): {translated_msg}")
+			update_reference_doc(doc, "FAILED", error_msg=translated_msg)
 			
 			# Track failure on credential
 			frappe.db.set_value("KEK API Credential", cred.name, "failure_count", cred.failure_count + 1)
@@ -179,6 +205,7 @@ def post_transaction(docname):
 		frappe.db.set_value("KEK Inventory Transaction", doc.name, "status", "FAILED")
 		translated_msg = translate_customs_error(f"Connection Error: {str(e)}")
 		doc.add_comment("Comment", translated_msg)
+		update_reference_doc(doc, "FAILED", error_msg=translated_msg)
 		frappe.log_error(frappe.get_traceback(), "KEK Integration Connection Error")
 
 def process_queue(sync=False):

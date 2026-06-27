@@ -87,13 +87,12 @@ class TestPoster(unittest.TestCase):
 		# Verify Headers in Request
 		args, kwargs = mock_post.call_args
 		headers = kwargs.get('headers')
-		self.assertEqual(headers["X-INSW-Key"], "SECRET-INSW-KEY")
-		self.assertEqual(headers["X-Unique-Key"], "SECRET-UNIQUE-KEY")
+		self.assertEqual(headers["x-insw-key"], "SECRET-INSW-KEY")
+		self.assertEqual(headers["x-unique-key"], "SECRET-UNIQUE-KEY")
 
 		# Verify Payload (PER-24 Structure)
 		payload = json.loads(kwargs.get('data'))
-		self.assertEqual(payload["data"][0]["npwp"], "012345678901234")
-		self.assertEqual(payload["data"][0]["nib"], "NIB-123")
+		self.assertEqual(payload["data"][0]["kdKegiatan"], "30")
 
 		# Verify Doc Update
 		self.txn.reload()

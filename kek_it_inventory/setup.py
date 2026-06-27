@@ -70,6 +70,13 @@ def seed_master_data():
 	]
 	seed_doctype("KEK Ref Activity Code", activity_codes)
 
+	# 6. Create custom fields for integration
+	create_kek_custom_fields()
+
+	# 7. Setup Test Role Permissions
+	from kek_it_inventory.setup_role import setup_test_role_permissions
+	setup_test_role_permissions()
+
 def seed_doctype(doctype, data):
 	for item in data:
 		if not frappe.db.exists(doctype, item["code"]):
@@ -81,4 +88,244 @@ def seed_doctype(doctype, data):
 			print(f"Seeded {doctype}: {item['code']}")
 		else:
 			print(f"Skipped {doctype}: {item['code']} (Already exists)")
+	frappe.db.commit()
+
+def create_kek_custom_fields():
+	from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
+	custom_fields = {
+		"Purchase Order": [
+			{
+				"fieldname": "kek_section",
+				"fieldtype": "Section Break",
+				"label": "KEK IT Inventory Integration",
+				"insert_after": "status"
+			},
+			{
+				"fieldname": "kek_status",
+				"fieldtype": "Select",
+				"label": "KEK Status",
+				"options": "\nQUEUED\nSENT\nACKNOWLEDGED\nFAILED\nPENDING\nMISMATCH\nBYPASSED\nValidated",
+				"read_only": 1,
+				"insert_after": "kek_section"
+			},
+			{
+				"fieldname": "kek_transaction",
+				"fieldtype": "Link",
+				"label": "KEK Transaction",
+				"options": "KEK Inventory Transaction",
+				"read_only": 1,
+				"insert_after": "kek_status"
+			},
+			{
+				"fieldname": "nomor_ppkek",
+				"fieldtype": "Data",
+				"label": "Nomor PPKEK",
+				"read_only": 1,
+				"insert_after": "kek_transaction"
+			}
+		],
+		"Subcontracting Order": [
+			{
+				"fieldname": "kek_section",
+				"fieldtype": "Section Break",
+				"label": "KEK IT Inventory Integration",
+				"insert_after": "status"
+			},
+			{
+				"fieldname": "kek_status",
+				"fieldtype": "Select",
+				"label": "KEK Status",
+				"options": "\nQUEUED\nSENT\nACKNOWLEDGED\nFAILED\nPENDING\nMISMATCH\nBYPASSED\nValidated",
+				"read_only": 1,
+				"insert_after": "kek_section"
+			},
+			{
+				"fieldname": "kek_transaction",
+				"fieldtype": "Link",
+				"label": "KEK Transaction",
+				"options": "KEK Inventory Transaction",
+				"read_only": 1,
+				"insert_after": "kek_status"
+			},
+			{
+				"fieldname": "nomor_ppkek",
+				"fieldtype": "Data",
+				"label": "Nomor PPKEK",
+				"read_only": 1,
+				"insert_after": "kek_transaction"
+			}
+		],
+		"Purchase Receipt": [
+			{
+				"fieldname": "kek_section",
+				"fieldtype": "Section Break",
+				"label": "KEK IT Inventory Integration",
+				"insert_after": "status"
+			},
+			{
+				"fieldname": "kek_status",
+				"fieldtype": "Select",
+				"label": "KEK Status",
+				"options": "\nQUEUED\nSENT\nACKNOWLEDGED\nFAILED\nPENDING\nMISMATCH\nBYPASSED\nValidated",
+				"read_only": 1,
+				"insert_after": "kek_section"
+			},
+			{
+				"fieldname": "kek_transaction",
+				"fieldtype": "Link",
+				"label": "KEK Transaction",
+				"options": "KEK Inventory Transaction",
+				"read_only": 1,
+				"insert_after": "kek_status"
+			},
+			{
+				"fieldname": "nomor_ppkek",
+				"fieldtype": "Data",
+				"label": "Nomor PPKEK",
+				"read_only": 1,
+				"insert_after": "kek_transaction"
+			},
+			{
+				"fieldname": "kek_insw_id",
+				"fieldtype": "Data",
+				"label": "KEK INSW ID",
+				"read_only": 1,
+				"insert_after": "nomor_ppkek"
+			},
+			{
+				"fieldname": "kek_error",
+				"fieldtype": "Small Text",
+				"label": "KEK Error Message",
+				"read_only": 1,
+				"insert_after": "kek_insw_id"
+			},
+			{
+				"fieldname": "bypass_kek_validation",
+				"fieldtype": "Check",
+				"label": "Bypass KEK Validation",
+				"insert_after": "kek_error"
+			},
+			{
+				"fieldname": "bypass_reason",
+				"fieldtype": "Small Text",
+				"label": "Bypass Reason",
+				"insert_after": "bypass_kek_validation"
+			}
+		],
+		"Delivery Note": [
+			{
+				"fieldname": "kek_section",
+				"fieldtype": "Section Break",
+				"label": "KEK IT Inventory Integration",
+				"insert_after": "status"
+			},
+			{
+				"fieldname": "kek_status",
+				"fieldtype": "Select",
+				"label": "KEK Status",
+				"options": "\nQUEUED\nSENT\nACKNOWLEDGED\nFAILED\nPENDING\nMISMATCH\nBYPASSED\nValidated",
+				"read_only": 1,
+				"insert_after": "kek_section"
+			},
+			{
+				"fieldname": "kek_transaction",
+				"fieldtype": "Link",
+				"label": "KEK Transaction",
+				"options": "KEK Inventory Transaction",
+				"read_only": 1,
+				"insert_after": "kek_status"
+			},
+			{
+				"fieldname": "nomor_ppkek",
+				"fieldtype": "Data",
+				"label": "Nomor PPKEK",
+				"read_only": 1,
+				"insert_after": "kek_transaction"
+			},
+			{
+				"fieldname": "kek_insw_id",
+				"fieldtype": "Data",
+				"label": "KEK INSW ID",
+				"read_only": 1,
+				"insert_after": "nomor_ppkek"
+			},
+			{
+				"fieldname": "kek_error",
+				"fieldtype": "Small Text",
+				"label": "KEK Error Message",
+				"read_only": 1,
+				"insert_after": "kek_insw_id"
+			},
+			{
+				"fieldname": "bypass_kek_validation",
+				"fieldtype": "Check",
+				"label": "Bypass KEK Validation",
+				"insert_after": "kek_error"
+			},
+			{
+				"fieldname": "bypass_reason",
+				"fieldtype": "Small Text",
+				"label": "Bypass Reason",
+				"insert_after": "bypass_kek_validation"
+			}
+		],
+		"Subcontracting Receipt": [
+			{
+				"fieldname": "kek_section",
+				"fieldtype": "Section Break",
+				"label": "KEK IT Inventory Integration",
+				"insert_after": "status"
+			},
+			{
+				"fieldname": "kek_status",
+				"fieldtype": "Select",
+				"label": "KEK Status",
+				"options": "\nQUEUED\nSENT\nACKNOWLEDGED\nFAILED\nPENDING\nMISMATCH\nBYPASSED\nValidated",
+				"read_only": 1,
+				"insert_after": "kek_section"
+			},
+			{
+				"fieldname": "kek_transaction",
+				"fieldtype": "Link",
+				"label": "KEK Transaction",
+				"options": "KEK Inventory Transaction",
+				"read_only": 1,
+				"insert_after": "kek_status"
+			},
+			{
+				"fieldname": "nomor_ppkek",
+				"fieldtype": "Data",
+				"label": "Nomor PPKEK",
+				"read_only": 1,
+				"insert_after": "kek_transaction"
+			},
+			{
+				"fieldname": "kek_insw_id",
+				"fieldtype": "Data",
+				"label": "KEK INSW ID",
+				"read_only": 1,
+				"insert_after": "nomor_ppkek"
+			},
+			{
+				"fieldname": "kek_error",
+				"fieldtype": "Small Text",
+				"label": "KEK Error Message",
+				"read_only": 1,
+				"insert_after": "kek_insw_id"
+			},
+			{
+				"fieldname": "bypass_kek_validation",
+				"fieldtype": "Check",
+				"label": "Bypass KEK Validation",
+				"insert_after": "kek_error"
+			},
+			{
+				"fieldname": "bypass_reason",
+				"fieldtype": "Small Text",
+				"label": "Bypass Reason",
+				"insert_after": "bypass_kek_validation"
+			}
+		]
+	}
+	create_custom_fields(custom_fields, ignore_validate=True)
 	frappe.db.commit()
