@@ -1,0 +1,23 @@
+{
+ "creation": "2026-06-01 18:06:53.871124",
+ "currency": "IDR",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "KEK Inventory Transaction",
+ "filters_json": "[[\"KEK Inventory Transaction\",\"status\",\"in\",[\"QUEUED\",\"SENT\"]]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Pending ACK",
+ "modified": "2026-06-01 18:06:53.871124",
+ "modified_by": "Administrator",
+ "module": "KEK IT Inventory",
+ "name": "Pending ACK",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_full_number": 0,
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Document Type"
+}
