@@ -36,3 +36,16 @@ scheduler_events = {
 		"kek_it_inventory.kek_it_inventory.tasks.daily_reconciliation"
 	],
 }
+
+fixtures = [
+	{
+		"dt": "Custom Field",
+		"filters": [
+			["name", "in", [
+				"Purchase Order-custom_sap_po_number",
+				"Sales Order-custom_sap_so_number",
+			]]
+		]
+	}
+]
+
