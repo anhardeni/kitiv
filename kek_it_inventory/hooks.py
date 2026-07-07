@@ -66,7 +66,7 @@ scheduler_events = {
 	],
 }
 
-<<<<<<< HEAD
+
 fixtures = [
 	{
 		"dt": "Custom Field",
@@ -74,10 +74,21 @@ fixtures = [
 			["name", "in", [
 				"Purchase Order-custom_sap_po_number",
 				"Sales Order-custom_sap_so_number",
+				"Purchase Receipt-custom_grn_ref",
+				"Purchase Receipt-custom_bc_registration_date",
+				"Purchase Receipt-custom_bc_registration_no",
+				"Purchase Receipt-custom_bc_document_type",
+				"Purchase Receipt-custom_custom_no_aju",
+				"Delivery Note-custom_bc_registration_date",
+				"Delivery Note-custom_bc_registration_no",
+				"Delivery Note-custom_bc_document_type",
+				"Delivery Note-custom_no_aju",
 			]]
 		]
-	}
+	},
+	"KEK Ref Transaction Type",
+	"KEK Ref Item Category",
+	"KEK Ref Customs Document",
+	"KEK Ref Unit",
+	"KEK Ref Activity Code"
 ]
-
-=======
->>>>>>> 25435c464be0de97cf6e8160944c3f5da3a20929

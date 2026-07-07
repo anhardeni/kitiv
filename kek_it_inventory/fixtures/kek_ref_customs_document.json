@@ -1,0 +1,202 @@
+[
+ {
+  "code": "0407021",
+  "description": "BC 2.1",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.587704",
+  "name": "0407021"
+ },
+ {
+  "code": "0407024",
+  "description": "BC 24",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.590924",
+  "name": "0407024"
+ },
+ {
+  "code": "0407261",
+  "description": "BC 2.6.1",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.643811",
+  "name": "0407261"
+ },
+ {
+  "code": "0407262",
+  "description": "BC 2.6.2",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.649210",
+  "name": "0407262"
+ },
+ {
+  "code": "0407027",
+  "description": "BC 2.7",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.652873",
+  "name": "0407027"
+ },
+ {
+  "code": "0407032",
+  "description": "BC 3.2",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.656694",
+  "name": "0407032"
+ },
+ {
+  "code": "0407033",
+  "description": "BC 3.3",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.663930",
+  "name": "0407033"
+ },
+ {
+  "code": "0407034",
+  "description": "BC 3.4",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.667797",
+  "name": "0407034"
+ },
+ {
+  "code": "0407040",
+  "description": "BC 4.0",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.671710",
+  "name": "0407040"
+ },
+ {
+  "code": "0407041",
+  "description": "BC 4.1",
+  "doc_group": "KEK/FTZ/BC",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.677535",
+  "name": "0407041"
+ },
+ {
+  "code": "0407051",
+  "description": "FTZ 01",
+  "doc_group": "FTZ",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.681637",
+  "name": "0407051"
+ },
+ {
+  "code": "0407512",
+  "description": "FTZ01 - Pengeluaran ke LDP",
+  "doc_group": "FTZ",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.685581",
+  "name": "0407512"
+ },
+ {
+  "code": "0407612",
+  "description": "KEK - Pemasukan Melalui Barang Kiriman",
+  "doc_group": "KEK",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.689882",
+  "name": "0407612"
+ },
+ {
+  "code": "0407613",
+  "description": "KEK - Pemasukan dari TLDDP",
+  "doc_group": "KEK",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.694969",
+  "name": "0407613"
+ },
+ {
+  "code": "0407614",
+  "description": "KEK - Pemasukan dari TLDDP Subkon",
+  "doc_group": "KEK",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.698806",
+  "name": "0407614"
+ },
+ {
+  "code": "0407621",
+  "description": "KEK - Pengeluaran ke KEK/TPB/FTZP",
+  "doc_group": "KEK",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.703022",
+  "name": "0407621"
+ },
+ {
+  "code": "0407631",
+  "description": "KEK - Pengeluaran ke LDP",
+  "doc_group": "KEK",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.706574",
+  "name": "0407631"
+ },
+ {
+  "code": "0407633",
+  "description": "KEK - Pengeluaran ke TLDDP Subkon",
+  "doc_group": "KEK",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.713545",
+  "name": "0407633"
+ },
+ {
+  "code": "0407634",
+  "description": "KEK - Pengeluaran ke TLDDP Ex 613",
+  "doc_group": "KEK",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.716529",
+  "name": "0407634"
+ },
+ {
+  "code": "0407008",
+  "description": "Free Movement",
+  "doc_group": "Movement",
+  "docstatus": 0,
+  "doctype": "KEK Ref Customs Document",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.719288",
+  "name": "0407008"
+ }
+]

@@ -1,0 +1,74 @@
+[
+ {
+  "code": "1",
+  "description": "Bahan Baku",
+  "docstatus": 0,
+  "doctype": "KEK Ref Item Category",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.478810",
+  "name": "1"
+ },
+ {
+  "code": "2",
+  "description": "Bahan Penolong",
+  "docstatus": 0,
+  "doctype": "KEK Ref Item Category",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.483289",
+  "name": "2"
+ },
+ {
+  "code": "3",
+  "description": "Bahan Habis Pakai",
+  "docstatus": 0,
+  "doctype": "KEK Ref Item Category",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.489708",
+  "name": "3"
+ },
+ {
+  "code": "4",
+  "description": "Barang Dagangan",
+  "docstatus": 0,
+  "doctype": "KEK Ref Item Category",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.493369",
+  "name": "4"
+ },
+ {
+  "code": "5",
+  "description": "Mesin dan Peralatan",
+  "docstatus": 0,
+  "doctype": "KEK Ref Item Category",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.496764",
+  "name": "5"
+ },
+ {
+  "code": "6",
+  "description": "Barang dalam Proses",
+  "docstatus": 0,
+  "doctype": "KEK Ref Item Category",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.501987",
+  "name": "6"
+ },
+ {
+  "code": "7",
+  "description": "Barang Jadi",
+  "docstatus": 0,
+  "doctype": "KEK Ref Item Category",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.509488",
+  "name": "7"
+ },
+ {
+  "code": "8",
+  "description": "Barang Reject & Scrap",
+  "docstatus": 0,
+  "doctype": "KEK Ref Item Category",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.514061",
+  "name": "8"
+ }
+]

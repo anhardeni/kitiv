@@ -1,0 +1,38 @@
+[
+ {
+  "code": "30",
+  "description": "Incoming Goods",
+  "docstatus": 0,
+  "doctype": "KEK Ref Transaction Type",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.347312",
+  "name": "30"
+ },
+ {
+  "code": "31",
+  "description": "Outgoing Goods",
+  "docstatus": 0,
+  "doctype": "KEK Ref Transaction Type",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.417263",
+  "name": "31"
+ },
+ {
+  "code": "32",
+  "description": "Stock Opname Goods",
+  "docstatus": 0,
+  "doctype": "KEK Ref Transaction Type",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.423199",
+  "name": "32"
+ },
+ {
+  "code": "33",
+  "description": "Adjustment Goods",
+  "docstatus": 0,
+  "doctype": "KEK Ref Transaction Type",
+  "is_active": 1,
+  "modified": "2026-05-13 13:21:37.428472",
+  "name": "33"
+ }
+]
