@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:SAP-IMPORT-{YYYY}-{#####}",
+ "creation": "2026-07-07 06:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "file_url",
+  "col_break_1",
+  "status",
+  "progress_section",
+  "total_rows",
+  "processed_rows",
+  "col_break_2",
+  "last_po_number",
+  "error_section",
+  "error_log"
+ ],
+ "fields": [
+  {
+   "fieldname": "file_url",
+   "fieldtype": "Attach",
+   "label": "Upload XLS / XLSX File",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Queued",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Queued\nProcessing\nCompleted\nFailed",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "progress_section",
+   "fieldtype": "Section Break",
+   "label": "Progress"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_rows",
+   "fieldtype": "Int",
+   "label": "Total POs",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "processed_rows",
+   "fieldtype": "Int",
+   "label": "Processed POs",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_po_number",
+   "fieldtype": "Data",
+   "label": "Last Processed PO",
+   "read_only": 1,
+   "description": "Resume pointer — used for crash recovery"
+  },
+  {
+   "fieldname": "error_section",
+   "fieldtype": "Section Break",
+   "label": "Error Log",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "error_log",
+   "fieldtype": "Text",
+   "label": "Error Log",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-07-07 06:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "SAP PO Import Job",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "status"
+}

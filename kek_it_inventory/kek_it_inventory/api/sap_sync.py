@@ -1,6 +1,8 @@
 import frappe
 import json
 import traceback
+import requests
+from frappe.utils import now_datetime
 
 def normalize_uom(sap_uom):
 	if not sap_uom:
@@ -182,6 +184,7 @@ def create_purchase_order(sap_po, log):
 def process_sap_xls_chunked(job_name):
 	"""
 	XLS Chunked Background Processor (Hybrid Method).
+	Driven by the 'SAP PO Import Job' DocType.
 	"""
 	import pandas as pd
 	job = frappe.get_doc("SAP PO Import Job", job_name)
@@ -196,53 +199,61 @@ def process_sap_xls_chunked(job_name):
 		file_path = frappe.get_site_path(job.file_url.lstrip("/"))
 		df = pd.read_excel(file_path)
 
-		if job.last_po_number:
-			df = df[df["po_number"] > job.last_po_number]
+		# Group all POs (preserve original file order)
+		po_groups = list(df.groupby("po_number", sort=False))
 
-		grouped = df.groupby("po_number")
-		po_groups = list(grouped)
-		total = len(po_groups)
-		job.total_rows = total
+		# Set total_rows once from the full file
+		if not job.total_rows:
+			job.total_rows = len(po_groups)
+			job.save(ignore_permissions=True)
+			frappe.db.commit()
+
+		# BUG FIX: Index-based resume — NOT lexicographic string comparison
+		if job.last_po_number:
+			keys = [str(k) for k, _ in po_groups]
+			if job.last_po_number in keys:
+				start_idx = keys.index(job.last_po_number) + 1
+				po_groups = po_groups[start_idx:]
 
 		CHUNK_SIZE = 100
 		chunk = po_groups[:CHUNK_SIZE]
+		remaining = po_groups[CHUNK_SIZE:]
 
 		for po_number, group in chunk:
 			try:
-				# Format group data into the expected dictionary parser format
+				# Map XLS columns to SAP-shaped dict so create_purchase_order can process
 				first_row = group.iloc[0]
-				results = []
-				for _, row in group.iterrows():
-					results.append({
-						"Material": str(row["item_code"]),
-						"OrderQuantity": float(row["qty"]),
-						"PurchaseOrderQuantityUnit": str(row["uom"]),
-						"NetPriceAmount": float(row["rate"]),
-						"Plant": str(row["warehouse"]),
-						"PurchaseOrderItemText": str(row.get("description", ""))
-					})
-
 				sap_po = {
 					"PurchaseOrder": str(po_number),
 					"Supplier": str(first_row["supplier"]),
 					"CompanyCode": str(first_row["company"]),
 					"DocumentCurrency": str(first_row.get("currency", "IDR")),
 					"CreationDate": str(first_row.get("transaction_date", frappe.utils.today())),
-					"to_PurchaseOrderItem": {"results": results}
+					"to_PurchaseOrderItem": {"results": [
+						{
+							"Material": str(row["item_code"]),
+							"OrderQuantity": float(row["qty"]),
+							"PurchaseOrderQuantityUnit": str(row["uom"]),
+							"NetPriceAmount": float(row["rate"]),
+							"Plant": str(row["warehouse"]),
+							"PurchaseOrderItemText": str(row.get("description", ""))
+						}
+						for _, row in group.iterrows()
+					]}
 				}
 
-				# Create a log entry for record-keeping
+				# Create SAP Integration Log entry for audit trail
 				log_entry = frappe.get_doc({
 					"doctype": "SAP Integration Log",
 					"sap_document_number": str(po_number),
 					"document_type": "Purchase Order",
 					"status": "Pending",
 					"sap_payload": json.dumps(sap_po),
-					"sync_timestamp": frappe.utils.now_datetime()
+					"sync_timestamp": now_datetime()
 				})
 				log_entry.insert(ignore_permissions=True)
 
-				# Process
+				# Reuse the same create_purchase_order shared with push & pull paths
 				create_purchase_order(sap_po, log_entry)
 				log_entry.status = "Success"
 				log_entry.save(ignore_permissions=True)
@@ -251,6 +262,7 @@ def process_sap_xls_chunked(job_name):
 				job.last_po_number = str(po_number)
 
 			except Exception as row_error:
+				frappe.db.rollback()  # Release dirty transaction before next row
 				error_msg = f"\nPO {po_number}: {str(row_error)}"
 				job.error_log = (job.error_log or "") + error_msg
 				frappe.log_error(f"SAP XLS Import Row Error: {po_number}", str(row_error))
@@ -258,22 +270,100 @@ def process_sap_xls_chunked(job_name):
 		job.save(ignore_permissions=True)
 		frappe.db.commit()
 
-		# If there are more groups to process, re-enqueue
-		if total > CHUNK_SIZE:
+		# BUG FIX: Re-enqueue based on remaining list, not `total > CHUNK_SIZE`
+		if remaining:
 			frappe.enqueue(
 				method="kek_it_inventory.kek_it_inventory.api.sap_sync.process_sap_xls_chunked",
 				queue="long",
 				job_name=job_name,
 				timeout=3600
 			)
-		else:
-			job.status = "Completed"
-			job.save(ignore_permissions=True)
-			frappe.db.commit()
+			return  # Hand off to next worker
+
+		job.status = "Completed"
+		job.save(ignore_permissions=True)
+		frappe.db.commit()
 
 	except Exception as e:
 		frappe.db.rollback()
 		job.status = "Failed"
-		job.error_log = (job.error_log or "") + f"\nJob-level Failure: {str(e)}"
+		job.error_log = (job.error_log or "") + f"\nJob-level Failure: {str(e)}\n{traceback.format_exc()}"
 		job.save(ignore_permissions=True)
 		frappe.db.commit()
+
+
+@frappe.whitelist()
+def run_po_sync():
+	"""
+	Scheduled OData pull: fetches POs from SAP S/4HANA and creates them in ERPNext.
+	Registered in hooks.py scheduler_events (e.g. every 15 minutes).
+	This is the PULL counterpart to receive_sap_document (PUSH).
+	"""
+	settings = frappe.get_doc("SAP Sync Settings")
+	last_sync = settings.last_sync_timestamp or "2026-01-01T00:00:00"
+
+	sap_base = settings.sap_base_url
+	auth = (settings.sap_user, settings.get_password("sap_password"))
+
+	url = f"{sap_base}/A_PurchaseOrder"
+	params = {
+		"$expand": "to_PurchaseOrderItem",
+		"$filter": f"CreationDate ge datetime'{last_sync}'",
+		"$top": 5000
+	}
+
+	all_pos = []
+	while url:
+		try:
+			r = requests.get(
+				url,
+				params=params,
+				headers={"Accept": "application/json"},
+				auth=auth,
+				timeout=30
+			)
+			r.raise_for_status()
+			data = r.json()
+			all_pos.extend(data["d"]["results"])
+			url = data["d"].get("__next")
+			params = None  # Only used on first page request
+		except Exception as e:
+			frappe.log_error(f"SAP OData Fetch Error: {str(e)}", "SAP PO Sync")
+			break
+
+	success_count = 0
+	skip_count = 0
+	error_count = 0
+
+	for sap_po in all_pos:
+		try:
+			# Reuse the same create_purchase_order used by push & XLS paths
+			po_number = sap_po.get("PurchaseOrder")
+			existing = frappe.db.get_value("Purchase Order", {"custom_sap_po_number": po_number}, "name")
+			if existing:
+				skip_count += 1
+				continue
+
+			# Use a throwaway log object to satisfy create_purchase_order signature
+			log = frappe._dict({"erpnext_reference": None})
+			create_purchase_order(sap_po, log)
+			success_count += 1
+
+		except Exception as e:
+			frappe.db.rollback()
+			error_count += 1
+			frappe.log_error(
+				f"PO {sap_po.get('PurchaseOrder', 'UNKNOWN')}: {str(e)}\n{traceback.format_exc()}",
+				"SAP PO Sync"
+			)
+
+	settings.last_sync_timestamp = now_datetime()
+	settings.save()
+	frappe.db.commit()
+
+	return {
+		"total": len(all_pos),
+		"created": success_count,
+		"skipped": skip_count,
+		"errors": error_count
+	}

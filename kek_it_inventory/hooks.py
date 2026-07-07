@@ -54,6 +54,13 @@ scheduler_events = {
 		"kek_it_inventory.kek_it_inventory.api.poster.process_queue",
 		"kek_it_inventory.kek_it_inventory.services.kek_service.run_mismatch_check_job"
 	],
+	"cron": {
+		# SAP OData Pull - runs every 15 minutes
+		# Push endpoint: /api/method/kek_it_inventory.kek_it_inventory.api.sap_sync.receive_sap_document
+		"*/15 * * * *": [
+			"kek_it_inventory.kek_it_inventory.api.sap_sync.run_po_sync"
+		]
+	},
 	"daily": [
 		"kek_it_inventory.kek_it_inventory.tasks.daily_reconciliation"
 	],
