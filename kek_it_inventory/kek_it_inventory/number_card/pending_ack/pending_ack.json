@@ -1,5 +1,5 @@
 {
- "creation": "2026-06-01 18:06:53.871124",
+ "creation": "2026-07-07 10:09:11.187986",
  "currency": "IDR",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -10,7 +10,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Pending ACK",
- "modified": "2026-06-01 18:06:53.871124",
+ "modified": "2026-07-07 10:09:11.187986",
  "modified_by": "Administrator",
  "module": "KEK IT Inventory",
  "name": "Pending ACK",

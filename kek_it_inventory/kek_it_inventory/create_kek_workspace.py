@@ -66,14 +66,6 @@ def main():
             }
         },
         {
-            "id": "kek_intro_txt",
-            "type": "text",
-            "data": {
-                "text": "Unified custom clearance dashboard for Kawasan Ekonomi Khusus (KEK) pabean transactions under **PER-24/BC/2021** standards. Track PPKEK (PJ.01) filings, adjust BOM tolerance ratios, and view origin audits.",
-                "col": 12
-            }
-        },
-        {
             "id": "kek_cards_spc_top",
             "type": "spacer",
             "data": {
@@ -124,7 +116,7 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "New PPKEK Transaction",
-                "col": 3
+                "col": 2
             }
         },
         {
@@ -132,7 +124,7 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "Transaction Queue",
-                "col": 3
+                "col": 2
             }
         },
         {
@@ -140,7 +132,7 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "Stock Ledger Audit",
-                "col": 3
+                "col": 2
             }
         },
         {
@@ -148,7 +140,23 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "Compliance Archive",
-                "col": 3
+                "col": 2
+            }
+        },
+        {
+            "id": "kek_sh_sales_order",
+            "type": "shortcut",
+            "data": {
+                "shortcut_name": "Sales Order",
+                "col": 2
+            }
+        },
+        {
+            "id": "kek_sh_purchase_order",
+            "type": "shortcut",
+            "data": {
+                "shortcut_name": "Purchase Order",
+                "col": 2
             }
         },
         {
@@ -162,7 +170,7 @@ def main():
             "id": "kek_cards_hdr",
             "type": "header",
             "data": {
-                "text": "<span class=\"h4\"><b>Reference Modules & Parameters</b></span>",
+                "text": "<span class=\"h4\"><b>Reference Modules &amp; Parameters</b></span>",
                 "col": 12
             }
         },
@@ -215,28 +223,48 @@ def main():
                 "type": "DocType",
                 "link_to": "KEK Inventory Transaction",
                 "doc_view": "New",
-                "icon": "plus"
+                "icon": "plus",
+                "color": "Green"
             },
             {
                 "label": "Transaction Queue",
                 "type": "DocType",
                 "link_to": "KEK Inventory Transaction",
                 "doc_view": "List",
-                "icon": "list"
+                "icon": "list",
+                "color": "Orange"
             },
             {
                 "label": "Stock Ledger Audit",
                 "type": "DocType",
                 "link_to": "KEK Stock Ledger",
                 "doc_view": "List",
-                "icon": "database"
+                "icon": "database",
+                "color": "Blue"
             },
             {
                 "label": "Compliance Archive",
                 "type": "DocType",
                 "link_to": "KEK Compliance Archive",
                 "doc_view": "List",
-                "icon": "archive"
+                "icon": "archive",
+                "color": "Grey"
+            },
+            {
+                "label": "Sales Order",
+                "type": "DocType",
+                "link_to": "Sales Order",
+                "doc_view": "List",
+                "icon": "file-text",
+                "color": "Purple"
+            },
+            {
+                "label": "Purchase Order",
+                "type": "DocType",
+                "link_to": "Purchase Order",
+                "doc_view": "List",
+                "icon": "credit-card",
+                "color": "Red"
             }
         ],
         "links": [
