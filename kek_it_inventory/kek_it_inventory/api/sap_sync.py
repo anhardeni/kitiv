@@ -10,12 +10,8 @@ def normalize_uom(sap_uom):
 
 	sap_uom = sap_uom.strip()
 
-	# 1. Direct match in UOM DocType
-	if frappe.db.exists("UOM", sap_uom):
-		return sap_uom
-
-	# 2. Case-insensitive or fuzzy match in UOM DocType
-	uom_name = frappe.db.get_value("UOM", {"name": ["like", sap_uom]}, "name")
+	# 1. Match in UOM DocType
+	uom_name = frappe.db.get_value("UOM", sap_uom, "name")
 	if uom_name:
 		return uom_name
 
@@ -107,7 +103,7 @@ def process_sap_document_async(log_name):
 		if log.document_type == "Purchase Order":
 			create_purchase_order(payload, log)
 		else:
-			raise NotImplementedError("Sales Order synchronization is not yet implemented")
+			create_sales_order(payload, log)
 
 		log.status = "Success"
 		log.error_trace = None
@@ -369,3 +365,64 @@ def run_po_sync():
 	}
 
 
+
+def create_sales_order(sap_so, log):
+	so_number = sap_so.get("SalesOrder")
+
+	# Idempotency check: see if SO already exists
+	existing_so = frappe.db.get_value("Sales Order", {"custom_sap_so_number": so_number}, "name")
+	if existing_so:
+		log.erpnext_reference = existing_so
+		return
+
+	# Validate Customer
+	customer = sap_so.get("Customer")
+	if not frappe.db.exists("Customer", customer):
+		raise frappe.ValidationError(f"Customer {customer} not found in ERPNext")
+
+	# Validate Company
+	company = sap_so.get("CompanyCode") or sap_so.get("Company")
+	if not frappe.db.exists("Company", company):
+		raise frappe.ValidationError(f"Company {company} not found in ERPNext")
+
+	# Process items
+	items = []
+	raw_items = sap_so.get("to_SalesOrderItem", {}).get("results", [])
+	
+	for idx, it in enumerate(raw_items):
+		item_code = it.get("Material")
+		if not frappe.db.exists("Item", item_code):
+			raise frappe.ValidationError(f"Item {item_code} at index {idx} not found in ERPNext")
+
+		warehouse = it.get("Plant")
+		if warehouse and not frappe.db.exists("Warehouse", warehouse):
+			raise frappe.ValidationError(f"Warehouse {warehouse} at index {idx} not found in ERPNext")
+
+		items.append({
+			"item_code": item_code,
+			"qty": float(it.get("OrderQuantity") or 0.0),
+			"uom": normalize_uom(it.get("OrderQuantityUnit") or it.get("ServicesRenderedUnit")),
+			"rate": float(it.get("NetPriceAmount") or 0.0),
+			"warehouse": warehouse,
+			"description": it.get("SalesOrderItemText") or "",
+			"delivery_date": sap_so.get("CreationDate")[:10] if sap_so.get("CreationDate") else frappe.utils.today()
+		})
+
+	if not items:
+		raise frappe.ValidationError("No items found in SAP Sales Order payload")
+
+	# Create ERPNext Sales Order
+	so = frappe.get_doc({
+		"doctype": "Sales Order",
+		"customer": customer,
+		"company": company,
+		"currency": sap_so.get("DocumentCurrency") or "IDR",
+		"transaction_date": sap_so.get("CreationDate")[:10] if sap_so.get("CreationDate") else frappe.utils.today(),
+		"custom_sap_so_number": so_number,
+		"delivery_date": sap_so.get("CreationDate")[:10] if sap_so.get("CreationDate") else frappe.utils.today(),
+		"items": items
+	})
+	so.insert(ignore_permissions=True)
+	so.submit()
+
+	log.erpnext_reference = so.name

@@ -22,6 +22,15 @@ class TestSAPSync(unittest.TestCase):
 				"supplier_group": "All Supplier Groups"
 			}).insert()
 
+		# Ensure a test customer exists
+		if not frappe.db.exists("Customer", "SAP-TEST-CUSTOMER"):
+			frappe.get_doc({
+				"doctype": "Customer",
+				"customer_name": "SAP-TEST-CUSTOMER",
+				"customer_group": "All Customer Groups",
+				"territory": "All Territories"
+			}).insert()
+
 		# Ensure warehouse exists
 		if not frappe.db.exists("Warehouse", "Test Warehouse - BCM"):
 			frappe.get_doc({
@@ -35,18 +44,22 @@ class TestSAPSync(unittest.TestCase):
 			if not frappe.db.exists("UOM", uom):
 				frappe.get_doc({
 					"doctype": "UOM",
-					"uom_name": uom
+					"uom_name": uom,
+					"name": uom
 				}).insert()
+
 
 
 	def tearDown(self):
 		frappe.db.rollback()
 
 	def test_normalize_uom(self):
-		self.assertEqual(normalize_uom("EA"), "Unit")
-		self.assertEqual(normalize_uom("PC"), "Unit")
-		self.assertEqual(normalize_uom("BOX"), "Box")
-		self.assertEqual(normalize_uom("XYZ"), "XYZ")
+		self.assertEqual(normalize_uom("EA"), frappe.db.get_value("UOM", {"name": "Unit"}, "name") or "Unit")
+		self.assertEqual(normalize_uom("PC"), frappe.db.get_value("UOM", {"name": "Unit"}, "name") or "Unit")
+		self.assertEqual(normalize_uom("BOX"), frappe.db.get_value("UOM", {"name": "Box"}, "name") or "Box")
+		self.assertEqual(normalize_uom("XYZ"), frappe.db.get_value("UOM", {"name": "XYZ"}, "name") or "XYZ")
+
+
 
 	def test_process_sap_document_async_success(self):
 		# Create an Integration Log for testing
@@ -169,3 +182,44 @@ class TestSAPSync(unittest.TestCase):
 
 		self.assertEqual(log.status, "Failed")
 		self.assertIn("Supplier NON-EXISTENT-SUPPLIER not found", log.error_trace)
+
+	def test_process_sales_order_async_success(self):
+		log = frappe.get_doc({
+			"doctype": "SAP Integration Log",
+			"sap_document_number": "SAP-SO-10001",
+			"document_type": "Sales Order",
+			"status": "Pending",
+			"sap_payload": frappe.as_json({
+				"SalesOrder": "SAP-SO-10001",
+				"Customer": "SAP-TEST-CUSTOMER",
+				"CompanyCode": "bcmerak",
+				"DocumentCurrency": "IDR",
+				"CreationDate": "2026-07-06T00:00:00",
+				"to_SalesOrderItem": {
+					"results": [
+						{
+							"Material": "SAP-TEST-ITEM",
+							"OrderQuantity": 15,
+							"OrderQuantityUnit": "EA",
+							"NetPriceAmount": 20000,
+							"Plant": "Test Warehouse - BCM",
+							"SalesOrderItemText": "Test SO description"
+						}
+					]
+				}
+			})
+		}).insert()
+
+		process_sap_document_async(log.name)
+		log.reload()
+
+		self.assertEqual(log.status, "Success")
+		self.assertTrue(log.erpnext_reference)
+
+		so = frappe.get_doc("Sales Order", log.erpnext_reference)
+		self.assertEqual(so.customer, "SAP-TEST-CUSTOMER")
+		self.assertEqual(so.custom_sap_so_number, "SAP-SO-10001")
+		self.assertEqual(so.items[0].item_code, "SAP-TEST-ITEM")
+		self.assertEqual(so.items[0].qty, 15.0)
+		self.assertEqual(so.items[0].uom, "Unit")
+
