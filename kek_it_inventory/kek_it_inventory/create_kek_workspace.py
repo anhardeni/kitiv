@@ -116,7 +116,7 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "New PPKEK Transaction",
-                "col": 2
+                "col": 3
             }
         },
         {
@@ -124,7 +124,7 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "Transaction Queue",
-                "col": 2
+                "col": 3
             }
         },
         {
@@ -132,7 +132,7 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "Stock Ledger Audit",
-                "col": 2
+                "col": 3
             }
         },
         {
@@ -140,7 +140,7 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "Compliance Archive",
-                "col": 2
+                "col": 3
             }
         },
         {
@@ -148,7 +148,7 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "Sales Order",
-                "col": 2
+                "col": 3
             }
         },
         {
@@ -156,7 +156,23 @@ def main():
             "type": "shortcut",
             "data": {
                 "shortcut_name": "Purchase Order",
-                "col": 2
+                "col": 3
+            }
+        },
+        {
+            "id": "kek_sh_purchase_receipt",
+            "type": "shortcut",
+            "data": {
+                "shortcut_name": "Purchase Receipt",
+                "col": 3
+            }
+        },
+        {
+            "id": "kek_sh_delivery_note",
+            "type": "shortcut",
+            "data": {
+                "shortcut_name": "Delivery Note",
+                "col": 3
             }
         },
         {
@@ -265,6 +281,22 @@ def main():
                 "doc_view": "List",
                 "icon": "credit-card",
                 "color": "Red"
+            },
+            {
+                "label": "Purchase Receipt",
+                "type": "DocType",
+                "link_to": "Purchase Receipt",
+                "doc_view": "List",
+                "icon": "check-square",
+                "color": "Blue"
+            },
+            {
+                "label": "Delivery Note",
+                "type": "DocType",
+                "link_to": "Delivery Note",
+                "doc_view": "List",
+                "icon": "truck",
+                "color": "Grey"
             }
         ],
         "links": [

@@ -1,7 +1,7 @@
 {
  "charts": [],
- "content": "[{\"id\": \"kek_intro_hdr\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h3\\\"><b>KEK IT Customs Inventory Dashboard</b></span>\", \"col\": 12}}, {\"id\": \"kek_cards_spc_top\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"kek_nc_1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total KEK Transactions\", \"col\": 4}}, {\"id\": \"kek_nc_2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Pending ACK\", \"col\": 4}}, {\"id\": \"kek_nc_3\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Failed Transmission\", \"col\": 4}}, {\"id\": \"kek_ops_spc\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"kek_ops_hdr\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Declaration Operations</b></span>\", \"col\": 12}}, {\"id\": \"kek_sh_1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"New PPKEK Transaction\", \"col\": 2}}, {\"id\": \"kek_sh_2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transaction Queue\", \"col\": 2}}, {\"id\": \"kek_sh_3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Stock Ledger Audit\", \"col\": 2}}, {\"id\": \"kek_sh_4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Compliance Archive\", \"col\": 2}}, {\"id\": \"kek_sh_sales_order\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Sales Order\", \"col\": 2}}, {\"id\": \"kek_sh_purchase_order\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Purchase Order\", \"col\": 2}}, {\"id\": \"kek_cards_spc\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"kek_cards_hdr\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Reference Modules &amp; Parameters</b></span>\", \"col\": 12}}, {\"id\": \"kek_card_brk_1\", \"type\": \"card\", \"data\": {\"card_name\": \"Filing Master\", \"col\": 4}}, {\"id\": \"kek_card_brk_2\", \"type\": \"card\", \"data\": {\"card_name\": \"Settings & Mappings\", \"col\": 4}}]",
- "creation": "2026-07-07 10:09:11.294522",
+ "content": "[{\"id\": \"kek_intro_hdr\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h3\\\"><b>KEK IT Customs Inventory Dashboard</b></span>\", \"col\": 12}}, {\"id\": \"kek_cards_spc_top\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"kek_nc_1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total KEK Transactions\", \"col\": 4}}, {\"id\": \"kek_nc_2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Pending ACK\", \"col\": 4}}, {\"id\": \"kek_nc_3\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Failed Transmission\", \"col\": 4}}, {\"id\": \"kek_ops_spc\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"kek_ops_hdr\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Declaration Operations</b></span>\", \"col\": 12}}, {\"id\": \"kek_sh_1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"New PPKEK Transaction\", \"col\": 3}}, {\"id\": \"kek_sh_2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Transaction Queue\", \"col\": 3}}, {\"id\": \"kek_sh_3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Stock Ledger Audit\", \"col\": 3}}, {\"id\": \"kek_sh_4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Compliance Archive\", \"col\": 3}}, {\"id\": \"kek_sh_sales_order\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Sales Order\", \"col\": 3}}, {\"id\": \"kek_sh_purchase_order\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Purchase Order\", \"col\": 3}}, {\"id\": \"kek_sh_purchase_receipt\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Purchase Receipt\", \"col\": 3}}, {\"id\": \"kek_sh_delivery_note\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Delivery Note\", \"col\": 3}}, {\"id\": \"kek_cards_spc\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"kek_cards_hdr\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Reference Modules &amp; Parameters</b></span>\", \"col\": 12}}, {\"id\": \"kek_card_brk_1\", \"type\": \"card\", \"data\": {\"card_name\": \"Filing Master\", \"col\": 4}}, {\"id\": \"kek_card_brk_2\", \"type\": \"card\", \"data\": {\"card_name\": \"Settings & Mappings\", \"col\": 4}}]",
+ "creation": "2026-07-07 10:18:33.217744",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -89,9 +89,67 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PPKEK",
+   "link_count": 0,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Order",
+   "link_count": 0,
+   "link_to": "Sales Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Order",
+   "link_count": 0,
+   "link_to": "Purchase Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "KEK IT Inventory",
+   "link_count": 0,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Receipt",
+   "link_count": 0,
+   "link_to": "Purchase Receipt",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Delivery Note",
+   "link_count": 0,
+   "link_to": "Delivery Note",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-07-07 10:09:11.294522",
+ "modified": "2026-07-07 15:52:44.117914",
  "modified_by": "Administrator",
  "module": "KEK IT Inventory",
  "name": "KEK IT Inventory",
@@ -161,6 +219,22 @@
    "icon": "credit-card",
    "label": "Purchase Order",
    "link_to": "Purchase Order",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "icon": "check-square",
+   "label": "Purchase Receipt",
+   "link_to": "Purchase Receipt",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "icon": "truck",
+   "label": "Delivery Note",
+   "link_to": "Delivery Note",
    "type": "DocType"
   }
  ],
