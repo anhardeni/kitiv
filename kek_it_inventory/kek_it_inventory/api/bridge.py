@@ -66,9 +66,21 @@ def create_kek_transaction(doc, method=None):
 		# Map ERPNext Select value to SINSW numeric code
 		bc_doc_mapping = {
 			"BC23": "0407611",   # PPKEK Pemasukan LDP
+			"PPKEK Pemasukan LDP (BC23)": "0407611",
 			"BC40": "0407613",   # PPKEK Pemasukan TLDDP
+			"PPKEK Pemasukan TLDDP (BC40)": "0407613",
 			"BC16": "0407613",   # PPKEK Pemasukan TLDDP (fallback)
-			"BC262": "0407000",  # Dokumen Pabean (General)
+			"PPKEK Pemasukan TLDDP (BC16)": "0407613",
+			"BC262": "0407614",  # PPKEK Pemasukan Kembali ex-Subkon (formerly Dokumen Pabean General)
+			"PPKEK Pemasukan Kembali ex-Subkon (BC262)": "0407614",
+			"BC30": "0407631",   # PPKEK Pengeluaran LDP (Ekspor)
+			"PPKEK Pengeluaran LDP (BC30)": "0407631",
+			"BC25": "0407632",   # PPKEK Pengeluaran ke TLDDP
+			"PPKEK Pengeluaran TLDDP (BC25)": "0407632",
+			"BC27": "0407621",   # PPKEK Pemasukan ex-Kawasan Berikat/TPB
+			"PPKEK Pemasukan ex-Kawasan Berikat/TPB (BC27)": "0407621",
+			"BC261": "0407633",  # PPKEK Pengeluaran Sementara (Subkon)
+			"PPKEK Pengeluaran Sementara Subkon (BC261)": "0407633",
 			"Lainnya": "0407000"
 		}
 		doc_code = bc_doc_mapping.get(doc_type_raw, "0407000")
