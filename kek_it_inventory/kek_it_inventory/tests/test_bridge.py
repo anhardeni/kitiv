@@ -368,6 +368,117 @@ class TestBridge(unittest.TestCase):
 		self.assertTrue(frappe.response.filecontent)
 		self.assertEqual(frappe.response.type, "binary")
 
+	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
+	def test_stock_reconciliation_trigger(self, mock_post):
+		# 1. Create and submit Stock Reconciliation
+		sr = frappe.get_doc({
+			"doctype": "Stock Reconciliation",
+			"company": "bcmerak",
+			"purpose": "Stock Reconciliation",
+			"posting_date": frappe.utils.today(),
+			"items": [{
+				"item_code": "_Test Item",
+				"warehouse": "Test KEK Warehouse - BCM",
+				"qty": 10,
+				"valuation_rate": 100
+			}]
+		})
+		sr.insert()
+		sr.submit()
+
+		# 2. Verify KEK Transaction was created
+		kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", 
+			{"erpnext_reference_name": sr.name, "erpnext_reference_doctype": "Stock Reconciliation"}, "name")
+		self.assertTrue(kek_txn_name)
+		
+		# 3. Verify KEK Transaction is type "32"
+		doc = frappe.get_doc("KEK Inventory Transaction", kek_txn_name)
+		self.assertEqual(doc.transaction_type, "32")
+
+	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
+	def test_stock_entry_trigger(self, mock_post):
+		# 1. Create and submit Stock Entry
+		se = frappe.get_doc({
+			"doctype": "Stock Entry",
+			"company": "bcmerak",
+			"purpose": "Material Receipt",
+			"stock_entry_type": "Material Receipt",
+			"posting_date": frappe.utils.today(),
+			"items": [{
+				"item_code": "_Test Item",
+				"t_warehouse": "Test KEK Warehouse - BCM",
+				"qty": 5,
+				"uom": "Nos",
+				"basic_rate": 100
+			}]
+		})
+		se.insert()
+		se.submit()
+
+		# 2. Verify KEK Transaction was created
+		kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", 
+			{"erpnext_reference_name": se.name, "erpnext_reference_doctype": "Stock Entry"}, "name")
+		self.assertTrue(kek_txn_name)
+		
+		# 3. Verify KEK Transaction is type "33"
+		doc = frappe.get_doc("KEK Inventory Transaction", kek_txn_name)
+		self.assertEqual(doc.transaction_type, "33")
+
+	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
+	def test_purchase_receipt_shortage_trigger(self, mock_post):
+		# 1. Create and submit a Purchase Order for 10 units
+		po = frappe.get_doc({
+			"doctype": "Purchase Order",
+			"company": "bcmerak",
+			"supplier": "_Test Supplier",
+			"transaction_date": frappe.utils.today(),
+			"schedule_date": frappe.utils.today(),
+			"items": [{
+				"item_code": "_Test Item",
+				"qty": 10,
+				"uom": "Nos",
+				"rate": 100,
+				"warehouse": "Test KEK Warehouse - BCM"
+			}]
+		})
+		po.insert()
+		po.submit()
+		po.db_set("kek_status", "Validated")
+
+		# 2. Create and submit a Purchase Receipt receiving only 7 units (shortage of 3 units)
+		from erpnext.stock.doctype.purchase_receipt.test_purchase_receipt import make_purchase_receipt
+		pr = make_purchase_receipt(
+			company="bcmerak",
+			qty=7,
+			item_code="_Test Item",
+			warehouse="Test KEK Warehouse - BCM",
+			do_not_submit=True
+		)
+		pr.supplier = po.supplier
+		pr.currency = po.currency
+		pr.buying_price_list = po.buying_price_list
+		pr.price_list_currency = po.price_list_currency
+		pr.items[0].uom = po.items[0].uom
+		pr.items[0].stock_uom = po.items[0].uom
+		pr.items[0].rate = po.items[0].rate
+		pr.items[0].purchase_order = po.name
+		pr.items[0].purchase_order_item = po.items[0].name
+		pr.submit()
+
+		# 3. Verify KEK Transaction for Tipe 30 (received qty: 7) was created
+		kek_txn_30 = frappe.db.get_value("KEK Inventory Transaction", 
+			{"erpnext_reference_name": pr.name, "transaction_type": "30"}, "name")
+		self.assertTrue(kek_txn_30)
+		doc_30 = frappe.get_doc("KEK Inventory Transaction", kek_txn_30)
+		self.assertEqual(doc_30.items[0].qty, 7)
+
+		# 4. Verify KEK Transaction for Tipe 33 (shortage qty: 3) was created
+		kek_txn_33 = frappe.db.get_value("KEK Inventory Transaction", 
+			{"erpnext_reference_name": pr.name, "transaction_type": "33"}, "name")
+		self.assertTrue(kek_txn_33)
+		doc_33 = frappe.get_doc("KEK Inventory Transaction", kek_txn_33)
+		self.assertEqual(doc_33.items[0].qty, 3)
+
 
 
 

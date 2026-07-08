@@ -101,7 +101,7 @@ class TestPoster(unittest.TestCase):
 
 		# 4. Verify Ledger Entry
 		ledger_entries = frappe.get_all("KEK Stock Ledger", 
-			filters={"voucher_no": self.txn.erpnext_reference_name},
+			filters={"voucher_no": self.txn.erpnext_reference_name, "customs_item_code": "ITEM001"},
 			fields=["qty_in", "qty_balance", "customs_item_code"]
 		)
 		self.assertEqual(len(ledger_entries), 1)
@@ -130,3 +130,55 @@ class TestPoster(unittest.TestCase):
 		
 		self.txn.reload()
 		self.assertEqual(self.txn.status, "SENT")
+
+	@patch('kek_it_inventory.kek_it_inventory.api.poster.requests.get')
+	@patch('kek_it_inventory.kek_it_inventory.api.poster.requests.post')
+	def test_post_stock_reconciliation_payload(self, mock_post, mock_get):
+		# 1. Create a type 32 (Stock Opname) transaction
+		txn32 = frappe.get_doc({
+			"doctype": "KEK Inventory Transaction",
+			"company_profile": "TEST COMPANY",
+			"transaction_date": frappe.utils.today(),
+			"transaction_type": "32",
+			"status": "QUEUED",
+			"items": [
+				{
+					"customs_item_code": "ITEM002",
+					"qty": 5,
+					"uom_code": "PCE"
+				}
+			]
+		}).insert()
+
+		# Mock Dynamic key
+		mock_get.return_value.status_code = 200
+		mock_get.return_value.json.return_value = {"uniqueKey": "SECRET-UNIQUE-KEY"}
+
+		# Mock success response
+		success_res = {
+			"status": True,
+			"code": "01",
+			"data": {
+				"resultDataTransaksi": [{"idTransaksi": "SINSW-OPNAME-999"}]
+			}
+		}
+		mock_post.return_value.status_code = 200
+		mock_post.return_value.json.return_value = success_res
+		mock_post.return_value.text = json.dumps(success_res)
+
+		# Execute
+		post_transaction(txn32.name)
+
+		# Verify
+		args, kwargs = mock_post.call_args
+		payload = json.loads(kwargs.get('data'))
+		self.assertEqual(payload["data"][0]["kdKegiatan"], "32")
+		self.assertEqual(payload["data"][0]["dokumenKegiatan"][0]["barangTransaksi"][0]["kdBarang"], "ITEM002")
+		self.assertEqual(payload["data"][0]["dokumenKegiatan"][0]["barangTransaksi"][0]["jumlah"], 5)
+
+		txn32.reload()
+		self.assertEqual(txn32.status, "SENT")
+		self.assertEqual(txn32.insw_transaksi_id, "SINSW-OPNAME-999")
+
+		# Clean up to prevent test leakage
+		frappe.db.delete("KEK Stock Ledger", {"customs_item_code": "ITEM002"})

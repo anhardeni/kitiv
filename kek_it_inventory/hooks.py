@@ -19,6 +19,14 @@ doc_events = {
 		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_purchase_order"
 	},
 
+	"Stock Reconciliation": {
+		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_stock_reconciliation"
+	},
+
+	"Stock Entry": {
+		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_stock_entry"
+	},
+
 	"Subcontracting Order": {
 		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_subcontracting_order"
 	},

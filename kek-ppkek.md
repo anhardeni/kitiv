@@ -23,6 +23,28 @@ Sistem KEK IT Inventory bertindak sebagai penerjemah transaksi ERPNext ke dalam 
 | **BC 2.6.2** (Subkon Masuk) | PPKEK Pemasukan Kembali ex-Subkon | **`0407614`** | Subcontracting Receipt |
 | **BC 3.0** (Ekspor) | PPKEK Pengeluaran ke LDP (Ekspor) | `0407631` | Delivery Note (Luar Negeri) |
 | **BC 2.5** (Lokal Keluar) | PPKEK Pengeluaran ke TLDDP (Domestik) | `0407632` | Delivery Note (Dalam Negeri) |
+| **Opname Fisik** | PPKEK Penyesuaian Fisik / Stock Opname | **`32`** | Stock Reconciliation |
+| **Penyimpangan & Selisih**| PPKEK Penyesuaian Lainnya / Selisih | **`33`** | Stock Entry (Manufacture, Repack, Material Issue/Receipt) / Purchase Receipt (Shortage) |
+
+---
+
+## 1.1 Penyesuaian Fisik & Selisih Pabean (Stock Opname & Adjustment)
+
+Aktivitas penyesuaian pabean untuk menyelaraskan saldo sistem KEK IT Inventory dengan fisik di lapangan terbagi menjadi dua kategori utama:
+
+### A. Penyesuaian Fisik (Stock Opname) - Kode `32`
+*   **Trigger**: Dokumen `Stock Reconciliation` yang telah disubmit (`docstatus = 1`).
+*   **Skenario**: Penyesuaian kuantitas atau nilai secara berkala akibat hasil audit stok fisik gudang. Setiap baris item yang mengalami selisih (positif/negatif) otomatis dikonversi menjadi payload transaksi KEK tipe `32`.
+
+### B. Penyesuaian Lainnya / Selisih (Adjustment) - Kode `33`
+*   **Trigger**: Dokumen `Stock Entry` (tipe `Manufacture`, `Repack`, `Material Issue`, atau `Material Receipt`) atau `Purchase Receipt` (khusus kasus shortage).
+*   **Skenario Operasional**:
+    1.  **Hasil Produksi (Manufacture)**: Kehilangan/selisih bahan baku di luar batas toleransi BOM (*yield loss* abnormal).
+    2.  **Repack/Konversi**: Kehilangan kuantitas akibat konversi satuan atau proses packing ulang.
+    3.  **Pemusnahan Scrap**: Pembuangan sisa bahan baku / barang rusak secara sengaja dengan Berita Acara Pemusnahan.
+    4.  **Shortage Penerimaan**: Perbedaan jumlah fisik barang yang masuk gudang dengan jumlah dokumen pabean awal yang terdaftar di port.
+
+---
 
 ---
 

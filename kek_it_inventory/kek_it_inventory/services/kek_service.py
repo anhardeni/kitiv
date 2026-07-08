@@ -29,15 +29,17 @@ def process_purchase_receipt(doc, method=None):
         # 1. Panggil bridge connector untuk membuat dokumen KEK Inventory Transaction
         create_kek_transaction(doc, method)
 
-        # 2. Cari dokumen KEK Inventory Transaction yang baru saja dibuat
-        kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", {
+        # 2. Cari semua dokumen KEK Inventory Transaction yang baru saja dibuat
+        kek_txns = frappe.get_all("KEK Inventory Transaction", filters={
             "erpnext_reference_doctype": "Purchase Receipt",
-            "erpnext_reference_name": doc.name
-        }, "name")
+            "erpnext_reference_name": doc.name,
+            "status": "QUEUED"
+        }, fields=["name"])
 
-        # 3. Post langsung transaksi tersebut ke portal SINSW/Bea Cukai
-        if kek_txn_name:
-            post_transaction(kek_txn_name)
+        # 3. Post langsung transaksi-transaksi tersebut ke portal SINSW/Bea Cukai
+        if kek_txns:
+            for txn in kek_txns:
+                post_transaction(txn.name)
         else:
             frappe.log_error(f"KEK transaction document not found for Purchase Receipt {doc.name}", "KEK Orchestration Error")
 
@@ -408,3 +410,63 @@ def download_customs_xls(doctype, docname):
     frappe.response['filename'] = f"KEK_Items_{docname}.xlsx"
     frappe.response['filecontent'] = xlsx_file.getvalue()
     frappe.response['type'] = 'binary'
+
+
+def process_stock_reconciliation(doc, method=None):
+    """
+    Dipanggil saat Stock Reconciliation submit
+    → memicu bridge connector lalu post ke API KEK
+    """
+    try:
+        # 1. Panggil bridge connector untuk membuat dokumen KEK Inventory Transaction
+        create_kek_transaction(doc, method)
+
+        # 2. Cari dokumen KEK Inventory Transaction yang baru saja dibuat
+        kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", {
+            "erpnext_reference_doctype": "Stock Reconciliation",
+            "erpnext_reference_name": doc.name
+        }, "name")
+
+        # 3. Post langsung transaksi tersebut ke portal SINSW/Bea Cukai
+        if kek_txn_name:
+            post_transaction(kek_txn_name)
+        else:
+            frappe.log_error(f"KEK transaction document not found for Stock Reconciliation {doc.name}", "KEK Orchestration Error")
+
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "KEK Integration Orchestration Error")
+        meta = frappe.get_meta("Stock Reconciliation")
+        if meta.has_field("kek_status"):
+            doc.db_set("kek_status", "FAILED")
+        if meta.has_field("kek_error"):
+            doc.db_set("kek_error", str(e))
+
+
+def process_stock_entry(doc, method=None):
+    """
+    Dipanggil saat Stock Entry submit
+    → memicu bridge connector lalu post ke API KEK
+    """
+    try:
+        # 1. Panggil bridge connector untuk membuat dokumen KEK Inventory Transaction
+        create_kek_transaction(doc, method)
+
+        # 2. Cari dokumen KEK Inventory Transaction yang baru saja dibuat
+        kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", {
+            "erpnext_reference_doctype": "Stock Entry",
+            "erpnext_reference_name": doc.name
+        }, "name")
+
+        # 3. Post langsung transaksi tersebut ke portal SINSW/Bea Cukai
+        if kek_txn_name:
+            post_transaction(kek_txn_name)
+        else:
+            frappe.log_error(f"KEK transaction document not found for Stock Entry {doc.name}", "KEK Orchestration Error")
+
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "KEK Integration Orchestration Error")
+        meta = frappe.get_meta("Stock Entry")
+        if meta.has_field("kek_status"):
+            doc.db_set("kek_status", "FAILED")
+        if meta.has_field("kek_error"):
+            doc.db_set("kek_error", str(e))
