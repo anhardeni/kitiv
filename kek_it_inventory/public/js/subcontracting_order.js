@@ -11,7 +11,7 @@ frappe.ui.form.on('Subcontracting Order', {
 			} else if (frm.doc.kek_status === 'FAILED') {
 				frm.set_intro(__('Gagal memproses pabean KEK (Red): {0}', [frm.doc.kek_error || 'Unknown Error']), 'red');
 			} else if (frm.doc.kek_status === 'PENDING') {
-				frm.set_intro(__('Dokumen pabean PPKEK sedang diverifikasi oleh Bea Cukai (Pending / Orange).'), 'orange');
+				frm.set_intro(__('Menunggu Input Nomor PPKEK (Pending / Orange). Silakan unduh XLS barang untuk proses pabean manual, lalu masukkan nomor PPKEK melalui Actions > Input Nomor PPKEK.'), 'orange');
 			} else {
 				frm.set_intro(__('Dokumen KEK dalam proses antrean.'), 'orange');
 			}

@@ -154,18 +154,22 @@ def validate_only(docname, doctype=None):
 def process_purchase_order(doc, method=None):
     """
     Dipanggil saat Purchase Order submit
-    → memicu bridge connector lalu post ke API KEK
+    → memicu bridge connector untuk data lokal (H2H dinonaktifkan)
     """
     try:
         create_kek_transaction(doc, method)
-        kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", {
-            "erpnext_reference_doctype": "Purchase Order",
-            "erpnext_reference_name": doc.name
-        }, "name")
-        if kek_txn_name:
-            post_transaction(kek_txn_name)
-        else:
-            frappe.log_error(f"KEK transaction document not found for Purchase Order {doc.name}", "KEK Orchestration Error")
+        # H2H untuk PO dinonaktifkan agar pabean diproses manual oleh user.
+        #kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", {
+        #    "erpnext_reference_doctype": "Purchase Order",
+        #    "erpnext_reference_name": doc.name
+        #}, "name")
+        #if kek_txn_name:
+        #    post_transaction(kek_txn_name)
+        #else:
+        #    frappe.log_error(f"KEK transaction document not found for Purchase Order {doc.name}", "KEK Orchestration Error")
+        #
+        # Dokumen KEK Inventory Transaction tetap dibuat untuk XLS template download.
+        pass
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "KEK Integration Orchestration Error")
         meta = frappe.get_meta("Purchase Order")
@@ -178,18 +182,13 @@ def process_purchase_order(doc, method=None):
 def process_subcontracting_order(doc, method=None):
     """
     Dipanggil saat Subcontracting Order submit
-    → memicu bridge connector lalu post ke API KEK
+    → memicu bridge connector untuk data lokal (H2H dinonaktifkan)
     """
     try:
         create_kek_transaction(doc, method)
-        kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", {
-            "erpnext_reference_doctype": "Subcontracting Order",
-            "erpnext_reference_name": doc.name
-        }, "name")
-        if kek_txn_name:
-            post_transaction(kek_txn_name)
-        else:
-            frappe.log_error(f"KEK transaction document not found for Subcontracting Order {doc.name}", "KEK Orchestration Error")
+        # H2H untuk Subcontracting Order dinonaktifkan agar pabean diproses manual oleh user.
+        # Dokumen KEK Inventory Transaction tetap dibuat untuk XLS template download.
+        pass
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "KEK Integration Orchestration Error")
         meta = frappe.get_meta("Subcontracting Order")
@@ -267,6 +266,15 @@ def validate_kek_submission(doc, method=None):
             1. Harap hubungi staf pabean untuk memproses dokumen PPKEK di Dashboard Monitoring.<br>
             2. Jika portal INSW sedang gangguan, hubungi <b>KEK Manager</b> untuk melakukan <i>Emergency Bypass</i>.""".format(doc.kek_status or "BELUM DIPROSES"),
             title="Validasi KEK Gagal"
+        )
+
+    # Tambahan kontrol: Memastikan nomor PPKEK tidak kosong jika status Validated atau ACKNOWLEDGED
+    if doc.kek_status in ["ACKNOWLEDGED", "Validated"] and not doc.nomor_ppkek:
+        frappe.throw(
+            msg="""🚫 <b>Gagal Submit Penerimaan Barang:</b><br><br>
+            Dokumen transaksi asal (PO/Subkontrak) berstatus Validated tetapi <b>Nomor PPKEK belum diinput/kosong</b>.<br><br>
+            <b>Solusi:</b> Harap hubungi KEK Manager atau Operator pabean untuk menginput nomor PPKEK resmi pada PO/Subkontrak asal.""",
+            title="Nomor PPKEK Kosong"
         )
 
 
