@@ -64,10 +64,42 @@ frappe.ui.form.on('Delivery Note', {
 		frm.toggle_enable("bypass_kek_validation", is_manager && frm.doc.docstatus === 0);
 		frm.toggle_enable("bypass_reason", is_manager && frm.doc.bypass_kek_validation && frm.doc.docstatus === 0);
 		frm.toggle_reqd("bypass_reason", !!frm.doc.bypass_kek_validation);
+
+		// Set query filter for kek_transaction link field (1:N matching)
+		frm.set_query("kek_transaction", function() {
+			let parent_so = null;
+			if (frm.doc.items && frm.doc.items.length) {
+				for (let item of frm.doc.items) {
+					if (item.against_sales_order) {
+						parent_so = item.against_sales_order;
+						break;
+					}
+				}
+			}
+			return {
+				filters: {
+					"erpnext_reference_doctype": "Sales Order",
+					"erpnext_reference_name": parent_so || ""
+				}
+			};
+		});
 	},
 	bypass_kek_validation: function(frm) {
 		let is_manager = frappe.user.has_role("KEK Manager") || frappe.user.has_role("System Manager");
 		frm.toggle_enable("bypass_reason", is_manager && frm.doc.bypass_kek_validation && frm.doc.docstatus === 0);
 		frm.toggle_reqd("bypass_reason", !!frm.doc.bypass_kek_validation);
+	},
+	kek_transaction: function(frm) {
+		if (frm.doc.kek_transaction) {
+			frappe.db.get_value("KEK Inventory Transaction", frm.doc.kek_transaction, "nomor_ppkek", (r) => {
+				if (r && r.nomor_ppkek) {
+					frm.set_value("nomor_ppkek", r.nomor_ppkek);
+					frm.set_value("custom_bc_registration_no", r.nomor_ppkek);
+				}
+			});
+		} else {
+			frm.set_value("nomor_ppkek", "");
+			frm.set_value("custom_bc_registration_no", "");
+		}
 	}
 });

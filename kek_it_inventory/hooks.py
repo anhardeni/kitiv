@@ -43,7 +43,15 @@ doc_events = {
 	},
 
 	"Delivery Note": {
-		"on_update": "kek_it_inventory.kek_it_inventory.services.kek_service.process_delivery_note"
+		"validate": "kek_it_inventory.kek_it_inventory.services.kek_service.copy_parent_kek_details",
+		"before_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.validate_kek_submission",
+		"on_update": "kek_it_inventory.kek_it_inventory.services.kek_service.process_delivery_note",
+		"on_trash": "kek_it_inventory.kek_it_inventory.services.kek_service.delete_delivery_note_kek",
+		"on_cancel": "kek_it_inventory.kek_it_inventory.services.kek_service.cancel_delivery_note_kek"
+	},
+
+	"Work Order": {
+		"on_submit": "kek_it_inventory.kek_it_inventory.services.manufacture_service.create_sub_work_orders"
 	}
 }
 
@@ -51,7 +59,8 @@ doctype_js = {
 	"Purchase Order": "public/js/purchase_order.js",
 	"Subcontracting Order": "public/js/subcontracting_order.js",
 	"Purchase Receipt": "public/js/purchase_receipt.js",
-	"Delivery Note": "public/js/delivery_note.js"
+	"Delivery Note": "public/js/delivery_note.js",
+	"Work Order": "public/js/work_order.js"
 }
 
 # Scheduled Tasks

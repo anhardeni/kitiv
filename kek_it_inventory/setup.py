@@ -40,6 +40,7 @@ def seed_master_data():
 		{"code": "0407041", "description": "BC 4.1", "doc_group": "KEK/FTZ/BC"},
 		{"code": "0407051", "description": "FTZ 01", "doc_group": "FTZ"},
 		{"code": "0407512", "description": "FTZ01 - Pengeluaran ke LDP", "doc_group": "FTZ"},
+		{"code": "0407611", "description": "KEK - Pemasukan dari LDP", "doc_group": "KEK"},
 		{"code": "0407612", "description": "KEK - Pemasukan Melalui Barang Kiriman", "doc_group": "KEK"},
 		{"code": "0407613", "description": "KEK - Pemasukan dari TLDDP", "doc_group": "KEK"},
 		{"code": "0407614", "description": "KEK - Pemasukan dari TLDDP Subkon", "doc_group": "KEK"},
@@ -76,6 +77,16 @@ def seed_master_data():
 	# 7. Setup Test Role Permissions
 	from kek_it_inventory.setup_role import setup_test_role_permissions
 	setup_test_role_permissions()
+
+	# 8. Setup KEK Manager Permissions
+	from kek_it_inventory.setup_role import setup_kek_manager_permissions
+	setup_kek_manager_permissions()
+
+	# 9. Setup KEK User Permissions
+	from kek_it_inventory.setup_role import setup_kek_user_permissions
+	setup_kek_user_permissions()
+
+
 
 def seed_doctype(doctype, data):
 	for item in data:
@@ -175,7 +186,6 @@ def create_kek_custom_fields():
 				"fieldtype": "Link",
 				"label": "KEK Transaction",
 				"options": "KEK Inventory Transaction",
-				"read_only": 1,
 				"insert_after": "kek_status"
 			},
 			{
@@ -232,7 +242,6 @@ def create_kek_custom_fields():
 				"fieldtype": "Link",
 				"label": "KEK Transaction",
 				"options": "KEK Inventory Transaction",
-				"read_only": 1,
 				"insert_after": "kek_status"
 			},
 			{
@@ -289,7 +298,6 @@ def create_kek_custom_fields():
 				"fieldtype": "Link",
 				"label": "KEK Transaction",
 				"options": "KEK Inventory Transaction",
-				"read_only": 1,
 				"insert_after": "kek_status"
 			},
 			{

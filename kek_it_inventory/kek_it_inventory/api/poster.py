@@ -71,6 +71,10 @@ def update_reference_doc(doc, status, insw_id=None, error_msg=None):
 				update_dict["kek_insw_id"] = insw_id or ""
 			if meta.has_field("kek_error"):
 				update_dict["kek_error"] = error_msg or ""
+			if meta.has_field("nomor_ppkek") and doc.get("nomor_ppkek"):
+				update_dict["nomor_ppkek"] = doc.nomor_ppkek
+			if meta.has_field("custom_bc_registration_no") and doc.get("nomor_ppkek"):
+				update_dict["custom_bc_registration_no"] = doc.nomor_ppkek
 			
 			if update_dict:
 				frappe.db.set_value(doc.erpnext_reference_doctype, doc.erpnext_reference_name, update_dict, update_modified=False)

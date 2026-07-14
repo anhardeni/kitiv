@@ -91,7 +91,8 @@ def create_kek_transaction(doc, method=None):
 	}
 
 	# Populate customs docs if present
-	if doc.get("custom_bc_registration_no"):
+	customs_doc_no = doc.get("nomor_ppkek") or doc.get("custom_bc_registration_no")
+	if customs_doc_no:
 		doc_type_raw = doc.get("custom_bc_document_type") or "Lainnya"
 		doc_code = bc_doc_mapping.get(doc_type_raw, "0407000")
 		doc_date = doc.get("custom_bc_registration_date") or doc.get("posting_date") or doc.get("transaction_date")
@@ -103,7 +104,7 @@ def create_kek_transaction(doc, method=None):
 				"parenttype": "KEK Inventory Transaction Item",
 				"parentfield": "customs_docs",
 				"customs_doc_code": doc_code,
-				"customs_doc_number": doc.custom_bc_registration_no,
+				"customs_doc_number": customs_doc_no,
 				"customs_doc_date": doc_date
 			}).insert(ignore_permissions=True)
 
@@ -144,7 +145,8 @@ def create_kek_transaction(doc, method=None):
 				})
 			kek_txn_33.insert(ignore_permissions=True)
 
-			if doc.get("custom_bc_registration_no"):
+			customs_doc_no = doc.get("nomor_ppkek") or doc.get("custom_bc_registration_no")
+			if customs_doc_no:
 				doc_type_raw = doc.get("custom_bc_document_type") or "Lainnya"
 				doc_code = bc_doc_mapping.get(doc_type_raw, "0407000")
 				doc_date = doc.get("custom_bc_registration_date") or doc.get("posting_date") or doc.get("transaction_date")
@@ -155,7 +157,7 @@ def create_kek_transaction(doc, method=None):
 						"parenttype": "KEK Inventory Transaction Item",
 						"parentfield": "customs_docs",
 						"customs_doc_code": doc_code,
-						"customs_doc_number": doc.custom_bc_registration_no,
+						"customs_doc_number": customs_doc_no,
 						"customs_doc_date": doc_date
 					}).insert(ignore_permissions=True)
 

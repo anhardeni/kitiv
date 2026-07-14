@@ -14,6 +14,7 @@
   "currency",
   "status",
   "insw_transaksi_id",
+  "nomor_ppkek",
   "section_reference",
   "erpnext_reference_doctype",
   "erpnext_reference_name",
@@ -75,6 +76,11 @@
    "fieldtype": "Data",
    "label": "INSW Transaction ID",
    "read_only": 1
+  },
+  {
+   "fieldname": "nomor_ppkek",
+   "fieldtype": "Data",
+   "label": "Nomor PPKEK"
   },
   {
    "fieldname": "section_reference",

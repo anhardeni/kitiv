@@ -327,8 +327,9 @@ class TestBridge(unittest.TestCase):
 		self.assertEqual(po.nomor_ppkek, "PPKEK-TEST-12345")
 
 		# Verify KEK Transaction transitioned to ACKNOWLEDGED
-		txn_status = frappe.db.get_value("KEK Inventory Transaction", po.kek_transaction, "status")
-		self.assertEqual(txn_status, "ACKNOWLEDGED")
+		txn_doc = frappe.get_doc("KEK Inventory Transaction", po.kek_transaction)
+		self.assertEqual(txn_doc.status, "ACKNOWLEDGED")
+		self.assertEqual(txn_doc.nomor_ppkek, "PPKEK-TEST-12345")
 
 		# Verify comment was added to the transaction
 		comments = frappe.get_all("Comment", filters={
@@ -443,7 +444,10 @@ class TestBridge(unittest.TestCase):
 		})
 		po.insert()
 		po.submit()
-		po.db_set("kek_status", "Validated")
+		frappe.db.set_value("Purchase Order", po.name, {
+			"kek_status": "Validated",
+			"nomor_ppkek": "999888/PPKEK"
+		})
 
 		# 2. Create and submit a Purchase Receipt receiving only 7 units (shortage of 3 units)
 		from erpnext.stock.doctype.purchase_receipt.test_purchase_receipt import make_purchase_receipt
@@ -478,6 +482,151 @@ class TestBridge(unittest.TestCase):
 		self.assertTrue(kek_txn_33)
 		doc_33 = frappe.get_doc("KEK Inventory Transaction", kek_txn_33)
 		self.assertEqual(doc_33.items[0].qty, 3)
+
+	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
+	def test_delivery_note_draft_sync_and_cleanup(self, mock_post):
+		# 1. Create and submit Sales Order
+		so = frappe.get_doc({
+			"doctype": "Sales Order",
+			"company": "bcmerak",
+			"customer": "_Test Customer",
+			"transaction_date": frappe.utils.today(),
+			"delivery_date": frappe.utils.today(),
+			"items": [{
+				"item_code": "_Test Item",
+				"qty": 10,
+				"uom": "Nos",
+				"rate": 100,
+				"warehouse": "Test KEK Warehouse - BCM"
+			}]
+		})
+		so.insert()
+		so.submit()
+
+		# 2. Create draft Delivery Note
+		dn = frappe.get_doc({
+			"doctype": "Delivery Note",
+			"company": "bcmerak",
+			"customer": "_Test Customer",
+			"posting_date": frappe.utils.today(),
+			"items": [{
+				"item_code": "_Test Item",
+				"qty": 10,
+				"uom": "Nos",
+				"rate": 100,
+				"warehouse": "Test KEK Warehouse - BCM",
+				"against_sales_order": so.name,
+				"so_detail": so.items[0].name
+			}]
+		})
+		dn.insert()
+		dn.reload()
+
+		# Verify KEK Transaction created for DN with qty 10
+		kek_txn = frappe.db.get_value("KEK Inventory Transaction", 
+			{"erpnext_reference_name": dn.name}, "name")
+		self.assertTrue(kek_txn)
+		txn_doc = frappe.get_doc("KEK Inventory Transaction", kek_txn)
+		self.assertEqual(txn_doc.items[0].qty, 10)
+
+		# 3. Update DN qty to 8 and save
+		dn.items[0].qty = 8
+		dn.save()
+
+		# Verify KEK Transaction updated to qty 8
+		txn_doc = frappe.get_doc("KEK Inventory Transaction", kek_txn)
+		self.assertEqual(txn_doc.items[0].qty, 8)
+
+		# 4. Delete draft DN
+		dn.delete()
+
+		# Verify KEK Transaction was deleted
+		exists = frappe.db.exists("KEK Inventory Transaction", kek_txn)
+		self.assertFalse(exists)
+
+	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
+	def test_delivery_note_mismatch_and_cancellation(self, mock_post):
+		# 1. Create and submit Sales Order
+		so = frappe.get_doc({
+			"doctype": "Sales Order",
+			"company": "bcmerak",
+			"customer": "_Test Customer",
+			"transaction_date": frappe.utils.today(),
+			"delivery_date": frappe.utils.today(),
+			"items": [{
+				"item_code": "_Test Item",
+				"qty": 10,
+				"uom": "Nos",
+				"rate": 100,
+				"warehouse": "Test KEK Warehouse - BCM"
+			}]
+		})
+		so.insert()
+		so.submit()
+
+		# Add stock to the warehouse
+		se = frappe.get_doc({
+			"doctype": "Stock Entry",
+			"company": "bcmerak",
+			"purpose": "Material Receipt",
+			"stock_entry_type": "Material Receipt",
+			"posting_date": frappe.utils.today(),
+			"items": [{
+				"item_code": "_Test Item",
+				"t_warehouse": "Test KEK Warehouse - BCM",
+				"qty": 10,
+				"uom": "Nos",
+				"basic_rate": 100
+			}]
+		})
+		se.insert()
+		se.submit()
+
+		# 2. Create draft Delivery Note
+		dn = frappe.get_doc({
+			"doctype": "Delivery Note",
+			"company": "bcmerak",
+			"customer": "_Test Customer",
+			"posting_date": frappe.utils.today(),
+			"items": [{
+				"item_code": "_Test Item",
+				"qty": 10,
+				"uom": "Nos",
+				"rate": 100,
+				"warehouse": "Test KEK Warehouse - BCM",
+				"against_sales_order": so.name,
+				"so_detail": so.items[0].name
+			}]
+		})
+		dn.insert()
+		dn.reload()
+
+		kek_txn = frappe.db.get_value("KEK Inventory Transaction", 
+			{"erpnext_reference_name": dn.name}, "name")
+		self.assertTrue(kek_txn)
+
+		# Mock KEK Transaction status to Validated with nomor_ppkek
+		frappe.db.set_value("KEK Inventory Transaction", kek_txn, {
+			"status": "Validated",
+			"nomor_ppkek": "PPKEK-OUT-12345"
+		})
+
+		# Update DN to qty 8 (shortage of 2)
+		dn.items[0].qty = 8
+		dn.save()
+
+		# 3. Submit DN
+		dn.submit()
+
+		# Verify DN is MISMATCH because DN qty (8) < KEK txn qty (10)
+		self.assertEqual(dn.kek_status, "MISMATCH")
+
+		# 4. Cancel DN
+		dn.cancel()
+
+		# Verify KEK Transaction status changes to CANCEL_PENDING
+		txn_status = frappe.db.get_value("KEK Inventory Transaction", kek_txn, "status")
+		self.assertEqual(txn_status, "CANCEL_PENDING")
 
 
 
