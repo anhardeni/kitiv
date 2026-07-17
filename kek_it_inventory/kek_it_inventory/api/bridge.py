@@ -7,7 +7,7 @@ def create_kek_transaction(doc, method=None):
 	"""
 	# Map Transaction Type
 	txn_type = None
-	if doc.doctype in ["Purchase Receipt", "Purchase Order", "Subcontracting Order"]:
+	if doc.doctype in ["Purchase Receipt", "Subcontracting Receipt"]:
 		txn_type = "30"
 	elif doc.doctype == "Delivery Note":
 		txn_type = "31"
@@ -32,6 +32,8 @@ def create_kek_transaction(doc, method=None):
 		"transaction_type": txn_type,
 		"erpnext_reference_doctype": doc.doctype,
 		"erpnext_reference_name": doc.name,
+		"nomor_ppkek": doc.get("nomor_ppkek") or doc.get("custom_bc_registration_no"),
+		"tanggal_ppkek": doc.get("tanggal_ppkek") or doc.get("custom_bc_registration_date"),
 		"items": []
 	})
 
@@ -43,6 +45,9 @@ def create_kek_transaction(doc, method=None):
 			if qty == 0:
 				continue
 
+		# Get details from Item Master (source of truth for ERPNext item metadata)
+		item_master = frappe.db.get_value("Item", item.item_code, ["item_name", "description"], as_dict=True) or {}
+
 		# Sharp Mapping Logic
 		mapping = frappe.db.get_value("KEK Item Mapping", 
 			{"erpnext_item": item.item_code}, 
@@ -52,16 +57,17 @@ def create_kek_transaction(doc, method=None):
 
 		if mapping:
 			customs_code = mapping.customs_item_code
-			customs_name = mapping.customs_item_name or item.item_name
+			customs_name = mapping.customs_item_name or item_master.get("item_name") or item.get("item_name")
 			hs_code = mapping.hs_code
 		else:
 			# Fallback to ERPNext defaults
 			customs_code = item.item_code
-			customs_name = item.item_name
+			customs_name = item_master.get("item_name") or item.get("item_name") or item.item_code
 			hs_code = None
 
 		kek_txn.append("items", {
 			"customs_item_code": customs_code,
+			"item_name_customs": customs_name,
 			"qty": abs(qty),
 			"uom_code": item.get("uom") or frappe.db.get_value("Item", item.item_code, "stock_uom"),
 			"origin_type": "TLDDP", 
@@ -69,6 +75,12 @@ def create_kek_transaction(doc, method=None):
 		})
 
 	kek_txn.insert(ignore_permissions=True)
+
+	if doc.get("bypass_kek_validation"):
+		comment_text = "<b>Emergency Bypass Enabled</b><br>User: {0}<br>Reason: {1}".format(
+			frappe.session.user or "Administrator", doc.get("bypass_reason") or "No reason provided"
+		)
+		kek_txn.add_comment("Comment", text=comment_text)
 
 	bc_doc_mapping = {
 		"BC23": "0407611",   # PPKEK Pemasukan LDP
@@ -87,14 +99,17 @@ def create_kek_transaction(doc, method=None):
 		"PPKEK Pemasukan ex-Kawasan Berikat/TPB (BC27)": "0407621",
 		"BC261": "0407633",  # PPKEK Pengeluaran Sementara (Subkon)
 		"PPKEK Pengeluaran Sementara Subkon (BC261)": "0407633",
-		"Lainnya": "0407000"
+		"Lainnya": "040700"
 	}
 
 	# Populate customs docs if present
 	customs_doc_no = doc.get("nomor_ppkek") or doc.get("custom_bc_registration_no")
 	if customs_doc_no:
 		doc_type_raw = doc.get("custom_bc_document_type") or "Lainnya"
-		doc_code = bc_doc_mapping.get(doc_type_raw, "0407000")
+		if doc_type_raw.startswith("0407"):
+			doc_code = doc_type_raw
+		else:
+			doc_code = bc_doc_mapping.get(doc_type_raw, "040700")
 		doc_date = doc.get("custom_bc_registration_date") or doc.get("posting_date") or doc.get("transaction_date")
 		
 		for item_row in kek_txn.items:
@@ -135,9 +150,10 @@ def create_kek_transaction(doc, method=None):
 					["customs_item_code", "customs_item_name", "hs_code"], 
 					as_dict=1
 				)
-				customs_code = mapping.customs_item_code if mapping else item.item_code
+				customs_name = mapping.customs_item_name if mapping else item.item_name
 				kek_txn_33.append("items", {
 					"customs_item_code": customs_code,
+					"item_name_customs": customs_name,
 					"qty": shortage_qty,
 					"uom_code": item.get("uom") or frappe.db.get_value("Item", item.item_code, "stock_uom"),
 					"origin_type": "TLDDP",
@@ -148,7 +164,10 @@ def create_kek_transaction(doc, method=None):
 			customs_doc_no = doc.get("nomor_ppkek") or doc.get("custom_bc_registration_no")
 			if customs_doc_no:
 				doc_type_raw = doc.get("custom_bc_document_type") or "Lainnya"
-				doc_code = bc_doc_mapping.get(doc_type_raw, "0407000")
+				if doc_type_raw.startswith("0407"):
+					doc_code = doc_type_raw
+				else:
+					doc_code = bc_doc_mapping.get(doc_type_raw, "040700")
 				doc_date = doc.get("custom_bc_registration_date") or doc.get("posting_date") or doc.get("transaction_date")
 				for item_row in kek_txn_33.items:
 					frappe.get_doc({
@@ -175,5 +194,10 @@ def create_kek_transaction(doc, method=None):
 		if update_dict:
 			frappe.db.set_value(doc.doctype, doc.name, update_dict, update_modified=False)
 
-	frappe.msgprint(f"KEK Transaction {kek_txn.name} created automatically.")
+	frappe.msgprint(
+		msg=f"KEK Transaction <a href='/app/kek-inventory-transaction/{kek_txn.name}'><b>{kek_txn.name}</b></a> created automatically.",
+		title="Transaksi KEK Dibuat"
+	)
+
+
 

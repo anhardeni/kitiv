@@ -114,31 +114,21 @@ def post_transaction(docname):
 
 	# 1. Build Nested Payload (Strictly following KEK PDF Structure)
 	# Structure: data[] -> kdKegiatan, dokumenKegiatan[] -> barangTransaksi[] -> dokumen[]
-	dok_kegiatan = {
-		"nomorDokKegiatan": doc.erpnext_reference_name or doc.name,
-		"tanggalKegiatan": frappe.utils.formatdate(doc.transaction_date, "dd-mm-yyyy"),
-	}
-	if doc.transaction_type == "33":
-		remarks = None
-		if doc.erpnext_reference_doctype and doc.erpnext_reference_name:
-			if frappe.db.exists(doc.erpnext_reference_doctype, doc.erpnext_reference_name):
-				remarks = frappe.db.get_value(doc.erpnext_reference_doctype, doc.erpnext_reference_name, "remarks")
-		dok_kegiatan["keterangan"] = remarks or "Adjustment"
-		
-	dok_kegiatan.update({
-		"namaEntitas": nama_entitas,
-		"barangTransaksi": []
-	})
-
 	payload = {
 		"data": [
 			{
 				"kdKegiatan": doc.transaction_type, 
-				"dokumenKegiatan": [dok_kegiatan]
+				"dokumenKegiatan": [
+					{
+						"nomorDokKegiatan": doc.erpnext_reference_name or doc.name,
+						"tanggalKegiatan": frappe.utils.formatdate(doc.transaction_date, "dd-mm-yyyy"),
+						"namaEntitas": nama_entitas,
+						"barangTransaksi": []
+					}
+				]
 			}
 		]
 	}
-
 	
 	for item in doc.items:
 		barang = {

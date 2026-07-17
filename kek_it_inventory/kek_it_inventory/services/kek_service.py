@@ -72,14 +72,22 @@ def process_delivery_note(doc, method=None):
                 kek_txn.set("items", [])
                 
                 for item in doc.items:
+                    item_master = frappe.db.get_value("Item", item.item_code, ["item_name", "description"], as_dict=True) or {}
                     mapping = frappe.db.get_value("KEK Item Mapping", 
                         {"erpnext_item": item.item_code}, 
                         ["customs_item_code", "customs_item_name", "hs_code"], 
                         as_dict=1
                     )
-                    customs_code = mapping.customs_item_code if mapping else item.item_code
+                    if mapping:
+                        customs_code = mapping.customs_item_code
+                        customs_name = mapping.customs_item_name or item_master.get("item_name") or item.get("item_name")
+                    else:
+                        customs_code = item.item_code
+                        customs_name = item_master.get("item_name") or item.get("item_name") or item.item_code
+
                     kek_txn.append("items", {
                         "customs_item_code": customs_code,
+                        "item_name_customs": customs_name,
                         "qty": item.qty,
                         "uom_code": item.get("uom") or frappe.db.get_value("Item", item.item_code, "stock_uom"),
                         "origin_type": "TLDDP",
@@ -159,6 +167,74 @@ def cancel_delivery_note_kek(doc, method=None):
             )
 
 
+def sync_existing_kek_transaction(parent_doc, kek_txn_name):
+    if not kek_txn_name:
+        return
+    # Update parent transaction fields
+    update_fields = {
+        "nomor_ppkek": parent_doc.get("nomor_ppkek") or parent_doc.get("custom_bc_registration_no"),
+        "tanggal_ppkek": parent_doc.get("tanggal_ppkek") or parent_doc.get("custom_bc_registration_date")
+    }
+    frappe.db.set_value("KEK Inventory Transaction", kek_txn_name, update_fields)
+    
+    # Update KEK Item Customs Doc child rows
+    bc_doc_mapping = {
+        "BC23": "0407611", "PPKEK Pemasukan LDP (BC23)": "0407611",
+        "BC40": "0407613", "PPKEK Pemasukan TLDDP (BC40)": "0407613",
+        "BC16": "0407613", "PPKEK Pemasukan TLDDP (BC16)": "0407613",
+        "BC262": "0407614", "PPKEK Pemasukan Kembali ex-Subkon (BC262)": "0407614",
+        "BC30": "0407631", "PPKEK Pengeluaran LDP (BC30)": "0407631",
+        "BC25": "0407632", "PPKEK Pengeluaran TLDDP (BC25)": "0407632",
+        "BC27": "0407621", "PPKEK Pemasukan ex-Kawasan Berikat/TPB (BC27)": "0407621",
+        "BC261": "0407633", "PPKEK Pengeluaran Sementara Subkon (BC261)": "0407633",
+        "Lainnya": "040700"
+    }
+    
+    customs_doc_no = parent_doc.get("nomor_ppkek") or parent_doc.get("custom_bc_registration_no")
+    if customs_doc_no:
+        doc_type_raw = parent_doc.get("custom_bc_document_type") or "Lainnya"
+        if doc_type_raw.startswith("0407"):
+            doc_code = doc_type_raw
+        else:
+            doc_code = bc_doc_mapping.get(doc_type_raw, "040700")
+        doc_date = parent_doc.get("custom_bc_registration_date") or parent_doc.get("posting_date") or parent_doc.get("transaction_date")
+        
+        kek_txn = frappe.get_doc("KEK Inventory Transaction", kek_txn_name)
+        for item_row in kek_txn.items:
+            frappe.db.delete("KEK Item Customs Doc", {"parent": item_row.name})
+            frappe.get_doc({
+                "doctype": "KEK Item Customs Doc",
+                "parent": item_row.name,
+                "parenttype": "KEK Inventory Transaction Item",
+                "parentfield": "customs_docs",
+                "customs_doc_code": doc_code,
+                "customs_doc_number": customs_doc_no,
+                "customs_doc_date": doc_date
+            }).insert(ignore_permissions=True)
+
+
+def allow_customs_edit_on_submit():
+    import frappe
+    fields_to_allow = [
+        "custom_bc_document_type",
+        "custom_bc_registration_no",
+        "custom_bc_registration_date",
+        "nomor_ppkek",
+        "tanggal_ppkek",
+        "kek_status",
+        "kek_error",
+        "kek_transaction",
+        "bypass_kek_validation",
+        "bypass_reason"
+    ]
+    for dt in ["Purchase Receipt", "Delivery Note"]:
+        for fn in fields_to_allow:
+            if frappe.db.exists("Custom Field", {"dt": dt, "fieldname": fn}):
+                frappe.db.set_value("Custom Field", {"dt": dt, "fieldname": fn}, "allow_on_submit", 1)
+    frappe.db.commit()
+    print("Successfully configured customs fields to be editable after submit.")
+
+
 @frappe.whitelist()
 def retry_kek(docname, doctype=None):
     """
@@ -178,12 +254,19 @@ def retry_kek(docname, doctype=None):
         if not kek_txn_name and doctype:
             try:
                 parent_doc = frappe.get_doc(doctype, docname)
+                from kek_it_inventory.kek_it_inventory.api.bridge import create_kek_transaction
                 create_kek_transaction(parent_doc)
-                # Cari lagi setelah dibuat
                 kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", filters, "name")
             except Exception as e:
                 frappe.log_error(frappe.get_traceback(), "KEK Dynamic Creation Error")
                 return f"Failed to create KEK Transaction: {str(e)}"
+        elif kek_txn_name and doctype:
+            # Re-sync KEK Transaction fields in case the user edited them after submit
+            try:
+                parent_doc = frappe.get_doc(doctype, docname)
+                sync_existing_kek_transaction(parent_doc, kek_txn_name)
+            except Exception as e:
+                frappe.log_error(frappe.get_traceback(), "KEK Re-sync Error")
     
     if kek_txn_name:
         post_transaction(kek_txn_name)
@@ -222,53 +305,32 @@ def validate_only(docname, doctype=None):
 def process_purchase_order(doc, method=None):
     """
     Dipanggil saat Purchase Order submit
-    → memicu bridge connector untuk data lokal (H2H dinonaktifkan)
+    → Set status ke PENDING untuk diinput nomor PPKEK secara manual.
     """
     try:
-        create_kek_transaction(doc, method)
-        # H2H untuk PO dinonaktifkan agar pabean diproses manual oleh user.
-        #kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", {
-        #    "erpnext_reference_doctype": "Purchase Order",
-        #    "erpnext_reference_name": doc.name
-        #}, "name")
-        #if kek_txn_name:
-        #    post_transaction(kek_txn_name)
-        #else:
-        #    frappe.log_error(f"KEK transaction document not found for Purchase Order {doc.name}", "KEK Orchestration Error")
-        #
-        # Dokumen KEK Inventory Transaction tetap dibuat untuk XLS template download.
-        pass
-    except Exception as e:
-        frappe.log_error(frappe.get_traceback(), "KEK Integration Orchestration Error")
         meta = frappe.get_meta("Purchase Order")
         if meta.has_field("kek_status"):
-            doc.db_set("kek_status", "FAILED")
-        if meta.has_field("kek_error"):
-            doc.db_set("kek_error", str(e))
+            doc.db_set("kek_status", "PENDING")
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "KEK Integration Orchestration Error")
 
 
 def process_subcontracting_order(doc, method=None):
     """
     Dipanggil saat Subcontracting Order submit
-    → memicu bridge connector untuk data lokal (H2H dinonaktifkan)
+    → Set status ke PENDING untuk diinput nomor PPKEK secara manual.
     """
     try:
-        create_kek_transaction(doc, method)
-        # H2H untuk Subcontracting Order dinonaktifkan agar pabean diproses manual oleh user.
-        # Dokumen KEK Inventory Transaction tetap dibuat untuk XLS template download.
-        pass
-    except Exception as e:
-        frappe.log_error(frappe.get_traceback(), "KEK Integration Orchestration Error")
         meta = frappe.get_meta("Subcontracting Order")
         if meta.has_field("kek_status"):
-            doc.db_set("kek_status", "FAILED")
-        if meta.has_field("kek_error"):
-            doc.db_set("kek_error", str(e))
+            doc.db_set("kek_status", "PENDING")
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "KEK Integration Orchestration Error")
 
 
 def copy_parent_kek_details(doc, method=None):
     """
-    Menyalin nomor_ppkek dan kek_status dari KEK Inventory Transaction ke Receipt/Delivery Note.
+    Menyalin nomor_ppkek dan tanggal_ppkek langsung dari parent document (PO/SO) ke Receipt/DN.
     """
     parent_type = None
     parent_field = None
@@ -296,50 +358,40 @@ def copy_parent_kek_details(doc, method=None):
     if not parent_name:
         return
 
-    # 1. Jika kek_transaction belum dipilih, coba auto-select jika hanya ada satu transaksi yang valid
-    if not doc.get("kek_transaction"):
-        valid_txns = frappe.get_all("KEK Inventory Transaction", filters={
-            "erpnext_reference_doctype": parent_type,
-            "erpnext_reference_name": parent_name,
-            "status": ["in", ["ACKNOWLEDGED", "Validated", "SENT"]]
-        }, fields=["name", "nomor_ppkek", "status"])
-        
-        if len(valid_txns) == 1:
-            doc.kek_transaction = valid_txns[0].name
-            doc.nomor_ppkek = valid_txns[0].nomor_ppkek
-            doc.custom_bc_registration_no = valid_txns[0].nomor_ppkek
-            doc.kek_status = valid_txns[0].status
-        elif len(valid_txns) > 1:
-            # Ada beberapa pilihan, biarkan user memilih sendiri
-            pass
-        else:
-            # Fallback ke parent PO jika belum ada transaksi KEK terpisah (untuk unit test lama)
-            if parent_type in ["Purchase Order", "Subcontracting Order"]:
-                parent_kek = frappe.db.get_value(parent_type, parent_name, ["kek_status", "nomor_ppkek", "kek_transaction"], as_dict=True)
-                if parent_kek:
-                    doc.kek_status = parent_kek.kek_status
-                    doc.nomor_ppkek = parent_kek.nomor_ppkek
-                    doc.custom_bc_registration_no = parent_kek.nomor_ppkek
-                    doc.kek_transaction = parent_kek.kek_transaction
-    else:
-        # 2. Jika kek_transaction sudah dipilih, sinkronkan data terbaru dari transaksi KEK tersebut
-        kek_txn = frappe.db.get_value("KEK Inventory Transaction", doc.kek_transaction, ["nomor_ppkek", "status"], as_dict=True)
-        
-        # Fallback untuk unit test lama: jika KEK txn belum validated di DB, tapi parent PO/SO sudah validated
-        if kek_txn and kek_txn.status not in ["ACKNOWLEDGED", "Validated", "SENT", "BYPASSED"]:
-            if parent_type in ["Purchase Order", "Subcontracting Order"]:
-                parent_kek = frappe.db.get_value(parent_type, parent_name, ["kek_status", "nomor_ppkek"], as_dict=True)
-                if parent_kek and parent_kek.kek_status in ["ACKNOWLEDGED", "Validated", "BYPASSED"]:
-                    frappe.db.set_value("KEK Inventory Transaction", doc.kek_transaction, {
-                        "status": "Validated" if parent_kek.kek_status == "Validated" else parent_kek.kek_status,
-                        "nomor_ppkek": parent_kek.nomor_ppkek
-                    })
-                    kek_txn = frappe.db.get_value("KEK Inventory Transaction", doc.kek_transaction, ["nomor_ppkek", "status"], as_dict=True)
-
+    # 1. Jika ada kek_transaction (terutama untuk Delivery Note draft/submit)
+    if doc.get("kek_transaction"):
+        kek_txn = frappe.db.get_value("KEK Inventory Transaction", doc.kek_transaction, ["nomor_ppkek", "tanggal_ppkek", "status"], as_dict=True)
         if kek_txn:
             doc.nomor_ppkek = kek_txn.nomor_ppkek
+            doc.tanggal_ppkek = kek_txn.get("tanggal_ppkek")
             doc.custom_bc_registration_no = kek_txn.nomor_ppkek
+            doc.custom_bc_registration_date = kek_txn.get("tanggal_ppkek")
             doc.kek_status = kek_txn.status
+    # 2. Jika tidak ada kek_transaction, copy dari parent PO/SO (untuk Purchase/Subcontract Receipt)
+    elif parent_type in ["Purchase Order", "Subcontracting Order"]:
+        parent_kek = frappe.db.get_value(parent_type, parent_name, ["kek_status", "nomor_ppkek", "tanggal_ppkek"], as_dict=True)
+        if parent_kek:
+            if not doc.get("nomor_ppkek"):
+                doc.nomor_ppkek = parent_kek.nomor_ppkek
+                doc.tanggal_ppkek = parent_kek.get("tanggal_ppkek")
+                doc.kek_status = parent_kek.kek_status
+            
+            if doc.get("nomor_ppkek") and not doc.get("custom_bc_registration_no"):
+                doc.custom_bc_registration_no = doc.nomor_ppkek
+            if doc.get("tanggal_ppkek") and not doc.get("custom_bc_registration_date"):
+                doc.custom_bc_registration_date = doc.tanggal_ppkek
+
+    # 3. Always enforce two-way sync between nomor_ppkek and custom_bc_registration fields
+    if doc.get("nomor_ppkek") and not doc.get("custom_bc_registration_no"):
+        doc.custom_bc_registration_no = doc.nomor_ppkek
+    elif doc.get("custom_bc_registration_no") and not doc.get("nomor_ppkek"):
+        doc.nomor_ppkek = doc.custom_bc_registration_no
+
+    if doc.get("tanggal_ppkek") and not doc.get("custom_bc_registration_date"):
+        doc.custom_bc_registration_date = doc.tanggal_ppkek
+    elif doc.get("custom_bc_registration_date") and not doc.get("tanggal_ppkek"):
+        doc.tanggal_ppkek = doc.custom_bc_registration_date
+
 
 
 def validate_kek_submission(doc, method=None):
@@ -371,9 +423,7 @@ def validate_kek_submission(doc, method=None):
     if doc.get("bypass_kek_validation"):
         doc.kek_status = "BYPASSED"
         if doc.get("kek_transaction"):
-            frappe.db.set_value("KEK Inventory Transaction", doc.kek_transaction, {
-                "status": "Bypassed"
-            })
+            frappe.db.set_value("KEK Inventory Transaction", doc.kek_transaction, {"status": "Bypassed"})
             txn_doc = frappe.get_doc("KEK Inventory Transaction", doc.kek_transaction)
             comment_text = "<b>Emergency Bypass Enabled</b><br>User: {0}<br>Reason: {1}".format(
                 frappe.session.user, doc.get("bypass_reason") or "No reason provided"
@@ -381,63 +431,72 @@ def validate_kek_submission(doc, method=None):
             txn_doc.add_comment("Comment", text=comment_text)
         return
 
-    # 2. Pastikan KEK Transaction telah dipilih
-    if not doc.get("kek_transaction"):
-        frappe.throw(
-            msg="""🚫 <b>Gagal Submit {0}:</b><br><br>
-            Terdapat beberapa dokumen PPKEK untuk Transaksi Asal.<br>
-            <b>Solusi:</b> Harap pilih <b>KEK Transaction / PPKEK</b> yang sesuai pada {1} sebelum disubmit.""".format(doc_label, sol_label),
-            title="Pilih Transaksi KEK"
-        )
+    # 1. Untuk Delivery Note (Outbound): KEK Transaction harus ada dan valid
+    if doc.doctype == "Delivery Note":
+        if not doc.get("kek_transaction"):
+            frappe.throw(
+                msg=f"🚫 <b>Gagal Submit {doc_label}:</b><br><br>Transaksi KEK belum terbuat untuk dokumen ini.",
+                title="Transaksi KEK Kosong"
+            )
+        kek_txn_status = frappe.db.get_value("KEK Inventory Transaction", doc.kek_transaction, "status")
+        if kek_txn_status not in ["ACKNOWLEDGED", "Validated", "SENT", "BYPASSED"]:
+            frappe.throw(
+                msg=f"🚫 <b>Gagal Submit {doc_label}:</b><br><br>Dokumen PPKEK ({doc.kek_transaction}) belum divalidasi (Status: {kek_txn_status}).",
+                title="Validasi KEK Gagal"
+            )
+        if not doc.nomor_ppkek:
+            frappe.throw(
+                msg=f"🚫 <b>Gagal Submit {doc_label}:</b><br><br>Nomor PPKEK masih kosong.",
+                title="Nomor PPKEK Kosong"
+            )
+    # 2. Untuk Inbound (Purchase Receipt / Subcontracting Receipt): Nomor PPKEK harus terisi
+    else:
+        if not doc.get("nomor_ppkek"):
+            frappe.throw(
+                msg="""🚫 <b>Gagal Submit {0}:</b><br><br>
+                Nomor PPKEK belum diisi.<br><br>
+                <b>Solusi:</b> Harap masukkan <b>Nomor PPKEK</b> pada {1} sebelum disubmit.""".format(doc_label, sol_label),
+                title="Nomor PPKEK Kosong"
+            )
 
-    # 3. Validasi status transaksi KEK
-    kek_txn_status = frappe.db.get_value("KEK Inventory Transaction", doc.kek_transaction, "status")
-    # Fallback: jika status KEK transaction adalah QUEUED/PENDING/SENT tapi doc.kek_status sudah Validated/ACKNOWLEDGED/BYPASSED,
-    # maka gunakan status dari doc (karena disimulasikan di PO/PR dalam test atau di-update dari luar)
-    if kek_txn_status not in ["ACKNOWLEDGED", "Validated", "SENT", "BYPASSED"] and doc.kek_status in ["ACKNOWLEDGED", "Validated", "BYPASSED"]:
-        kek_txn_status = doc.kek_status
+    # 3. Validasi Item & Kuantitas secara Fleksibel (Langsung terhadap Parent PO/SO)
+    parent_type = None
+    if doc.doctype == "Purchase Receipt":
+        parent_type = "Purchase Order"
+    elif doc.doctype == "Subcontracting Receipt":
+        parent_type = "Subcontracting Order"
+    elif doc.doctype == "Delivery Note":
+        parent_type = "Sales Order"
 
-    if kek_txn_status not in ["ACKNOWLEDGED", "Validated", "SENT", "BYPASSED"]:
-        frappe.throw(
-            msg="""🚫 <b>Gagal Submit {0}:</b><br><br>
-            Dokumen PPKEK ({1}) belum divalidasi (Status KEK saat ini: <b>{2}</b>).<br><br>
-            <b>Solusi:</b><br>
-            1. Harap hubungi staf pabean untuk memproses dokumen PPKEK di Dashboard Monitoring.<br>
-            2. Jika portal INSW sedang gangguan, hubungi <b>KEK Manager</b> untuk melakukan <i>Emergency Bypass</i>.""".format(doc_label, doc.kek_transaction, kek_txn_status or "BELUM DIPROSES"),
-            title="Validasi KEK Gagal"
-        )
+    parent_items = {}
+    total_parent_qty = 0.0
+    parent_names = set(item.get(parent_field) for item in doc.items if item.get(parent_field))
 
-    # Tambahan kontrol: Memastikan nomor PPKEK tidak kosong jika status Validated atau ACKNOWLEDGED
-    if kek_txn_status in ["ACKNOWLEDGED", "Validated"] and not doc.nomor_ppkek:
-        frappe.throw(
-            msg="""🚫 <b>Gagal Submit {0}:</b><br><br>
-            Dokumen transaksi asal (PO/SO/Subkontrak) berstatus Validated tetapi <b>Nomor PPKEK belum diinput/kosong</b>.<br><br>
-            <b>Solusi:</b> Harap hubungi KEK Manager atau Operator pabean untuk menginput nomor PPKEK resmi.""".format(doc_label),
-            title="Nomor PPKEK Kosong"
-        )
+    if parent_type:
+        for p_name in parent_names:
+            if frappe.db.exists(parent_type, p_name):
+                p_doc = frappe.get_doc(parent_type, p_name)
+                for p_item in p_doc.items:
+                    mapping = frappe.db.get_value("KEK Item Mapping", {"erpnext_item": p_item.item_code}, "customs_item_code")
+                    code = mapping or p_item.item_code
+                    parent_items[code] = parent_items.get(code, 0.0) + float(p_item.qty or 0)
+                    total_parent_qty += float(p_item.qty or 0)
 
-    # 4. Validasi Item & Kuantitas secara Fleksibel (Pilihan 3)
-    # A. Ambil item pabean dari KEK Transaction
-    kek_txn_doc = frappe.get_doc("KEK Inventory Transaction", doc.kek_transaction)
-    kek_items = {item.customs_item_code for item in kek_txn_doc.items}
-    total_kek_qty = sum(item.qty for item in kek_txn_doc.items)
-
-    # B. Cek apakah seluruh item di PR/DN terdaftar di KEK Transaction
+    # B. Cek apakah seluruh item di PR/DN terdaftar di parent PO/SO
     for item in doc.items:
-        # Ambil customs item code dari mapping atau fallback
         mapping = frappe.db.get_value("KEK Item Mapping", {"erpnext_item": item.item_code}, "customs_item_code")
         customs_item_code = mapping or item.item_code
-        if customs_item_code not in kek_items:
+        if parent_type and customs_item_code not in parent_items:
             frappe.throw(
-                msg=f"🚫 <b>Gagal Submit:</b> Barang <b>{item.item_code}</b> (pabean: {customs_item_code}) tidak terdaftar dalam dokumen PPKEK ({doc.kek_transaction}) yang dipilih.",
+                msg=f"🚫 <b>Gagal Submit:</b> Barang <b>{item.item_code}</b> (pabean: {customs_item_code}) tidak terdaftar dalam dokumen asal ({', '.join(parent_names)}).",
                 title="Item Tidak Cocok"
             )
 
-    # C. Cek apakah total kuantitas global di PR/DN melebihi total kuantitas global di KEK Transaction
+    # C. Cek apakah total kuantitas global di PR/DN melebihi total kuantitas global di parent PO/SO
     total_doc_qty = sum(item.qty for item in doc.items)
-    if total_doc_qty > total_kek_qty:
+    if parent_type and total_doc_qty > total_parent_qty:
         frappe.throw(
-            msg=f"🚫 <b>Gagal Submit:</b> Total kuantitas barang yang dikirim/diterima ({total_doc_qty}) melebihi total kuantitas yang disetujui pada dokumen PPKEK ({total_kek_qty}).",
+            msg=f"🚫 <b>Gagal Submit:</b> Total kuantitas barang yang dikirim/diterima ({total_doc_qty}) melebihi total kuantitas pada dokumen asal ({total_parent_qty}).",
             title="Total Kuantitas Melebihi Batas"
         )
 
@@ -448,22 +507,22 @@ def validate_kek_submission(doc, method=None):
         code = mapping or item.item_code
         doc_items_qty[code] = doc_items_qty.get(code, 0.0) + float(item.qty or 0)
 
-    kek_items_qty = {}
-    for item in kek_txn_doc.items:
-        code = item.customs_item_code
-        kek_items_qty[code] = kek_items_qty.get(code, 0.0) + float(item.qty or 0)
-
     mismatch_detected = False
-    for code, qty in doc_items_qty.items():
-        if code not in kek_items_qty or abs(kek_items_qty[code] - qty) > 0.001:
-            mismatch_detected = True
-            break
+    if parent_type:
+        for code, qty in doc_items_qty.items():
+            if code not in parent_items or abs(parent_items[code] - qty) > 0.001:
+                mismatch_detected = True
+                break
 
     if mismatch_detected:
         doc.kek_status = "MISMATCH"
-        # Tambahkan komentar log audit ke KEK Transaction
-        comment_text = "<b>⚠️ Mismatch Terdeteksi</b><br>Terdapat perbedaan item/kuantitas detail antara fisik {0} barang dengan dokumen pabean.".format(loc_label)
-        kek_txn_doc.add_comment("Comment", text=comment_text)
+        if doc.get("kek_transaction"):
+            try:
+                kek_txn_doc = frappe.get_doc("KEK Inventory Transaction", doc.kek_transaction)
+                comment_text = "<b>⚠️ Mismatch Terdeteksi</b><br>Terdapat perbedaan item/kuantitas detail antara fisik {0} barang dengan dokumen asal.".format(loc_label)
+                kek_txn_doc.add_comment("Comment", text=comment_text)
+            except Exception:
+                pass
     else:
         doc.kek_status = "Validated"
 
@@ -550,7 +609,7 @@ def run_mismatch_check_job():
 
 
 @frappe.whitelist()
-def manual_validate_ppkek(doctype, docname, nomor_ppkek, kek_transaction=None):
+def manual_validate_ppkek(doctype, docname, nomor_ppkek, tanggal_ppkek=None, kek_transaction=None):
     """
     Memvalidasi status PPKEK secara manual oleh KEK Manager.
     Mengubah status dokumen asal menjadi Validated dan KEK Transaction menjadi ACKNOWLEDGED.
@@ -572,26 +631,88 @@ def manual_validate_ppkek(doctype, docname, nomor_ppkek, kek_transaction=None):
             }, "name", order_by="creation desc")
             
     if not kek_transaction:
-        frappe.throw(f"Tidak ditemukan transaksi KEK yang aktif untuk {doctype} {docname}")
+        if doctype not in ["Purchase Order", "Subcontracting Order"]:
+            frappe.throw(f"Tidak ditemukan transaksi KEK yang aktif untuk {doctype} {docname}")
         
-    # 2. Update KEK Inventory Transaction dengan nomor PPKEK
-    frappe.db.set_value("KEK Inventory Transaction", kek_transaction, {
-        "status": "ACKNOWLEDGED",
-        "nomor_ppkek": nomor_ppkek
-    })
+    # 2. Update KEK Inventory Transaction dengan nomor PPKEK & tanggal PPKEK if it exists
+    if kek_transaction:
+        update_fields = {
+            "status": "ACKNOWLEDGED",
+            "nomor_ppkek": nomor_ppkek
+        }
+        if tanggal_ppkek:
+            update_fields["tanggal_ppkek"] = tanggal_ppkek
+            
+        frappe.db.set_value("KEK Inventory Transaction", kek_transaction, update_fields)
+        
+        # 2.5 Update child KEK Item Customs Doc table with new PPKEK details for all item rows
+        # Get customs document code from parent document if available
+        doc_code = "040700"
+        parent_doc = frappe.get_doc(doctype, docname)
+        doc_type_raw = parent_doc.get("custom_bc_document_type") or "Lainnya"
+        
+        bc_doc_mapping = {
+            "BC23": "0407611",
+            "PPKEK Pemasukan LDP (BC23)": "0407611",
+            "BC40": "0407613",
+            "PPKEK Pemasukan TLDDP (BC40)": "0407613",
+            "BC16": "0407613",
+            "PPKEK Pemasukan TLDDP (BC16)": "0407613",
+            "BC262": "0407614",
+            "PPKEK Pemasukan Kembali ex-Subkon (BC262)": "0407614",
+            "BC30": "0407631",
+            "PPKEK Pengeluaran LDP (BC30)": "0407631",
+            "BC25": "0407632",
+            "PPKEK Pengeluaran TLDDP (BC25)": "0407632",
+            "BC27": "0407621",
+            "PPKEK Pemasukan ex-Kawasan Berikat/TPB (BC27)": "0407621",
+            "BC261": "0407633",
+            "PPKEK Pengeluaran Sementara Subkon (BC261)": "0407633"
+        }
+        
+        if doc_type_raw.startswith("0407"):
+            doc_code = doc_type_raw
+        else:
+            doc_code = bc_doc_mapping.get(doc_type_raw, "040700")
+            
+        txn_doc = frappe.get_doc("KEK Inventory Transaction", kek_transaction)
+        for item in txn_doc.items:
+            customs_docs = frappe.get_all("KEK Item Customs Doc", filters={"parent": item.name}, fields=["name"])
+            if customs_docs:
+                for cd in customs_docs:
+                    cd_update = {"customs_doc_number": nomor_ppkek}
+                    if tanggal_ppkek:
+                        cd_update["customs_doc_date"] = tanggal_ppkek
+                    frappe.db.set_value("KEK Item Customs Doc", cd.name, cd_update)
+            else:
+                frappe.get_doc({
+                    "doctype": "KEK Item Customs Doc",
+                    "parent": item.name,
+                    "parenttype": "KEK Inventory Transaction Item",
+                    "parentfield": "customs_docs",
+                    "customs_doc_code": doc_code,
+                    "customs_doc_number": nomor_ppkek,
+                    "customs_doc_date": tanggal_ppkek or parent_doc.get("posting_date") or parent_doc.get("transaction_date")
+                }).insert(ignore_permissions=True)
+                
+        comment_text = "<b>Verifikasi Manual PPKEK</b><br>User: {0}<br>Nomor PPKEK: {1}<br>Tanggal PPKEK: {2}".format(
+            frappe.session.user, nomor_ppkek, tanggal_ppkek or "-"
+        )
+        txn_doc.add_comment("Comment", text=comment_text)
     
-    txn_doc = frappe.get_doc("KEK Inventory Transaction", kek_transaction)
-    comment_text = "<b>Verifikasi Manual PPKEK</b><br>User: {0}<br>Nomor PPKEK: {1}".format(
-        frappe.session.user, nomor_ppkek
-    )
-    txn_doc.add_comment("Comment", text=comment_text)
-    
-    # 3. Update status dan nomor PPKEK pada reference document PO/SO
-    frappe.db.set_value(doctype, docname, {
+    # 3. Update status, nomor PPKEK, dan tanggal PPKEK pada reference document PO/SO
+    parent_update = {
         "kek_status": "Validated",
-        "nomor_ppkek": nomor_ppkek,
-        "kek_transaction": kek_transaction
-    })
+        "nomor_ppkek": nomor_ppkek
+    }
+    if kek_transaction:
+        parent_update["kek_transaction"] = kek_transaction
+        
+    parent_meta = frappe.get_meta(doctype)
+    if parent_meta.has_field("tanggal_ppkek") and tanggal_ppkek:
+        parent_update["tanggal_ppkek"] = tanggal_ppkek
+        
+    frappe.db.set_value(doctype, docname, parent_update)
 
 
 @frappe.whitelist()
@@ -685,3 +806,31 @@ def process_stock_entry(doc, method=None):
             doc.db_set("kek_status", "FAILED")
         if meta.has_field("kek_error"):
             doc.db_set("kek_error", str(e))
+
+
+def diagnose_pr_doc():
+    import frappe
+    name = "MAT-PRE-2026-00010"
+    if not frappe.db.exists("Purchase Receipt", name):
+        print(f"PR {name} does not exist!")
+        return
+    pr = frappe.get_doc("Purchase Receipt", name)
+    print("PR Name:", pr.name)
+    print("PR Docstatus:", pr.docstatus)
+    print("PR nomor_ppkek:", pr.get("nomor_ppkek"))
+    print("PR custom_bc_registration_no:", pr.get("custom_bc_registration_no"))
+    print("PR tanggal_ppkek:", pr.get("tanggal_ppkek"))
+    print("PR custom_bc_registration_date:", pr.get("custom_bc_registration_date"))
+    print("PR KEK Status:", pr.get("kek_status"))
+
+
+def on_delivery_note_submit(doc, method=None):
+    """
+    Dipanggil saat Delivery Note di-submit
+    → memunculkan popup berisi pintasan (shortcut) ke KEK Inventory Transaction terkait
+    """
+    if doc.get("kek_transaction"):
+        frappe.msgprint(
+            msg=f"Transaksi KEK terkait: <a href='/app/kek-inventory-transaction/{doc.kek_transaction}'><b>{doc.kek_transaction}</b></a> telah berhasil disubmit.",
+            title="Transaksi KEK Terkait"
+        )

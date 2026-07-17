@@ -29,3 +29,6 @@ def daily_payload_summary():
         subject=f"Daily KEK Inventory Summary - {yesterday}",
         message=message
     )
+
+
+

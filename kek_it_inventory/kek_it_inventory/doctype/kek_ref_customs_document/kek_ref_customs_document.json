@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:code",
- "creation": "2026-05-13 13:26:00.000000",
+ "creation": "2026-05-13 13:26:00",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -16,6 +16,7 @@
   {
    "fieldname": "code",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Document Code",
    "reqd": 1,
    "unique": 1
@@ -37,9 +38,10 @@
    "label": "Is Active"
   }
  ],
- "modified": "2026-05-13 13:26:00.000000",
+ "links": [],
+ "modified": "2026-07-16 13:40:40.338583",
  "modified_by": "Administrator",
- "module": "Kek It Inventory",
+ "module": "KEK IT Inventory",
  "name": "KEK Ref Customs Document",
  "owner": "Administrator",
  "permissions": [
@@ -56,7 +58,9 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "description"
 }

@@ -57,6 +57,12 @@ frappe.ui.form.on('Subcontracting Order', {
 							fieldname: 'nomor_ppkek',
 							fieldtype: 'Data',
 							reqd: 1
+						},
+						{
+							label: 'Tanggal PPKEK',
+							fieldname: 'tanggal_ppkek',
+							fieldtype: 'Date',
+							reqd: 1
 						}
 					], function(values){
 						frappe.call({
@@ -64,7 +70,8 @@ frappe.ui.form.on('Subcontracting Order', {
 							args: {
 								doctype: frm.doc.doctype,
 								docname: frm.doc.name,
-								nomor_ppkek: values.nomor_ppkek
+								nomor_ppkek: values.nomor_ppkek,
+								tanggal_ppkek: values.tanggal_ppkek
 							},
 							callback: function() {
 								frm.reload_doc();

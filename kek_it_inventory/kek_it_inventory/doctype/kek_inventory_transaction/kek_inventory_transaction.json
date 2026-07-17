@@ -80,7 +80,13 @@
   {
    "fieldname": "nomor_ppkek",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Nomor PPKEK"
+  },
+  {
+   "fieldname": "tanggal_ppkek",
+   "fieldtype": "Date",
+   "label": "Tanggal PPKEK"
   },
   {
    "fieldname": "section_reference",
@@ -90,12 +96,14 @@
   {
    "fieldname": "erpnext_reference_doctype",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Source DocType",
    "read_only": 1
   },
   {
    "fieldname": "erpnext_reference_name",
    "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
    "label": "Source Name",
    "options": "erpnext_reference_doctype",
    "read_only": 1

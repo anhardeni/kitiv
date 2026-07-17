@@ -19,16 +19,16 @@ doc_events = {
 		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_purchase_order"
 	},
 
+	"Subcontracting Order": {
+		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_subcontracting_order"
+	},
+
 	"Stock Reconciliation": {
 		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_stock_reconciliation"
 	},
 
 	"Stock Entry": {
 		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_stock_entry"
-	},
-
-	"Subcontracting Order": {
-		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.process_subcontracting_order"
 	},
 
 	"Purchase Receipt": {
@@ -46,6 +46,7 @@ doc_events = {
 		"validate": "kek_it_inventory.kek_it_inventory.services.kek_service.copy_parent_kek_details",
 		"before_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.validate_kek_submission",
 		"on_update": "kek_it_inventory.kek_it_inventory.services.kek_service.process_delivery_note",
+		"on_submit": "kek_it_inventory.kek_it_inventory.services.kek_service.on_delivery_note_submit",
 		"on_trash": "kek_it_inventory.kek_it_inventory.services.kek_service.delete_delivery_note_kek",
 		"on_cancel": "kek_it_inventory.kek_it_inventory.services.kek_service.cancel_delivery_note_kek"
 	},

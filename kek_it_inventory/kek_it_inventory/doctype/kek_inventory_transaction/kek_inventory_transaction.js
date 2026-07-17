@@ -119,32 +119,34 @@ frappe.ui.form.on('KEK Inventory Transaction', {
 			});
 		}, __('Actions'));
 
-		// 2. Tombol [ Kirim ]
-		frm.add_custom_button(__('Kirim'), function() {
-			frappe.confirm(__('Apakah Anda yakin ingin mengirim transaksi ini langsung ke Bea Cukai / SINSW?'), function() {
-				frm.set_working(true);
-				frappe.call({
-					method: 'kek_it_inventory.kek_it_inventory.api.poster.post_transaction',
-					args: {
-						docname: frm.doc.name
-					},
-					callback: function(r) {
-						frm.reload_doc();
-						frappe.show_alert({
-							message: __('Transaksi KEK berhasil diposting.'),
-							indicator: 'green'
-						});
-					},
-					always: function() {
-						frm.set_working(false);
-					}
+		// 2. Tombol [ Kirim ] (Prominent)
+		if (frm.doc.status !== 'ACKNOWLEDGED') {
+			frm.add_custom_button(__('Kirim Ke Bea Cukai'), function() {
+				frappe.confirm(__('Apakah Anda yakin ingin mengirim transaksi ini langsung ke Bea Cukai / SINSW?'), function() {
+					frm.set_working(true);
+					frappe.call({
+						method: 'kek_it_inventory.kek_it_inventory.api.poster.post_transaction',
+						args: {
+							docname: frm.doc.name
+						},
+						callback: function(r) {
+							frm.reload_doc();
+							frappe.show_alert({
+								message: __('Transaksi KEK berhasil diposting.'),
+								indicator: 'green'
+							});
+						},
+						always: function() {
+							frm.set_working(false);
+						}
+					});
 				});
 			});
-		}, __('Actions'));
+		}
 
-		// 3. Tombol [ Retry ] (Hanya muncul jika status FAILED)
+		// 3. Tombol [ Retry ] (Hanya muncul jika status FAILED - Prominent)
 		if (frm.doc.status === 'FAILED') {
-			frm.add_custom_button(__('Retry'), function() {
+			frm.add_custom_button(__('Retry Kirim'), function() {
 				frm.set_working(true);
 				frappe.call({
 					method: 'kek_it_inventory.kek_it_inventory.services.kek_service.retry_kek',
@@ -162,7 +164,49 @@ frappe.ui.form.on('KEK Inventory Transaction', {
 						frm.set_working(false);
 					}
 				});
-			}, __('Actions'));
+			});
+		}
+
+		// 4. Tombol [ Lihat Payload JSON ] (Prominent)
+		if (frm.doc.request_payload) {
+			frm.add_custom_button(__('Lihat Payload JSON'), function() {
+				let d = new frappe.ui.Dialog({
+					title: __('Request Payload JSON'),
+					size: 'large',
+					fields: [
+						{
+							fieldname: 'payload',
+							fieldtype: 'Code',
+							label: __('Request JSON Data'),
+							options: 'JSON',
+							read_only: 1,
+							default: frm.doc.request_payload
+						}
+					]
+				});
+				d.show();
+			});
+		}
+
+		// 5. Tombol [ Lihat Respon API ] (Prominent)
+		if (frm.doc.response_payload) {
+			frm.add_custom_button(__('Lihat Respon API'), function() {
+				let d = new frappe.ui.Dialog({
+					title: __('Response Payload JSON'),
+					size: 'large',
+					fields: [
+						{
+							fieldname: 'payload',
+							fieldtype: 'Code',
+							label: __('Response JSON Data'),
+							options: 'JSON',
+							read_only: 1,
+							default: frm.doc.response_payload
+						}
+					]
+				});
+				d.show();
+			});
 		}
 	}
 });

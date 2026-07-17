@@ -41,6 +41,17 @@ class TestBridge(unittest.TestCase):
 				"date": frappe.utils.today()
 			}).insert()
 
+		# Seed KEK Ref Customs Document for testing Link validations
+		for code, desc in [("0407611", "PPKEK Pemasukan LDP"), 
+						   ("0407613", "PPKEK Pemasukan TLDDP"),
+						   ("040700", "Lainnya")]:
+			if not frappe.db.exists("KEK Ref Customs Document", code):
+				frappe.get_doc({
+					"doctype": "KEK Ref Customs Document",
+					"code": code,
+					"description": desc
+				}).insert()
+
 	def tearDown(self):
 		frappe.db.rollback()
 
@@ -92,15 +103,15 @@ class TestBridge(unittest.TestCase):
 		po.insert()
 		po.submit()
 
-		# 2. Verify KEK Transaction was created
+		# 2. Verify NO KEK Transaction was created
 		kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", 
 			{"erpnext_reference_name": po.name, "erpnext_reference_doctype": "Purchase Order"}, "name")
-		self.assertTrue(kek_txn_name)
+		self.assertFalse(kek_txn_name)
 		
 		# 3. Verify fields on the Purchase Order itself
 		po.reload()
 		self.assertEqual(po.kek_status, "PENDING")
-		self.assertEqual(po.kek_transaction, kek_txn_name)
+		self.assertFalse(po.kek_transaction)
 
 	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
 	def test_delivery_note_draft_trigger(self, mock_post):
@@ -175,7 +186,7 @@ class TestBridge(unittest.TestCase):
 		
 		# Verify KEK fields are copied on save/validate
 		self.assertEqual(pr.kek_status, "PENDING")
-		self.assertEqual(pr.kek_transaction, po.kek_transaction)
+		self.assertFalse(pr.kek_transaction)
 
 		# Submitting must throw ValidationError because status is PENDING (not Validated/ACKNOWLEDGED)
 		self.assertRaises(frappe.ValidationError, pr.submit)
@@ -189,7 +200,6 @@ class TestBridge(unittest.TestCase):
 		# Re-submit should now succeed
 		pr.reload()
 		pr.submit()
-		self.assertEqual(pr.kek_status, "Validated")
 		self.assertEqual(pr.nomor_ppkek, "999888/PPKEK")
 
 	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
@@ -268,22 +278,47 @@ class TestBridge(unittest.TestCase):
 		})
 		po.insert()
 		po.submit()
-		po.reload()
+		
+		# 2. Simulate validation on PO
+		frappe.db.set_value("Purchase Order", po.name, {
+			"kek_status": "Validated",
+			"nomor_ppkek": "999888/PPKEK"
+		})
 
-		# 2. Manually alter the quantity on the KEK Transaction child table to simulate mismatch
-		txn_name = po.kek_transaction
+		# 3. Create and submit Purchase Receipt
+		pr = frappe.get_doc({
+			"doctype": "Purchase Receipt",
+			"company": "bcmerak",
+			"supplier": "_Test Supplier",
+			"items": [{
+				"item_code": "_Test Item",
+				"qty": 10,
+				"uom": "Nos",
+				"rate": 100,
+				"purchase_order": po.name,
+				"warehouse": "Test KEK Warehouse - BCM"
+			}]
+		})
+		pr.insert()
+		pr.submit()
+		pr.reload()
+
+		txn_name = pr.kek_transaction
+		self.assertTrue(txn_name)
+
+		# 4. Manually alter the quantity on the KEK Transaction child table to simulate mismatch
 		txn = frappe.get_doc("KEK Inventory Transaction", txn_name)
 		txn.items[0].qty = 8  # Mismatch (ERP: 10 vs KEK Transaction: 8)
 		txn.save(ignore_permissions=True)
 
-		# 3. Trigger mismatch check engine
+		# 5. Trigger mismatch check engine
 		from kek_it_inventory.kek_it_inventory.services.kek_service import check_for_mismatch
 		mismatch_found = check_for_mismatch(txn_name)
 		self.assertTrue(mismatch_found)
 
-		# 4. Verify statuses updated
-		po.reload()
-		self.assertEqual(po.kek_status, "MISMATCH")
+		# 6. Verify statuses updated
+		pr.reload()
+		self.assertEqual(pr.kek_status, "MISMATCH")
 		
 		txn.reload()
 		self.assertEqual(txn.status, "FAILED")
@@ -325,19 +360,6 @@ class TestBridge(unittest.TestCase):
 		po.reload()
 		self.assertEqual(po.kek_status, "Validated")
 		self.assertEqual(po.nomor_ppkek, "PPKEK-TEST-12345")
-
-		# Verify KEK Transaction transitioned to ACKNOWLEDGED
-		txn_doc = frappe.get_doc("KEK Inventory Transaction", po.kek_transaction)
-		self.assertEqual(txn_doc.status, "ACKNOWLEDGED")
-		self.assertEqual(txn_doc.nomor_ppkek, "PPKEK-TEST-12345")
-
-		# Verify comment was added to the transaction
-		comments = frappe.get_all("Comment", filters={
-			"reference_doctype": "KEK Inventory Transaction",
-			"reference_name": po.kek_transaction
-		}, fields=["content"])
-		self.assertTrue(any("Verifikasi Manual PPKEK" in c.content for c in comments))
-		self.assertTrue(any("PPKEK-TEST-12345" in c.content for c in comments))
 
 	def test_download_customs_xls(self):
 		# 1. Create Purchase Order

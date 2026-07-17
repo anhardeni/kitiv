@@ -48,7 +48,7 @@ frappe.ui.form.on('Delivery Note', {
 			if (frm.doc.kek_transaction) {
 				frm.add_custom_button(__('Lihat Transaksi KEK'), function() {
 					frappe.set_route('Form', 'KEK Inventory Transaction', frm.doc.kek_transaction);
-				}, __('Actions'));
+				});
 			}
 
 			// 3. Unduh XLS Barang (For manual upload to Customs portal)
@@ -83,6 +83,40 @@ frappe.ui.form.on('Delivery Note', {
 				}
 			};
 		});
+
+		// Synchronize custom_bc fields if nomor_ppkek / tanggal_ppkek are already populated via mapping
+		if (frm.doc.nomor_ppkek && !frm.doc.custom_bc_registration_no) {
+			frm.set_value("custom_bc_registration_no", frm.doc.nomor_ppkek);
+		}
+		if (frm.doc.tanggal_ppkek && !frm.doc.custom_bc_registration_date) {
+			frm.set_value("custom_bc_registration_date", frm.doc.tanggal_ppkek);
+		}
+
+		// Auto-populate from parent SO if draft and empty
+		if (frm.doc.docstatus === 0 && !frm.doc.nomor_ppkek) {
+			let parent_so = null;
+			if (frm.doc.items && frm.doc.items.length) {
+				for (let item of frm.doc.items) {
+					if (item.against_sales_order) {
+						parent_so = item.against_sales_order;
+						break;
+					}
+				}
+			}
+			if (parent_so) {
+				frappe.db.get_value("Sales Order", parent_so, ["nomor_ppkek", "tanggal_ppkek", "kek_status"], (r) => {
+					if (r && r.nomor_ppkek) {
+						frm.set_value("nomor_ppkek", r.nomor_ppkek);
+						frm.set_value("custom_bc_registration_no", r.nomor_ppkek);
+						frm.set_value("tanggal_ppkek", r.tanggal_ppkek || "");
+						frm.set_value("custom_bc_registration_date", r.tanggal_ppkek || "");
+						if (r.kek_status) {
+							frm.set_value("kek_status", r.kek_status);
+						}
+					}
+				});
+			}
+		}
 	},
 	bypass_kek_validation: function(frm) {
 		let is_manager = frappe.user.has_role("KEK Manager") || frappe.user.has_role("System Manager");
@@ -91,15 +125,39 @@ frappe.ui.form.on('Delivery Note', {
 	},
 	kek_transaction: function(frm) {
 		if (frm.doc.kek_transaction) {
-			frappe.db.get_value("KEK Inventory Transaction", frm.doc.kek_transaction, "nomor_ppkek", (r) => {
-				if (r && r.nomor_ppkek) {
-					frm.set_value("nomor_ppkek", r.nomor_ppkek);
-					frm.set_value("custom_bc_registration_no", r.nomor_ppkek);
+			frappe.db.get_value("KEK Inventory Transaction", frm.doc.kek_transaction, ["nomor_ppkek", "tanggal_ppkek"], (r) => {
+				if (r) {
+					frm.set_value("nomor_ppkek", r.nomor_ppkek || "");
+					frm.set_value("custom_bc_registration_no", r.nomor_ppkek || "");
+					frm.set_value("tanggal_ppkek", r.tanggal_ppkek || "");
+					frm.set_value("custom_bc_registration_date", r.tanggal_ppkek || "");
 				}
 			});
 		} else {
 			frm.set_value("nomor_ppkek", "");
 			frm.set_value("custom_bc_registration_no", "");
+			frm.set_value("tanggal_ppkek", "");
+			frm.set_value("custom_bc_registration_date", "");
+		}
+	},
+	nomor_ppkek: function(frm) {
+		if (frm.doc.nomor_ppkek !== frm.doc.custom_bc_registration_no) {
+			frm.set_value("custom_bc_registration_no", frm.doc.nomor_ppkek);
+		}
+	},
+	custom_bc_registration_no: function(frm) {
+		if (frm.doc.custom_bc_registration_no !== frm.doc.nomor_ppkek) {
+			frm.set_value("nomor_ppkek", frm.doc.custom_bc_registration_no);
+		}
+	},
+	tanggal_ppkek: function(frm) {
+		if (frm.doc.tanggal_ppkek !== frm.doc.custom_bc_registration_date) {
+			frm.set_value("custom_bc_registration_date", frm.doc.tanggal_ppkek);
+		}
+	},
+	custom_bc_registration_date: function(frm) {
+		if (frm.doc.custom_bc_registration_date !== frm.doc.tanggal_ppkek) {
+			frm.set_value("tanggal_ppkek", frm.doc.custom_bc_registration_date);
 		}
 	}
 });
