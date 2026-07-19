@@ -6,60 +6,46 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "sap_document_number",
-  "document_type",
-  "status",
-  "sync_timestamp",
-  "erpnext_reference",
-  "sap_payload",
-  "error_trace"
+  "sap_po_id",
+  "sync_status",
+  "execution_time",
+  "error_message",
+  "raw_payload"
  ],
  "fields": [
   {
-   "fieldname": "sap_document_number",
+   "fieldname": "sap_po_id",
    "fieldtype": "Data",
-   "label": "SAP Document Number",
+   "label": "SAP Document ID",
    "in_list_view": 1
   },
   {
-   "fieldname": "document_type",
-   "fieldtype": "Select",
-   "label": "Document Type",
-   "options": "Purchase Order\nSales Order",
-   "in_list_view": 1
-  },
-  {
-   "fieldname": "status",
+   "fieldname": "sync_status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Pending\nProcessing\nSuccess\nFailed",
+   "options": "Success\nFailed",
    "in_list_view": 1
   },
   {
-   "fieldname": "sync_timestamp",
+   "fieldname": "execution_time",
    "fieldtype": "Datetime",
-   "label": "Sync Timestamp",
+   "label": "Timestamp",
    "in_list_view": 1
   },
   {
-   "fieldname": "erpnext_reference",
-   "fieldtype": "Data",
-   "label": "ERPNext Reference",
-   "in_list_view": 1
+   "fieldname": "error_message",
+   "fieldtype": "Long Text",
+   "label": "Error Traceback"
   },
   {
-   "fieldname": "sap_payload",
-   "fieldtype": "Long Text",
-   "label": "SAP Payload"
-  },
-  {
-   "fieldname": "error_trace",
-   "fieldtype": "Long Text",
-   "label": "Error Trace"
+   "fieldname": "raw_payload",
+   "fieldtype": "Code",
+   "options": "JSON",
+   "label": "Raw Payload Processed"
   }
  ],
  "links": [],
- "modified": "2026-07-07 06:00:00.000000",
+ "modified": "2026-07-19 21:28:00.000000",
  "modified_by": "Administrator",
  "module": "Kek It Inventory",
  "name": "SAP Integration Log",

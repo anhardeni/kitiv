@@ -1,7 +1,7 @@
 {
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/hooks.py": {
-    "mtime": 1783431623.1385272,
-    "hash": "4c09b5c37f63b73b0fd846412af75413"
+    "mtime": 1784262522.25876,
+    "hash": "a5970b608882a8510075472d71066257"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/sync_schema.py": {
     "mtime": 1780271077.6362062,
@@ -12,28 +12,40 @@
     "hash": "031d2b105914bd41498040b838c6e3b1"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/setup_role.py": {
-    "mtime": 1782472743.166944,
-    "hash": "961b5ff4b32c86e981a5cf2beb5ba31b"
+    "mtime": 1784065793.3688183,
+    "hash": "901b07f850978c0169fd0daf17f8547e"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/setup.py": {
-    "mtime": 1782572571.4013572,
-    "hash": "e3ca459a1691ab2b8411e2ba6d7387c5"
+    "mtime": 1784115643.5258563,
+    "hash": "a43d8a842c171359e80b6d7f4e67a4b1"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/work_order.js": {
+    "mtime": 1784457928.7583666,
+    "hash": "4cced61eb7f38de4f8769d06ab0f7b3a"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/delivery_note.js": {
-    "mtime": 1782573943.5658998,
-    "hash": "c23a1046c29348c4c08949cfe27a8762"
+    "mtime": 1784247560.3870592,
+    "hash": "7c8ae30ba51b59620836e4255486b2c6"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/purchase_order.js": {
-    "mtime": 1782573919.549497,
-    "hash": "e66179d21469acd233921ad87081eb33"
+    "mtime": 1784089073.7191193,
+    "hash": "9b950de15037ebb387beacdf725ea064"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/purchase_receipt.js": {
-    "mtime": 1782573937.2126749,
-    "hash": "9353746b74f4577a1a16441442a77a7e"
+    "mtime": 1784247557.699615,
+    "hash": "e2caa5bb171f53808f065de64fb1af7f"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/work_order_master.js": {
+    "mtime": 1784429859.7980356,
+    "hash": "dabe65c18904830c6f9a59e201c376ca"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/work_order__.js": {
+    "mtime": 1784431425.4596593,
+    "hash": "2570c7190c6f2f0ffabe937be264b388"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/subcontracting_order.js": {
-    "mtime": 1782573926.6851811,
-    "hash": "d51f43455a7ab919d42916f596fc7219"
+    "mtime": 1784089078.0890424,
+    "hash": "d5c8815f8e37dec9aaf5e4f7a2913c3a"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/config/__init__.py": {
     "mtime": 1778652075.6803932,
@@ -56,8 +68,8 @@
     "hash": "d75f6f8a779de488b3f2f0866d643d9a"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/utils.py": {
-    "mtime": 1783416553.970525,
-    "hash": "9cc6a8d5bc840a2d5350a50947100fe5"
+    "mtime": 1784123719.510347,
+    "hash": "549f21209d1c07ee9f949b5129244c4e"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tasks.py": {
     "mtime": 1778654382.6171944,
@@ -132,8 +144,8 @@
     "hash": "e57b25fb6b4f24a5d4f4787290acd10a"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js": {
-    "mtime": 1783432618.696048,
-    "hash": "9c7f8e5c45ded5d27e0cfcfcecc4b9d0"
+    "mtime": 1784115742.108377,
+    "hash": "8991626cf755b9b450368eefb3dfdb64"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.py": {
     "mtime": 1778654286.4694662,
@@ -159,21 +171,37 @@
     "mtime": 1778654587.5690768,
     "hash": "8119c549812bd76835f269ac9a1a2e0f"
   },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/__init__.py": {
+    "mtime": 1784184041.149842,
+    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/test_kek_ref_customs_document.py": {
+    "mtime": 1784184041.165842,
+    "hash": "fc71a06d86a90a890166899411226887"
+  },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.py": {
     "mtime": 1778653174.243818,
     "hash": "9c2e6507235c9fb4e561e3d7063bf414"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.js": {
+    "mtime": 1784184041.1698422,
+    "hash": "02305ef12b20c1ad221af27ed4fa4aff"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/test_poster.py": {
     "mtime": 1778750269.433217,
     "hash": "ca13e81a0a9a2c38398a2f7063ea7054"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/bridge.py": {
-    "mtime": 1783432449.3154736,
-    "hash": "2f33b6889f53e18e421b0ca03e73645d"
+    "mtime": 1784247554.5998118,
+    "hash": "63cfb76bb9e43090962e62eac0d7c282"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/poster-v0.py": {
+    "mtime": 1784245970.3710861,
+    "hash": "528220bab2982424fc6aeb4983028321"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/poster.py": {
-    "mtime": 1782519718.218162,
-    "hash": "5758cb91c0e0c6a8b9dbe6cee3f41532"
+    "mtime": 1784245940.469279,
+    "hash": "cade7a2e45c3e9ff6deb95a2cba38b49"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/__init__.py": {
     "mtime": 1778655903.945218,
@@ -188,8 +216,12 @@
     "hash": "34a7afe96a6b024073c779aaaf128a27"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/services/kek_service.py": {
-    "mtime": 1783432406.3624976,
-    "hash": "715806f4367cd88d36121a36f416cd6a"
+    "mtime": 1784247552.6018827,
+    "hash": "0f0d7e96d0ebdadc38cccb6e181f843a"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/services/manufacture_service.py": {
+    "mtime": 1784005760.698575,
+    "hash": "b19970481d92f39fe726c10d8399e45d"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.py": {
     "mtime": 1778760450.0139298,
@@ -200,8 +232,8 @@
     "hash": "b6a3f8bdb1bc18ffb04210022571669f"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/test_bridge.py": {
-    "mtime": 1783432505.448419,
-    "hash": "d4d5a5cc52ea715b9867d5c81ec40e81"
+    "mtime": 1784206455.8152797,
+    "hash": "74704c05fae17ff5424339c31bcb3775"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/test_poster.py": {
     "mtime": 1783432185.742173,
@@ -214,6 +246,14 @@
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/__init__.py": {
     "mtime": 1778655848.1904202,
     "hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py": {
+    "mtime": 1784005789.7371445,
+    "hash": "119d5fed210ed67785257ea14a06406a"
+  },
+  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/inspect_item.py": {
+    "mtime": 1784013076.5574632,
+    "hash": "0f0bd0ee82a149817ba161f21f12751a"
   },
   "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/templates/__init__.py": {
     "mtime": 1778652075.6688519,

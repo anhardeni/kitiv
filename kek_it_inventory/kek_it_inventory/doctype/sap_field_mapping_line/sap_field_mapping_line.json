@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-19 21:26:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sap_field",
+  "erpnext_field",
+  "table_level",
+  "data_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "sap_field",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "SAP JSON Key Field",
+   "reqd": 1
+  },
+  {
+   "fieldname": "erpnext_field",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "ERPNext Field Target",
+   "reqd": 1
+  },
+  {
+   "fieldname": "table_level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Mapping Level",
+   "options": "Header\nItem",
+   "reqd": 1
+  },
+  {
+   "fieldname": "data_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Data Type Conversion",
+   "options": "String\nDecimal\nOData Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-07-19 21:26:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "SAP Field Mapping Line",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

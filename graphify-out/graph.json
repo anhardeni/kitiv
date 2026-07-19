@@ -9,7 +9,7 @@
       "source_file": "kek_it_inventory/hooks.py",
       "source_location": "L1",
       "id": "kek_it_inventory_hooks_py",
-      "community": 19,
+      "community": 24,
       "norm_label": "hooks.py"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "kek_it_inventory/sync_schema.py",
       "source_location": "L1",
       "id": "kek_it_inventory_sync_schema_py",
-      "community": 18,
+      "community": 23,
       "norm_label": "sync_schema.py"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "kek_it_inventory/sync_schema.py",
       "source_location": "L3",
       "id": "kek_it_inventory_sync_schema_sync_schema",
-      "community": 18,
+      "community": 23,
       "norm_label": "sync_schema()"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "kek_it_inventory/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_init_py",
-      "community": 20,
+      "community": 25,
       "norm_label": "__init__.py"
     },
     {
@@ -45,7 +45,7 @@
       "source_file": "kek_it_inventory/setup_role.py",
       "source_location": "L1",
       "id": "kek_it_inventory_setup_role_py",
-      "community": 9,
+      "community": 11,
       "norm_label": "setup_role.py"
     },
     {
@@ -54,8 +54,26 @@
       "source_file": "kek_it_inventory/setup_role.py",
       "source_location": "L3",
       "id": "kek_it_inventory_setup_role_setup_test_role_permissions",
-      "community": 9,
+      "community": 11,
       "norm_label": "setup_test_role_permissions()"
+    },
+    {
+      "label": "setup_kek_manager_permissions()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/setup_role.py",
+      "source_location": "L60",
+      "id": "kek_it_inventory_setup_role_setup_kek_manager_permissions",
+      "community": 11,
+      "norm_label": "setup_kek_manager_permissions()"
+    },
+    {
+      "label": "setup_kek_user_permissions()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/setup_role.py",
+      "source_location": "L118",
+      "id": "kek_it_inventory_setup_role_setup_kek_user_permissions",
+      "community": 11,
+      "norm_label": "setup_kek_user_permissions()"
     },
     {
       "label": "setup.py",
@@ -63,7 +81,7 @@
       "source_file": "kek_it_inventory/setup.py",
       "source_location": "L1",
       "id": "kek_it_inventory_setup_py",
-      "community": 9,
+      "community": 11,
       "norm_label": "setup.py"
     },
     {
@@ -72,25 +90,25 @@
       "source_file": "kek_it_inventory/setup.py",
       "source_location": "L4",
       "id": "kek_it_inventory_setup_seed_master_data",
-      "community": 9,
+      "community": 11,
       "norm_label": "seed_master_data()"
     },
     {
       "label": "seed_doctype()",
       "file_type": "code",
       "source_file": "kek_it_inventory/setup.py",
-      "source_location": "L80",
+      "source_location": "L91",
       "id": "kek_it_inventory_setup_seed_doctype",
-      "community": 9,
+      "community": 11,
       "norm_label": "seed_doctype()"
     },
     {
       "label": "create_kek_custom_fields()",
       "file_type": "code",
       "source_file": "kek_it_inventory/setup.py",
-      "source_location": "L93",
+      "source_location": "L104",
       "id": "kek_it_inventory_setup_create_kek_custom_fields",
-      "community": 9,
+      "community": 11,
       "norm_label": "create_kek_custom_fields()"
     },
     {
@@ -99,8 +117,116 @@
       "source_file": "kek_it_inventory/setup.py",
       "source_location": "L5",
       "id": "kek_it_inventory_setup_rationale_5",
-      "community": 9,
+      "community": 11,
       "norm_label": "seed master reference data for kek it inventory"
+    },
+    {
+      "label": "work_order__.js",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L1",
+      "id": "kek_it_inventory_public_js_work_order_js",
+      "community": 5,
+      "norm_label": "work_order__.js"
+    },
+    {
+      "label": "wo_to_complete",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L8",
+      "id": "js_work_order_wo_to_complete",
+      "community": 5,
+      "norm_label": "wo_to_complete"
+    },
+    {
+      "label": "target_qty",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L9",
+      "id": "js_work_order_target_qty",
+      "community": 5,
+      "norm_label": "target_qty"
+    },
+    {
+      "label": "item_name",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L10",
+      "id": "js_work_order_item_name",
+      "community": 5,
+      "norm_label": "item_name"
+    },
+    {
+      "label": "bom_no",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L57",
+      "id": "js_work_order_bom_no",
+      "community": 5,
+      "norm_label": "bom_no"
+    },
+    {
+      "label": "stage_name",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L59",
+      "id": "js_work_order_stage_name",
+      "community": 5,
+      "norm_label": "stage_name"
+    },
+    {
+      "label": "wip_wh",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L60",
+      "id": "js_work_order_wip_wh",
+      "community": 5,
+      "norm_label": "wip_wh"
+    },
+    {
+      "label": "work_order_no",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L61",
+      "id": "js_work_order_work_order_no",
+      "community": 5,
+      "norm_label": "work_order_no"
+    },
+    {
+      "label": "work_order_name",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L71",
+      "id": "js_work_order_work_order_name",
+      "community": 5,
+      "norm_label": "work_order_name"
+    },
+    {
+      "label": "render_multi_stage_dashboard()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L90",
+      "id": "js_work_order_render_multi_stage_dashboard",
+      "community": 5,
+      "norm_label": "render_multi_stage_dashboard()"
+    },
+    {
+      "label": "cetak_bahan_per_tahap()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L254",
+      "id": "js_work_order_cetak_bahan_per_tahap",
+      "community": 5,
+      "norm_label": "cetak_bahan_per_tahap()"
+    },
+    {
+      "label": "cetak_seluruh_bahan_gabungan()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L324",
+      "id": "js_work_order_cetak_seluruh_bahan_gabungan",
+      "community": 5,
+      "norm_label": "cetak_seluruh_bahan_gabungan()"
     },
     {
       "label": "delivery_note.js",
@@ -108,7 +234,7 @@
       "source_file": "kek_it_inventory/public/js/delivery_note.js",
       "source_location": "L1",
       "id": "kek_it_inventory_public_js_delivery_note_js",
-      "community": 21,
+      "community": 26,
       "norm_label": "delivery_note.js"
     },
     {
@@ -117,7 +243,7 @@
       "source_file": "kek_it_inventory/public/js/purchase_order.js",
       "source_location": "L1",
       "id": "kek_it_inventory_public_js_purchase_order_js",
-      "community": 22,
+      "community": 27,
       "norm_label": "purchase_order.js"
     },
     {
@@ -126,8 +252,89 @@
       "source_file": "kek_it_inventory/public/js/purchase_receipt.js",
       "source_location": "L1",
       "id": "kek_it_inventory_public_js_purchase_receipt_js",
-      "community": 23,
+      "community": 28,
       "norm_label": "purchase_receipt.js"
+    },
+    {
+      "label": "work_order_master.js",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L1",
+      "id": "kek_it_inventory_public_js_work_order_master_js",
+      "community": 16,
+      "norm_label": "work_order_master.js"
+    },
+    {
+      "label": "wo_to_complete",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L8",
+      "id": "js_work_order_master_wo_to_complete",
+      "community": 16,
+      "norm_label": "wo_to_complete"
+    },
+    {
+      "label": "target_qty",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L9",
+      "id": "js_work_order_master_target_qty",
+      "community": 16,
+      "norm_label": "target_qty"
+    },
+    {
+      "label": "item_name",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L10",
+      "id": "js_work_order_master_item_name",
+      "community": 16,
+      "norm_label": "item_name"
+    },
+    {
+      "label": "render_multi_stage_dashboard()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L75",
+      "id": "js_work_order_master_render_multi_stage_dashboard",
+      "community": 16,
+      "norm_label": "render_multi_stage_dashboard()"
+    },
+    {
+      "label": "w",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L94",
+      "id": "js_work_order_w",
+      "community": 5,
+      "norm_label": "w"
+    },
+    {
+      "label": "promises",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L106",
+      "id": "js_work_order_promises",
+      "community": 5,
+      "norm_label": "promises"
+    },
+    {
+      "label": "consolidated",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L115",
+      "id": "js_work_order_consolidated",
+      "community": 5,
+      "norm_label": "consolidated"
+    },
+    {
+      "label": "items_html",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L135",
+      "id": "js_work_order_items_html",
+      "community": 5,
+      "norm_label": "items_html"
     },
     {
       "label": "subcontracting_order.js",
@@ -135,7 +342,7 @@
       "source_file": "kek_it_inventory/public/js/subcontracting_order.js",
       "source_location": "L1",
       "id": "kek_it_inventory_public_js_subcontracting_order_js",
-      "community": 24,
+      "community": 29,
       "norm_label": "subcontracting_order.js"
     },
     {
@@ -144,7 +351,7 @@
       "source_file": "kek_it_inventory/config/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_config_init_py",
-      "community": 25,
+      "community": 30,
       "norm_label": "__init__.py"
     },
     {
@@ -153,7 +360,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_init_py",
-      "community": 26,
+      "community": 31,
       "norm_label": "__init__.py"
     },
     {
@@ -162,7 +369,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/create_kek_workspace.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_create_kek_workspace_py",
-      "community": 15,
+      "community": 21,
       "norm_label": "create_kek_workspace.py"
     },
     {
@@ -171,7 +378,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/create_kek_workspace.py",
       "source_location": "L3",
       "id": "kek_it_inventory_create_kek_workspace_create_number_cards",
-      "community": 15,
+      "community": 21,
       "norm_label": "create_number_cards()"
     },
     {
@@ -180,7 +387,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/create_kek_workspace.py",
       "source_location": "L47",
       "id": "kek_it_inventory_create_kek_workspace_main",
-      "community": 15,
+      "community": 21,
       "norm_label": "main()"
     },
     {
@@ -189,7 +396,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/sim_workflow.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_sim_workflow_py",
-      "community": 10,
+      "community": 8,
       "norm_label": "sim_workflow.py"
     },
     {
@@ -198,7 +405,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/sim_workflow.py",
       "source_location": "L6",
       "id": "kek_it_inventory_sim_workflow_run_simulation",
-      "community": 10,
+      "community": 8,
       "norm_label": "run_simulation()"
     },
     {
@@ -207,7 +414,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/sim_delivery.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_sim_delivery_py",
-      "community": 10,
+      "community": 8,
       "norm_label": "sim_delivery.py"
     },
     {
@@ -216,7 +423,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/sim_delivery.py",
       "source_location": "L5",
       "id": "kek_it_inventory_sim_delivery_run_delivery_simulation",
-      "community": 10,
+      "community": 8,
       "norm_label": "run_delivery_simulation()"
     },
     {
@@ -225,7 +432,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/utils.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_utils_py",
-      "community": 13,
+      "community": 17,
       "norm_label": "utils.py"
     },
     {
@@ -234,7 +441,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/utils.py",
       "source_location": "L5",
       "id": "kek_it_inventory_utils_get_failed_count",
-      "community": 13,
+      "community": 17,
       "norm_label": "get_failed_count()"
     },
     {
@@ -243,7 +450,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/utils.py",
       "source_location": "L9",
       "id": "kek_it_inventory_utils_daily_payload_summary",
-      "community": 13,
+      "community": 17,
       "norm_label": "daily_payload_summary()"
     },
     {
@@ -252,7 +459,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/utils.py",
       "source_location": "L6",
       "id": "kek_it_inventory_utils_rationale_6",
-      "community": 13,
+      "community": 17,
       "norm_label": "mengembalikan jumlah transaksi yang gagal untuk ditampilkan di badge desktop."
     },
     {
@@ -261,7 +468,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/utils.py",
       "source_location": "L10",
       "id": "kek_it_inventory_utils_rationale_10",
-      "community": 13,
+      "community": 17,
       "norm_label": "mengirim ringkasan transaksi kemarin ke tim operasional."
     },
     {
@@ -270,7 +477,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tasks.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_tasks_py",
-      "community": 16,
+      "community": 22,
       "norm_label": "tasks.py"
     },
     {
@@ -279,7 +486,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tasks.py",
       "source_location": "L3",
       "id": "kek_it_inventory_tasks_daily_reconciliation",
-      "community": 16,
+      "community": 22,
       "norm_label": "daily_reconciliation()"
     },
     {
@@ -288,7 +495,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tasks.py",
       "source_location": "L4",
       "id": "kek_it_inventory_tasks_rationale_4",
-      "community": 16,
+      "community": 22,
       "norm_label": "daily sync between local and sinsw"
     },
     {
@@ -297,7 +504,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_init_py",
-      "community": 27,
+      "community": 32,
       "norm_label": "__init__.py"
     },
     {
@@ -306,7 +513,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_tolerance/kek_item_tolerance.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_item_tolerance_kek_item_tolerance_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_item_tolerance.py"
     },
     {
@@ -315,7 +522,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_tolerance/kek_item_tolerance.py",
       "source_location": "L4",
       "id": "kek_item_tolerance_kek_item_tolerance_kekitemtolerance",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekitemtolerance"
     },
     {
@@ -324,7 +531,7 @@
       "source_file": "",
       "source_location": "",
       "id": "document",
-      "community": 0,
+      "community": 1,
       "norm_label": "document"
     },
     {
@@ -333,7 +540,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_tolerance/kek_item_tolerance.py",
       "source_location": "L5",
       "id": "kek_item_tolerance_kek_item_tolerance_kekitemtolerance_validate",
-      "community": 0,
+      "community": 1,
       "norm_label": ".validate()"
     },
     {
@@ -342,7 +549,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_api_credential/kek_api_credential.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_api_credential_kek_api_credential_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_api_credential.py"
     },
     {
@@ -351,7 +558,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_api_credential/kek_api_credential.py",
       "source_location": "L4",
       "id": "kek_api_credential_kek_api_credential_kekapicredential",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekapicredential"
     },
     {
@@ -360,7 +567,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_activity_code_init_py",
-      "community": 28,
+      "community": 33,
       "norm_label": "__init__.py"
     },
     {
@@ -369,7 +576,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/kek_ref_activity_code.js",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_activity_code_kek_ref_activity_code_js",
-      "community": 29,
+      "community": 34,
       "norm_label": "kek_ref_activity_code.js"
     },
     {
@@ -378,7 +585,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/test_kek_ref_activity_code.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_activity_code_test_kek_ref_activity_code_py",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_kek_ref_activity_code.py"
     },
     {
@@ -387,7 +594,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/test_kek_ref_activity_code.py",
       "source_location": "L8",
       "id": "kek_ref_activity_code_test_kek_ref_activity_code_testkekrefactivitycode",
-      "community": 7,
+      "community": 10,
       "norm_label": "testkekrefactivitycode"
     },
     {
@@ -396,7 +603,7 @@
       "source_file": "",
       "source_location": "",
       "id": "frappetestcase",
-      "community": 7,
+      "community": 10,
       "norm_label": "frappetestcase"
     },
     {
@@ -405,7 +612,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/kek_ref_activity_code.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_activity_code_kek_ref_activity_code_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_ref_activity_code.py"
     },
     {
@@ -414,7 +621,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/kek_ref_activity_code.py",
       "source_location": "L4",
       "id": "kek_ref_activity_code_kek_ref_activity_code_kekrefactivitycode",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekrefactivitycode"
     },
     {
@@ -423,7 +630,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_mapping/kek_item_mapping.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_item_mapping_kek_item_mapping_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_item_mapping.py"
     },
     {
@@ -432,7 +639,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_mapping/kek_item_mapping.py",
       "source_location": "L4",
       "id": "kek_item_mapping_kek_item_mapping_kekitemmapping",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekitemmapping"
     },
     {
@@ -441,7 +648,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_mapping/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_item_mapping_init_py",
-      "community": 30,
+      "community": 35,
       "norm_label": "__init__.py"
     },
     {
@@ -450,7 +657,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_unit/kek_ref_unit.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_unit_kek_ref_unit_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_ref_unit.py"
     },
     {
@@ -459,7 +666,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_unit/kek_ref_unit.py",
       "source_location": "L4",
       "id": "kek_ref_unit_kek_ref_unit_kekrefunit",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekrefunit"
     },
     {
@@ -468,7 +675,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_customs_doc/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_item_customs_doc_init_py",
-      "community": 31,
+      "community": 36,
       "norm_label": "__init__.py"
     },
     {
@@ -477,7 +684,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_customs_doc/kek_item_customs_doc.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_item_customs_doc_kek_item_customs_doc_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_item_customs_doc.py"
     },
     {
@@ -486,7 +693,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_item_customs_doc/kek_item_customs_doc.py",
       "source_location": "L7",
       "id": "kek_item_customs_doc_kek_item_customs_doc_kekitemcustomsdoc",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekitemcustomsdoc"
     },
     {
@@ -495,7 +702,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_compliance_archive/kek_compliance_archive.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_compliance_archive_kek_compliance_archive_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_compliance_archive.py"
     },
     {
@@ -504,7 +711,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_compliance_archive/kek_compliance_archive.py",
       "source_location": "L4",
       "id": "kek_compliance_archive_kek_compliance_archive_kekcompliancearchive",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekcompliancearchive"
     },
     {
@@ -513,7 +720,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_company_profile/kek_company_profile.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_company_profile_kek_company_profile_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_company_profile.py"
     },
     {
@@ -522,7 +729,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_company_profile/kek_company_profile.py",
       "source_location": "L4",
       "id": "kek_company_profile_kek_company_profile_kekcompanyprofile",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekcompanyprofile"
     },
     {
@@ -531,7 +738,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction_item/kek_inventory_transaction_item.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_inventory_transaction_item_kek_inventory_transaction_item_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_inventory_transaction_item.py"
     },
     {
@@ -540,7 +747,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction_item/kek_inventory_transaction_item.py",
       "source_location": "L4",
       "id": "kek_inventory_transaction_item_kek_inventory_transaction_item_kekinventorytransactionitem",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekinventorytransactionitem"
     },
     {
@@ -549,7 +756,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_sap_po_import_job_sap_po_import_job_py",
-      "community": 12,
+      "community": 15,
       "norm_label": "sap_po_import_job.py"
     },
     {
@@ -558,7 +765,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.py",
       "source_location": "L5",
       "id": "sap_po_import_job_sap_po_import_job_sappoimportjob",
-      "community": 12,
+      "community": 15,
       "norm_label": "sappoimportjob"
     },
     {
@@ -567,7 +774,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.py",
       "source_location": "L7",
       "id": "sap_po_import_job_sap_po_import_job_sappoimportjob_before_save",
-      "community": 12,
+      "community": 15,
       "norm_label": ".before_save()"
     },
     {
@@ -576,7 +783,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.py",
       "source_location": "L16",
       "id": "sap_po_import_job_sap_po_import_job_sappoimportjob_after_insert",
-      "community": 12,
+      "community": 15,
       "norm_label": ".after_insert()"
     },
     {
@@ -585,7 +792,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.py",
       "source_location": "L8",
       "id": "sap_po_import_job_sap_po_import_job_rationale_8",
-      "community": 12,
+      "community": 15,
       "norm_label": "reset progress fields if file changes and status is being re-queued"
     },
     {
@@ -594,7 +801,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.py",
       "source_location": "L17",
       "id": "sap_po_import_job_sap_po_import_job_rationale_17",
-      "community": 12,
+      "community": 15,
       "norm_label": "immediately enqueue the chunked xls processor after the job record is created."
     },
     {
@@ -603,7 +810,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_item_category/kek_ref_item_category.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_item_category_kek_ref_item_category_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_ref_item_category.py"
     },
     {
@@ -612,7 +819,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_item_category/kek_ref_item_category.py",
       "source_location": "L4",
       "id": "kek_ref_item_category_kek_ref_item_category_kekrefitemcategory",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekrefitemcategory"
     },
     {
@@ -621,7 +828,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_inventory_transaction_kek_inventory_transaction_js",
-      "community": 17,
+      "community": 20,
       "norm_label": "kek_inventory_transaction.js"
     },
     {
@@ -630,7 +837,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js",
       "source_location": "L10",
       "id": "kek_inventory_transaction_kek_inventory_transaction_status_label",
-      "community": 17,
+      "community": 20,
       "norm_label": "status_label"
     },
     {
@@ -639,8 +846,17 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js",
       "source_location": "L44",
       "id": "kek_inventory_transaction_kek_inventory_transaction_res",
-      "community": 17,
+      "community": 20,
       "norm_label": "res"
+    },
+    {
+      "label": "d",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js",
+      "source_location": "L173",
+      "id": "kek_inventory_transaction_kek_inventory_transaction_d",
+      "community": 20,
+      "norm_label": "d"
     },
     {
       "label": "kek_inventory_transaction.py",
@@ -648,7 +864,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_inventory_transaction_kek_inventory_transaction_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_inventory_transaction.py"
     },
     {
@@ -657,7 +873,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.py",
       "source_location": "L4",
       "id": "kek_inventory_transaction_kek_inventory_transaction_kekinventorytransaction",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekinventorytransaction"
     },
     {
@@ -666,7 +882,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_sync_settings/sap_sync_settings.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_sap_sync_settings_sap_sync_settings_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "sap_sync_settings.py"
     },
     {
@@ -675,7 +891,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_sync_settings/sap_sync_settings.py",
       "source_location": "L4",
       "id": "sap_sync_settings_sap_sync_settings_sapsyncsettings",
-      "community": 0,
+      "community": 1,
       "norm_label": "sapsyncsettings"
     },
     {
@@ -684,7 +900,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_integration_log/sap_integration_log.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_sap_integration_log_sap_integration_log_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "sap_integration_log.py"
     },
     {
@@ -693,7 +909,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/sap_integration_log/sap_integration_log.py",
       "source_location": "L4",
       "id": "sap_integration_log_sap_integration_log_sapintegrationlog",
-      "community": 0,
+      "community": 1,
       "norm_label": "sapintegrationlog"
     },
     {
@@ -702,7 +918,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_transaction_type/kek_ref_transaction_type.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_transaction_type_kek_ref_transaction_type_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_ref_transaction_type.py"
     },
     {
@@ -711,7 +927,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_transaction_type/kek_ref_transaction_type.py",
       "source_location": "L4",
       "id": "kek_ref_transaction_type_kek_ref_transaction_type_kekreftransactiontype",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekreftransactiontype"
     },
     {
@@ -720,7 +936,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_stock_ledger/kek_stock_ledger.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_stock_ledger_kek_stock_ledger_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_stock_ledger.py"
     },
     {
@@ -729,7 +945,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_stock_ledger/kek_stock_ledger.py",
       "source_location": "L4",
       "id": "kek_stock_ledger_kek_stock_ledger_kekstockledger",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekstockledger"
     },
     {
@@ -738,7 +954,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_stock_snapshot/kek_stock_snapshot.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_stock_snapshot_kek_stock_snapshot_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_stock_snapshot.py"
     },
     {
@@ -747,8 +963,35 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_stock_snapshot/kek_stock_snapshot.py",
       "source_location": "L4",
       "id": "kek_stock_snapshot_kek_stock_snapshot_kekstocksnapshot",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekstocksnapshot"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/__init__.py",
+      "source_location": "L1",
+      "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_customs_document_init_py",
+      "community": 37,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "test_kek_ref_customs_document.py",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/test_kek_ref_customs_document.py",
+      "source_location": "L1",
+      "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_customs_document_test_kek_ref_customs_document_py",
+      "community": 10,
+      "norm_label": "test_kek_ref_customs_document.py"
+    },
+    {
+      "label": "TestKEKRefCustomsDocument",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/test_kek_ref_customs_document.py",
+      "source_location": "L8",
+      "id": "kek_ref_customs_document_test_kek_ref_customs_document_testkekrefcustomsdocument",
+      "community": 10,
+      "norm_label": "testkekrefcustomsdocument"
     },
     {
       "label": "kek_ref_customs_document.py",
@@ -756,7 +999,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_customs_document_kek_ref_customs_document_py",
-      "community": 0,
+      "community": 1,
       "norm_label": "kek_ref_customs_document.py"
     },
     {
@@ -765,8 +1008,17 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.py",
       "source_location": "L4",
       "id": "kek_ref_customs_document_kek_ref_customs_document_kekrefcustomsdocument",
-      "community": 0,
+      "community": 1,
       "norm_label": "kekrefcustomsdocument"
+    },
+    {
+      "label": "kek_ref_customs_document.js",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.js",
+      "source_location": "L1",
+      "id": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_customs_document_kek_ref_customs_document_js",
+      "community": 38,
+      "norm_label": "kek_ref_customs_document.js"
     },
     {
       "label": "test_poster.py",
@@ -774,7 +1026,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/test_poster.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_api_test_poster_py",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_poster.py"
     },
     {
@@ -783,7 +1035,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/test_poster.py",
       "source_location": "L7",
       "id": "api_test_poster_testposterapi",
-      "community": 7,
+      "community": 10,
       "norm_label": "testposterapi"
     },
     {
@@ -792,7 +1044,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/test_poster.py",
       "source_location": "L9",
       "id": "api_test_poster_testposterapi_setup",
-      "community": 7,
+      "community": 10,
       "norm_label": ".setup()"
     },
     {
@@ -801,7 +1053,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/test_poster.py",
       "source_location": "L77",
       "id": "api_test_poster_test_payload_structure_camelcase_and_nested",
-      "community": 7,
+      "community": 10,
       "norm_label": "test_payload_structure_camelcase_and_nested()"
     },
     {
@@ -810,7 +1062,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/test_poster.py",
       "source_location": "L10",
       "id": "api_test_poster_rationale_10",
-      "community": 7,
+      "community": 10,
       "norm_label": "fungsi ini berjalan otomatis sebelum setiap test dijalankan. \t\tfrappetestcase ak"
     },
     {
@@ -819,7 +1071,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/test_poster.py",
       "source_location": "L78",
       "id": "api_test_poster_rationale_78",
-      "community": 32,
+      "community": 39,
       "norm_label": "menguji apakah payload json yang dibentuk sesuai dengan standar kek.pdf"
     },
     {
@@ -828,7 +1080,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/bridge.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_api_bridge_py",
-      "community": 1,
+      "community": 0,
       "norm_label": "bridge.py"
     },
     {
@@ -837,7 +1089,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/bridge.py",
       "source_location": "L3",
       "id": "api_bridge_create_kek_transaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "create_kek_transaction()"
     },
     {
@@ -846,8 +1098,107 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/bridge.py",
       "source_location": "L4",
       "id": "api_bridge_rationale_4",
-      "community": 1,
+      "community": 0,
       "norm_label": "automatically creates a kek inventory transaction from erpnext documents \twith s"
+    },
+    {
+      "label": "poster-v0.py",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L1",
+      "id": "kek_it_inventory_kek_it_inventory_api_poster_v0_py",
+      "community": 8,
+      "norm_label": "poster-v0.py"
+    },
+    {
+      "label": "translate_customs_error()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L7",
+      "id": "api_poster_v0_translate_customs_error",
+      "community": 8,
+      "norm_label": "translate_customs_error()"
+    },
+    {
+      "label": "get_unique_key()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L40",
+      "id": "api_poster_v0_get_unique_key",
+      "community": 8,
+      "norm_label": "get_unique_key()"
+    },
+    {
+      "label": "update_reference_doc()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L58",
+      "id": "api_poster_v0_update_reference_doc",
+      "community": 8,
+      "norm_label": "update_reference_doc()"
+    },
+    {
+      "label": "post_transaction()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L85",
+      "id": "api_poster_v0_post_transaction",
+      "community": 8,
+      "norm_label": "post_transaction()"
+    },
+    {
+      "label": "process_queue()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L250",
+      "id": "api_poster_v0_process_queue",
+      "community": 8,
+      "norm_label": "process_queue()"
+    },
+    {
+      "label": "Translates technical/JSON error messages from Bea Cukai/SINSW API  \tinto clear,",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L8",
+      "id": "api_poster_v0_rationale_8",
+      "community": 8,
+      "norm_label": "translates technical/json error messages from bea cukai/sinsw api  \tinto clear,"
+    },
+    {
+      "label": "Retrieves the dynamic X-Unique-Key from SINSW.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L41",
+      "id": "api_poster_v0_rationale_41",
+      "community": 8,
+      "norm_label": "retrieves the dynamic x-unique-key from sinsw."
+    },
+    {
+      "label": "Propagates status back to the source ERPNext document.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L59",
+      "id": "api_poster_v0_rationale_59",
+      "community": 8,
+      "norm_label": "propagates status back to the source erpnext document."
+    },
+    {
+      "label": "Posts a KEK Inventory Transaction to SINSW Gateway following KEK PDF standards.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L86",
+      "id": "api_poster_v0_rationale_86",
+      "community": 8,
+      "norm_label": "posts a kek inventory transaction to sinsw gateway following kek pdf standards."
+    },
+    {
+      "label": "Finds all QUEUED transactions and attempts to post them.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L251",
+      "id": "api_poster_v0_rationale_251",
+      "community": 8,
+      "norm_label": "finds all queued transactions and attempts to post them."
     },
     {
       "label": "poster.py",
@@ -855,7 +1206,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_api_poster_py",
-      "community": 5,
+      "community": 7,
       "norm_label": "poster.py"
     },
     {
@@ -864,7 +1215,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
       "source_location": "L7",
       "id": "api_poster_translate_customs_error",
-      "community": 5,
+      "community": 7,
       "norm_label": "translate_customs_error()"
     },
     {
@@ -873,7 +1224,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
       "source_location": "L40",
       "id": "api_poster_get_unique_key",
-      "community": 5,
+      "community": 7,
       "norm_label": "get_unique_key()"
     },
     {
@@ -882,25 +1233,25 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
       "source_location": "L58",
       "id": "api_poster_update_reference_doc",
-      "community": 5,
+      "community": 7,
       "norm_label": "update_reference_doc()"
     },
     {
       "label": "post_transaction()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
-      "source_location": "L81",
+      "source_location": "L85",
       "id": "api_poster_post_transaction",
-      "community": 5,
+      "community": 7,
       "norm_label": "post_transaction()"
     },
     {
       "label": "process_queue()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
-      "source_location": "L211",
+      "source_location": "L260",
       "id": "api_poster_process_queue",
-      "community": 5,
+      "community": 7,
       "norm_label": "process_queue()"
     },
     {
@@ -909,7 +1260,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
       "source_location": "L8",
       "id": "api_poster_rationale_8",
-      "community": 5,
+      "community": 7,
       "norm_label": "translates technical/json error messages from bea cukai/sinsw api  \tinto clear,"
     },
     {
@@ -918,7 +1269,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
       "source_location": "L41",
       "id": "api_poster_rationale_41",
-      "community": 5,
+      "community": 7,
       "norm_label": "retrieves the dynamic x-unique-key from sinsw."
     },
     {
@@ -927,25 +1278,25 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
       "source_location": "L59",
       "id": "api_poster_rationale_59",
-      "community": 5,
+      "community": 7,
       "norm_label": "propagates status back to the source erpnext document."
     },
     {
       "label": "Posts a KEK Inventory Transaction to SINSW Gateway following KEK PDF standards.",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
-      "source_location": "L82",
-      "id": "api_poster_rationale_82",
-      "community": 5,
+      "source_location": "L86",
+      "id": "api_poster_rationale_86",
+      "community": 7,
       "norm_label": "posts a kek inventory transaction to sinsw gateway following kek pdf standards."
     },
     {
       "label": "Finds all QUEUED transactions and attempts to post them.",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
-      "source_location": "L212",
-      "id": "api_poster_rationale_212",
-      "community": 5,
+      "source_location": "L261",
+      "id": "api_poster_rationale_261",
+      "community": 7,
       "norm_label": "finds all queued transactions and attempts to post them."
     },
     {
@@ -954,7 +1305,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_api_init_py",
-      "community": 33,
+      "community": 40,
       "norm_label": "__init__.py"
     },
     {
@@ -963,7 +1314,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_api_sap_sync_py",
-      "community": 3,
+      "community": 6,
       "norm_label": "sap_sync.py"
     },
     {
@@ -972,7 +1323,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L7",
       "id": "api_sap_sync_normalize_uom",
-      "community": 3,
+      "community": 6,
       "norm_label": "normalize_uom()"
     },
     {
@@ -981,7 +1332,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L40",
       "id": "api_sap_sync_receive_sap_document",
-      "community": 3,
+      "community": 6,
       "norm_label": "receive_sap_document()"
     },
     {
@@ -990,7 +1341,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L91",
       "id": "api_sap_sync_process_sap_document_async",
-      "community": 3,
+      "community": 6,
       "norm_label": "process_sap_document_async()"
     },
     {
@@ -999,7 +1350,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L119",
       "id": "api_sap_sync_create_purchase_order",
-      "community": 3,
+      "community": 6,
       "norm_label": "create_purchase_order()"
     },
     {
@@ -1008,7 +1359,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L180",
       "id": "api_sap_sync_process_sap_xls_chunked",
-      "community": 3,
+      "community": 6,
       "norm_label": "process_sap_xls_chunked()"
     },
     {
@@ -1017,7 +1368,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L292",
       "id": "api_sap_sync_run_po_sync",
-      "community": 3,
+      "community": 6,
       "norm_label": "run_po_sync()"
     },
     {
@@ -1026,7 +1377,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L369",
       "id": "api_sap_sync_create_sales_order",
-      "community": 3,
+      "community": 6,
       "norm_label": "create_sales_order()"
     },
     {
@@ -1035,7 +1386,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L41",
       "id": "api_sap_sync_rationale_41",
-      "community": 3,
+      "community": 6,
       "norm_label": "whitelisted post endpoint for sap hana to push po/so data."
     },
     {
@@ -1044,7 +1395,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L92",
       "id": "api_sap_sync_rationale_92",
-      "community": 3,
+      "community": 6,
       "norm_label": "asynchronously processes an sap integration log record."
     },
     {
@@ -1053,7 +1404,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L181",
       "id": "api_sap_sync_rationale_181",
-      "community": 3,
+      "community": 6,
       "norm_label": "xls chunked background processor (hybrid method). \tdriven by the 'sap po import"
     },
     {
@@ -1062,7 +1413,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/sap_sync.py",
       "source_location": "L293",
       "id": "api_sap_sync_rationale_293",
-      "community": 3,
+      "community": 6,
       "norm_label": "scheduled odata pull: fetches pos from sap s/4hana and creates them in erpnext."
     },
     {
@@ -1071,7 +1422,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/ledger.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_api_ledger_py",
-      "community": 10,
+      "community": 8,
       "norm_label": "ledger.py"
     },
     {
@@ -1080,7 +1431,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/ledger.py",
       "source_location": "L4",
       "id": "api_ledger_update_ledger",
-      "community": 10,
+      "community": 8,
       "norm_label": "update_ledger()"
     },
     {
@@ -1089,7 +1440,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/api/ledger.py",
       "source_location": "L5",
       "id": "api_ledger_rationale_5",
-      "community": 10,
+      "community": 8,
       "norm_label": "records movements into kek stock ledger from a sent transaction."
     },
     {
@@ -1098,7 +1449,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_services_kek_service_py",
-      "community": 1,
+      "community": 0,
       "norm_label": "kek_service.py"
     },
     {
@@ -1107,7 +1458,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L7",
       "id": "services_kek_service_process_purchase_receipt",
-      "community": 1,
+      "community": 0,
       "norm_label": "process_purchase_receipt()"
     },
     {
@@ -1116,116 +1467,170 @@
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L56",
       "id": "services_kek_service_process_delivery_note",
-      "community": 1,
+      "community": 0,
       "norm_label": "process_delivery_note()"
+    },
+    {
+      "label": "delete_delivery_note_kek()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L125",
+      "id": "services_kek_service_delete_delivery_note_kek",
+      "community": 0,
+      "norm_label": "delete_delivery_note_kek()"
+    },
+    {
+      "label": "cancel_delivery_note_kek()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L140",
+      "id": "services_kek_service_cancel_delivery_note_kek",
+      "community": 0,
+      "norm_label": "cancel_delivery_note_kek()"
+    },
+    {
+      "label": "sync_existing_kek_transaction()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L170",
+      "id": "services_kek_service_sync_existing_kek_transaction",
+      "community": 0,
+      "norm_label": "sync_existing_kek_transaction()"
+    },
+    {
+      "label": "allow_customs_edit_on_submit()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L216",
+      "id": "services_kek_service_allow_customs_edit_on_submit",
+      "community": 0,
+      "norm_label": "allow_customs_edit_on_submit()"
     },
     {
       "label": "retry_kek()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L95",
+      "source_location": "L239",
       "id": "services_kek_service_retry_kek",
-      "community": 1,
+      "community": 0,
       "norm_label": "retry_kek()"
     },
     {
       "label": "validate_only()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L128",
+      "source_location": "L279",
       "id": "services_kek_service_validate_only",
-      "community": 1,
+      "community": 0,
       "norm_label": "validate_only()"
     },
     {
       "label": "process_purchase_order()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L154",
+      "source_location": "L305",
       "id": "services_kek_service_process_purchase_order",
-      "community": 1,
+      "community": 0,
       "norm_label": "process_purchase_order()"
     },
     {
       "label": "process_subcontracting_order()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L178",
+      "source_location": "L318",
       "id": "services_kek_service_process_subcontracting_order",
-      "community": 1,
+      "community": 0,
       "norm_label": "process_subcontracting_order()"
     },
     {
       "label": "copy_parent_kek_details()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L202",
+      "source_location": "L331",
       "id": "services_kek_service_copy_parent_kek_details",
-      "community": 1,
+      "community": 13,
       "norm_label": "copy_parent_kek_details()"
     },
     {
       "label": "validate_kek_submission()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L234",
+      "source_location": "L397",
       "id": "services_kek_service_validate_kek_submission",
-      "community": 1,
+      "community": 13,
       "norm_label": "validate_kek_submission()"
     },
     {
       "label": "check_for_mismatch()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L273",
+      "source_location": "L530",
       "id": "services_kek_service_check_for_mismatch",
-      "community": 4,
+      "community": 12,
       "norm_label": "check_for_mismatch()"
     },
     {
       "label": "run_mismatch_check_job()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L338",
+      "source_location": "L595",
       "id": "services_kek_service_run_mismatch_check_job",
-      "community": 4,
+      "community": 12,
       "norm_label": "run_mismatch_check_job()"
     },
     {
       "label": "manual_validate_ppkek()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L355",
+      "source_location": "L612",
       "id": "services_kek_service_manual_validate_ppkek",
-      "community": 4,
+      "community": 3,
       "norm_label": "manual_validate_ppkek()"
     },
     {
       "label": "download_customs_xls()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L383",
+      "source_location": "L719",
       "id": "services_kek_service_download_customs_xls",
-      "community": 8,
+      "community": 3,
       "norm_label": "download_customs_xls()"
     },
     {
       "label": "process_stock_reconciliation()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L415",
+      "source_location": "L751",
       "id": "services_kek_service_process_stock_reconciliation",
-      "community": 1,
+      "community": 0,
       "norm_label": "process_stock_reconciliation()"
     },
     {
       "label": "process_stock_entry()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L445",
+      "source_location": "L781",
       "id": "services_kek_service_process_stock_entry",
-      "community": 1,
+      "community": 0,
       "norm_label": "process_stock_entry()"
+    },
+    {
+      "label": "diagnose_pr_doc()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L811",
+      "id": "services_kek_service_diagnose_pr_doc",
+      "community": 0,
+      "norm_label": "diagnose_pr_doc()"
+    },
+    {
+      "label": "on_delivery_note_submit()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L827",
+      "id": "services_kek_service_on_delivery_note_submit",
+      "community": 0,
+      "norm_label": "on_delivery_note_submit()"
     },
     {
       "label": "Dipanggil saat Purchase Receipt submit     \u2192 memicu bridge connector lalu post k",
@@ -1233,7 +1638,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L8",
       "id": "services_kek_service_rationale_8",
-      "community": 1,
+      "community": 0,
       "norm_label": "dipanggil saat purchase receipt submit     \u2192 memicu bridge connector lalu post k"
     },
     {
@@ -1242,116 +1647,296 @@
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L57",
       "id": "services_kek_service_rationale_57",
-      "community": 1,
+      "community": 0,
       "norm_label": "dipanggil saat delivery note draft disimpan     \u2192 memicu bridge connector lalu p"
+    },
+    {
+      "label": "Dipanggil saat Delivery Note draft dihapus (on_trash)     \u2192 menghapus dokumen KE",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L126",
+      "id": "services_kek_service_rationale_126",
+      "community": 0,
+      "norm_label": "dipanggil saat delivery note draft dihapus (on_trash)     \u2192 menghapus dokumen ke"
+    },
+    {
+      "label": "Dipanggil saat Delivery Note di-cancel     \u2192 Jika KEK Transaction pending/queued",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L141",
+      "id": "services_kek_service_rationale_141",
+      "community": 0,
+      "norm_label": "dipanggil saat delivery note di-cancel     \u2192 jika kek transaction pending/queued"
     },
     {
       "label": "Retry manual dari UI (baik dari ERPNext DocType maupun KEK Inventory Transaction",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L96",
-      "id": "services_kek_service_rationale_96",
-      "community": 1,
+      "source_location": "L240",
+      "id": "services_kek_service_rationale_240",
+      "community": 0,
       "norm_label": "retry manual dari ui (baik dari erpnext doctype maupun kek inventory transaction"
     },
     {
       "label": "Validasi data sebelum kirim",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L129",
-      "id": "services_kek_service_rationale_129",
-      "community": 1,
+      "source_location": "L280",
+      "id": "services_kek_service_rationale_280",
+      "community": 0,
       "norm_label": "validasi data sebelum kirim"
     },
     {
-      "label": "Dipanggil saat Purchase Order submit     \u2192 memicu bridge connector lalu post ke",
+      "label": "Dipanggil saat Purchase Order submit     \u2192 Set status ke PENDING untuk diinput n",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L155",
-      "id": "services_kek_service_rationale_155",
-      "community": 1,
-      "norm_label": "dipanggil saat purchase order submit     \u2192 memicu bridge connector lalu post ke"
+      "source_location": "L306",
+      "id": "services_kek_service_rationale_306",
+      "community": 0,
+      "norm_label": "dipanggil saat purchase order submit     \u2192 set status ke pending untuk diinput n"
     },
     {
-      "label": "Dipanggil saat Subcontracting Order submit     \u2192 memicu bridge connector lalu po",
+      "label": "Dipanggil saat Subcontracting Order submit     \u2192 Set status ke PENDING untuk dii",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L179",
-      "id": "services_kek_service_rationale_179",
-      "community": 1,
-      "norm_label": "dipanggil saat subcontracting order submit     \u2192 memicu bridge connector lalu po"
+      "source_location": "L319",
+      "id": "services_kek_service_rationale_319",
+      "community": 0,
+      "norm_label": "dipanggil saat subcontracting order submit     \u2192 set status ke pending untuk dii"
     },
     {
-      "label": "Menyalin nomor_ppkek dan kek_status dari PO/SO asal ke Receipt.",
+      "label": "Menyalin nomor_ppkek dan tanggal_ppkek langsung dari parent document (PO/SO) ke",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L203",
-      "id": "services_kek_service_rationale_203",
-      "community": 1,
-      "norm_label": "menyalin nomor_ppkek dan kek_status dari po/so asal ke receipt."
+      "source_location": "L332",
+      "id": "services_kek_service_rationale_332",
+      "community": 13,
+      "norm_label": "menyalin nomor_ppkek dan tanggal_ppkek langsung dari parent document (po/so) ke"
     },
     {
-      "label": "Memvalidasi status PPKEK sebelum receipt disubmit.     Harus berstatus 'ACKNOWLE",
+      "label": "Memvalidasi status PPKEK sebelum receipt/Delivery Note disubmit.     Harus berst",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L235",
-      "id": "services_kek_service_rationale_235",
-      "community": 1,
-      "norm_label": "memvalidasi status ppkek sebelum receipt disubmit.     harus berstatus 'acknowle"
+      "source_location": "L398",
+      "id": "services_kek_service_rationale_398",
+      "community": 13,
+      "norm_label": "memvalidasi status ppkek sebelum receipt/delivery note disubmit.     harus berst"
     },
     {
       "label": "Membandingkan item & qty di KEK Inventory Transaction dengan source ERPNext docu",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L274",
-      "id": "services_kek_service_rationale_274",
-      "community": 4,
+      "source_location": "L531",
+      "id": "services_kek_service_rationale_531",
+      "community": 12,
       "norm_label": "membandingkan item & qty di kek inventory transaction dengan source erpnext docu"
     },
     {
       "label": "Job periodik untuk mengecek seluruh transaksi KEK 30 hari terakhir.",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L339",
-      "id": "services_kek_service_rationale_339",
-      "community": 4,
+      "source_location": "L596",
+      "id": "services_kek_service_rationale_596",
+      "community": 12,
       "norm_label": "job periodik untuk mengecek seluruh transaksi kek 30 hari terakhir."
     },
     {
       "label": "Memvalidasi status PPKEK secara manual oleh KEK Manager.     Mengubah status dok",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L356",
-      "id": "services_kek_service_rationale_356",
-      "community": 4,
+      "source_location": "L613",
+      "id": "services_kek_service_rationale_613",
+      "community": 3,
       "norm_label": "memvalidasi status ppkek secara manual oleh kek manager.     mengubah status dok"
     },
     {
       "label": "Generate XLS file containing item details structured for Bea Cukai KEK/CEISA upl",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L384",
-      "id": "services_kek_service_rationale_384",
-      "community": 8,
+      "source_location": "L720",
+      "id": "services_kek_service_rationale_720",
+      "community": 3,
       "norm_label": "generate xls file containing item details structured for bea cukai kek/ceisa upl"
     },
     {
       "label": "Dipanggil saat Stock Reconciliation submit     \u2192 memicu bridge connector lalu po",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L416",
-      "id": "services_kek_service_rationale_416",
-      "community": 1,
+      "source_location": "L752",
+      "id": "services_kek_service_rationale_752",
+      "community": 0,
       "norm_label": "dipanggil saat stock reconciliation submit     \u2192 memicu bridge connector lalu po"
     },
     {
       "label": "Dipanggil saat Stock Entry submit     \u2192 memicu bridge connector lalu post ke API",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L446",
-      "id": "services_kek_service_rationale_446",
-      "community": 1,
+      "source_location": "L782",
+      "id": "services_kek_service_rationale_782",
+      "community": 0,
       "norm_label": "dipanggil saat stock entry submit     \u2192 memicu bridge connector lalu post ke api"
+    },
+    {
+      "label": "Dipanggil saat Delivery Note di-submit     \u2192 memunculkan popup berisi pintasan (",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L828",
+      "id": "services_kek_service_rationale_828",
+      "community": 0,
+      "norm_label": "dipanggil saat delivery note di-submit     \u2192 memunculkan popup berisi pintasan ("
+    },
+    {
+      "label": "manufacture_service.py",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L1",
+      "id": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "community": 2,
+      "norm_label": "manufacture_service.py"
+    },
+    {
+      "label": "ensure_custom_fields()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L9",
+      "id": "services_manufacture_service_ensure_custom_fields",
+      "community": 2,
+      "norm_label": "ensure_custom_fields()"
+    },
+    {
+      "label": "check_manufacture_permission()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L23",
+      "id": "services_manufacture_service_check_manufacture_permission",
+      "community": 2,
+      "norm_label": "check_manufacture_permission()"
+    },
+    {
+      "label": "get_item_default_warehouse()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L33",
+      "id": "services_manufacture_service_get_item_default_warehouse",
+      "community": 2,
+      "norm_label": "get_item_default_warehouse()"
+    },
+    {
+      "label": "get_production_stages()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L50",
+      "id": "services_manufacture_service_get_production_stages",
+      "community": 2,
+      "norm_label": "get_production_stages()"
+    },
+    {
+      "label": "get_bom_hierarchy()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L122",
+      "id": "services_manufacture_service_get_bom_hierarchy",
+      "community": 2,
+      "norm_label": "get_bom_hierarchy()"
+    },
+    {
+      "label": "create_sub_work_orders()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L153",
+      "id": "services_manufacture_service_create_sub_work_orders",
+      "community": 2,
+      "norm_label": "create_sub_work_orders()"
+    },
+    {
+      "label": "complete_production_stage()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L199",
+      "id": "services_manufacture_service_complete_production_stage",
+      "community": 2,
+      "norm_label": "complete_production_stage()"
+    },
+    {
+      "label": "adjust_subsequent_wos()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L250",
+      "id": "services_manufacture_service_adjust_subsequent_wos",
+      "community": 2,
+      "norm_label": "adjust_subsequent_wos()"
+    },
+    {
+      "label": "Ensures that the custom parent_work_order field exists in the Work Order Doctype",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L10",
+      "id": "services_manufacture_service_rationale_10",
+      "community": 2,
+      "norm_label": "ensures that the custom parent_work_order field exists in the work order doctype"
+    },
+    {
+      "label": "Checks if the current user has permission to process manufacture stages.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L24",
+      "id": "services_manufacture_service_rationale_24",
+      "community": 2,
+      "norm_label": "checks if the current user has permission to process manufacture stages."
+    },
+    {
+      "label": "Retrieves the default warehouse of an item for the specified company (child tabl",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L34",
+      "id": "services_manufacture_service_rationale_34",
+      "community": 2,
+      "norm_label": "retrieves the default warehouse of an item for the specified company (child tabl"
+    },
+    {
+      "label": "Traces the BOM hierarchy and returns the 5 stages of production, \talong with the",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L51",
+      "id": "services_manufacture_service_rationale_51",
+      "community": 2,
+      "norm_label": "traces the bom hierarchy and returns the 5 stages of production, \talong with the"
+    },
+    {
+      "label": "Recursively traverses the BOM to build a bottom-up list of sub-assemblies.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L123",
+      "id": "services_manufacture_service_rationale_123",
+      "community": 2,
+      "norm_label": "recursively traverses the bom to build a bottom-up list of sub-assemblies."
+    },
+    {
+      "label": "Hook triggered on_submit of the main Work Order. \tAutomatically generates and su",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L154",
+      "id": "services_manufacture_service_rationale_154",
+      "community": 2,
+      "norm_label": "hook triggered on_submit of the main work order. \tautomatically generates and su"
+    },
+    {
+      "label": "Creates and submits a Manufacture Stock Entry for a stage's Work Order. \tConsume",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L200",
+      "id": "services_manufacture_service_rationale_200",
+      "community": 2,
+      "norm_label": "creates and submits a manufacture stock entry for a stage's work order. \tconsume"
+    },
+    {
+      "label": "Adjusts the target quantities of all subsequent stages in the pipeline.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L251",
+      "id": "services_manufacture_service_rationale_251",
+      "community": 2,
+      "norm_label": "adjusts the target quantities of all subsequent stages in the pipeline."
     },
     {
       "label": "kek_transaction_payloads.py",
@@ -1359,7 +1944,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_report_kek_transaction_payloads_kek_transaction_payloads_py",
-      "community": 14,
+      "community": 18,
       "norm_label": "kek_transaction_payloads.py"
     },
     {
@@ -1368,7 +1953,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.py",
       "source_location": "L4",
       "id": "kek_transaction_payloads_kek_transaction_payloads_execute",
-      "community": 14,
+      "community": 18,
       "norm_label": "execute()"
     },
     {
@@ -1377,7 +1962,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.py",
       "source_location": "L16",
       "id": "kek_transaction_payloads_kek_transaction_payloads_get_columns",
-      "community": 14,
+      "community": 18,
       "norm_label": "get_columns()"
     },
     {
@@ -1386,7 +1971,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.py",
       "source_location": "L57",
       "id": "kek_transaction_payloads_kek_transaction_payloads_get_data",
-      "community": 14,
+      "community": 18,
       "norm_label": "get_data()"
     },
     {
@@ -1395,7 +1980,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.py",
       "source_location": "L79",
       "id": "kek_transaction_payloads_kek_transaction_payloads_get_chart_data",
-      "community": 14,
+      "community": 18,
       "norm_label": "get_chart_data()"
     },
     {
@@ -1404,7 +1989,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.js",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_report_kek_transaction_payloads_kek_transaction_payloads_js",
-      "community": 34,
+      "community": 41,
       "norm_label": "kek_transaction_payloads.js"
     },
     {
@@ -1413,7 +1998,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_tests_test_bridge_py",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_bridge.py"
     },
     {
@@ -1422,7 +2007,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
       "source_location": "L7",
       "id": "tests_test_bridge_testbridge",
-      "community": 8,
+      "community": 3,
       "norm_label": "testbridge"
     },
     {
@@ -1431,116 +2016,134 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
       "source_location": "L8",
       "id": "tests_test_bridge_testbridge_setup",
-      "community": 8,
+      "community": 3,
       "norm_label": ".setup()"
     },
     {
       "label": ".tearDown()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L44",
+      "source_location": "L55",
       "id": "tests_test_bridge_testbridge_teardown",
-      "community": 8,
+      "community": 3,
       "norm_label": ".teardown()"
     },
     {
       "label": ".test_purchase_receipt_bridge_with_mapping()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L47",
+      "source_location": "L58",
       "id": "tests_test_bridge_testbridge_test_purchase_receipt_bridge_with_mapping",
-      "community": 8,
+      "community": 3,
       "norm_label": ".test_purchase_receipt_bridge_with_mapping()"
     },
     {
       "label": "test_purchase_order_trigger()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L76",
+      "source_location": "L87",
       "id": "tests_test_bridge_test_purchase_order_trigger",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_purchase_order_trigger()"
     },
     {
       "label": "test_delivery_note_draft_trigger()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L106",
+      "source_location": "L117",
       "id": "tests_test_bridge_test_delivery_note_draft_trigger",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_delivery_note_draft_trigger()"
     },
     {
       "label": "test_purchase_receipt_enforcement_and_copy()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L140",
+      "source_location": "L151",
       "id": "tests_test_bridge_test_purchase_receipt_enforcement_and_copy",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_purchase_receipt_enforcement_and_copy()"
     },
     {
       "label": "test_purchase_receipt_emergency_bypass()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L196",
+      "source_location": "L206",
       "id": "tests_test_bridge_test_purchase_receipt_emergency_bypass",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_purchase_receipt_emergency_bypass()"
     },
     {
       "label": "test_mismatch_engine_detection()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L253",
+      "source_location": "L263",
       "id": "tests_test_bridge_test_mismatch_engine_detection",
-      "community": 4,
+      "community": 12,
       "norm_label": "test_mismatch_engine_detection()"
     },
     {
       "label": "test_manual_validate_ppkek()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L299",
+      "source_location": "L334",
       "id": "tests_test_bridge_test_manual_validate_ppkek",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_manual_validate_ppkek()"
     },
     {
       "label": ".test_download_customs_xls()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L341",
+      "source_location": "L364",
       "id": "tests_test_bridge_testbridge_test_download_customs_xls",
-      "community": 8,
+      "community": 3,
       "norm_label": ".test_download_customs_xls()"
     },
     {
       "label": "test_stock_reconciliation_trigger()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L372",
+      "source_location": "L395",
       "id": "tests_test_bridge_test_stock_reconciliation_trigger",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_stock_reconciliation_trigger()"
     },
     {
       "label": "test_stock_entry_trigger()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L399",
+      "source_location": "L422",
       "id": "tests_test_bridge_test_stock_entry_trigger",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_stock_entry_trigger()"
     },
     {
       "label": "test_purchase_receipt_shortage_trigger()",
       "file_type": "code",
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
-      "source_location": "L428",
+      "source_location": "L451",
       "id": "tests_test_bridge_test_purchase_receipt_shortage_trigger",
-      "community": 4,
+      "community": 3,
       "norm_label": "test_purchase_receipt_shortage_trigger()"
+    },
+    {
+      "label": "test_delivery_note_draft_sync_and_cleanup()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
+      "source_location": "L509",
+      "id": "tests_test_bridge_test_delivery_note_draft_sync_and_cleanup",
+      "community": 3,
+      "norm_label": "test_delivery_note_draft_sync_and_cleanup()"
+    },
+    {
+      "label": "test_delivery_note_mismatch_and_cancellation()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
+      "source_location": "L570",
+      "id": "tests_test_bridge_test_delivery_note_mismatch_and_cancellation",
+      "community": 3,
+      "norm_label": "test_delivery_note_mismatch_and_cancellation()"
     },
     {
       "label": "test_poster.py",
@@ -1548,7 +2151,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_poster.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_tests_test_poster_py",
-      "community": 5,
+      "community": 7,
       "norm_label": "test_poster.py"
     },
     {
@@ -1557,7 +2160,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_poster.py",
       "source_location": "L7",
       "id": "tests_test_poster_testposter",
-      "community": 5,
+      "community": 7,
       "norm_label": "testposter"
     },
     {
@@ -1566,7 +2169,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_poster.py",
       "source_location": "L8",
       "id": "tests_test_poster_testposter_setup",
-      "community": 5,
+      "community": 7,
       "norm_label": ".setup()"
     },
     {
@@ -1575,7 +2178,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_poster.py",
       "source_location": "L62",
       "id": "tests_test_poster_testposter_teardown",
-      "community": 5,
+      "community": 7,
       "norm_label": ".teardown()"
     },
     {
@@ -1584,7 +2187,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_poster.py",
       "source_location": "L67",
       "id": "tests_test_poster_test_post_transaction_with_real_creds",
-      "community": 5,
+      "community": 7,
       "norm_label": "test_post_transaction_with_real_creds()"
     },
     {
@@ -1593,7 +2196,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_poster.py",
       "source_location": "L114",
       "id": "tests_test_poster_test_process_queue",
-      "community": 5,
+      "community": 7,
       "norm_label": "test_process_queue()"
     },
     {
@@ -1602,7 +2205,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_poster.py",
       "source_location": "L136",
       "id": "tests_test_poster_test_post_stock_reconciliation_payload",
-      "community": 5,
+      "community": 7,
       "norm_label": "test_post_stock_reconciliation_payload()"
     },
     {
@@ -1611,7 +2214,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_tests_test_sap_sync_py",
-      "community": 3,
+      "community": 6,
       "norm_label": "test_sap_sync.py"
     },
     {
@@ -1620,7 +2223,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L5",
       "id": "tests_test_sap_sync_testsapsync",
-      "community": 3,
+      "community": 6,
       "norm_label": "testsapsync"
     },
     {
@@ -1629,7 +2232,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L6",
       "id": "tests_test_sap_sync_testsapsync_setup",
-      "community": 3,
+      "community": 6,
       "norm_label": ".setup()"
     },
     {
@@ -1638,7 +2241,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L53",
       "id": "tests_test_sap_sync_testsapsync_teardown",
-      "community": 3,
+      "community": 6,
       "norm_label": ".teardown()"
     },
     {
@@ -1647,7 +2250,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L56",
       "id": "tests_test_sap_sync_testsapsync_test_normalize_uom",
-      "community": 3,
+      "community": 6,
       "norm_label": ".test_normalize_uom()"
     },
     {
@@ -1656,7 +2259,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L64",
       "id": "tests_test_sap_sync_testsapsync_test_process_sap_document_async_success",
-      "community": 3,
+      "community": 6,
       "norm_label": ".test_process_sap_document_async_success()"
     },
     {
@@ -1665,7 +2268,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L107",
       "id": "tests_test_sap_sync_testsapsync_test_idempotency",
-      "community": 3,
+      "community": 6,
       "norm_label": ".test_idempotency()"
     },
     {
@@ -1674,7 +2277,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L154",
       "id": "tests_test_sap_sync_testsapsync_test_missing_master_data_fail",
-      "community": 3,
+      "community": 6,
       "norm_label": ".test_missing_master_data_fail()"
     },
     {
@@ -1683,7 +2286,7 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py",
       "source_location": "L186",
       "id": "tests_test_sap_sync_testsapsync_test_process_sales_order_async_success",
-      "community": 3,
+      "community": 6,
       "norm_label": ".test_process_sales_order_async_success()"
     },
     {
@@ -1692,8 +2295,161 @@
       "source_file": "kek_it_inventory/kek_it_inventory/tests/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_it_inventory_tests_init_py",
-      "community": 35,
+      "community": 42,
       "norm_label": "__init__.py"
+    },
+    {
+      "label": "test_manufacture_service.py",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L1",
+      "id": "kek_it_inventory_kek_it_inventory_tests_test_manufacture_service_py",
+      "community": 2,
+      "norm_label": "test_manufacture_service.py"
+    },
+    {
+      "label": "TestManufactureService",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L14",
+      "id": "tests_test_manufacture_service_testmanufactureservice",
+      "community": 2,
+      "norm_label": "testmanufactureservice"
+    },
+    {
+      "label": ".setUp()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L15",
+      "id": "tests_test_manufacture_service_testmanufactureservice_setup",
+      "community": 2,
+      "norm_label": ".setup()"
+    },
+    {
+      "label": ".tearDown()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L80",
+      "id": "tests_test_manufacture_service_testmanufactureservice_teardown",
+      "community": 2,
+      "norm_label": ".teardown()"
+    },
+    {
+      "label": ".create_item()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L83",
+      "id": "tests_test_manufacture_service_testmanufactureservice_create_item",
+      "community": 2,
+      "norm_label": ".create_item()"
+    },
+    {
+      "label": ".create_bom()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L113",
+      "id": "tests_test_manufacture_service_testmanufactureservice_create_bom",
+      "community": 2,
+      "norm_label": ".create_bom()"
+    },
+    {
+      "label": ".add_stock()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L137",
+      "id": "tests_test_manufacture_service_testmanufactureservice_add_stock",
+      "community": 2,
+      "norm_label": ".add_stock()"
+    },
+    {
+      "label": ".test_ideal_flow()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L156",
+      "id": "tests_test_manufacture_service_testmanufactureservice_test_ideal_flow",
+      "community": 2,
+      "norm_label": ".test_ideal_flow()"
+    },
+    {
+      "label": ".test_role_based_permissions()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L203",
+      "id": "tests_test_manufacture_service_testmanufactureservice_test_role_based_permissions",
+      "community": 2,
+      "norm_label": ".test_role_based_permissions()"
+    },
+    {
+      "label": ".test_fuzzy_flow_with_loss()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L245",
+      "id": "tests_test_manufacture_service_testmanufactureservice_test_fuzzy_flow_with_loss",
+      "community": 2,
+      "norm_label": ".test_fuzzy_flow_with_loss()"
+    },
+    {
+      "label": ".test_insufficient_stock_validation()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L293",
+      "id": "tests_test_manufacture_service_testmanufactureservice_test_insufficient_stock_validation",
+      "community": 2,
+      "norm_label": ".test_insufficient_stock_validation()"
+    },
+    {
+      "label": "Test case for the 100% ideal manufacturing flow (no loss, correct permissions).",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L157",
+      "id": "tests_test_manufacture_service_rationale_157",
+      "community": 2,
+      "norm_label": "test case for the 100% ideal manufacturing flow (no loss, correct permissions)."
+    },
+    {
+      "label": "Test case to ensure only users with the correct roles can complete stages.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L204",
+      "id": "tests_test_manufacture_service_rationale_204",
+      "community": 2,
+      "norm_label": "test case to ensure only users with the correct roles can complete stages."
+    },
+    {
+      "label": "Test case for fuzzy condition: yield loss at intermediate stages and target adju",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L246",
+      "id": "tests_test_manufacture_service_rationale_246",
+      "community": 2,
+      "norm_label": "test case for fuzzy condition: yield loss at intermediate stages and target adju"
+    },
+    {
+      "label": "Test case for fuzzy condition: stock validation triggers when raw material stock",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L294",
+      "id": "tests_test_manufacture_service_rationale_294",
+      "community": 2,
+      "norm_label": "test case for fuzzy condition: stock validation triggers when raw material stock"
+    },
+    {
+      "label": "inspect_item.py",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/inspect_item.py",
+      "source_location": "L1",
+      "id": "kek_it_inventory_kek_it_inventory_tests_inspect_item_py",
+      "community": 2,
+      "norm_label": "inspect_item.py"
+    },
+    {
+      "label": "run()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/inspect_item.py",
+      "source_location": "L4",
+      "id": "tests_inspect_item_run",
+      "community": 2,
+      "norm_label": "run()"
     },
     {
       "label": "__init__.py",
@@ -1701,7 +2457,7 @@
       "source_file": "kek_it_inventory/templates/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_templates_init_py",
-      "community": 36,
+      "community": 43,
       "norm_label": "__init__.py"
     },
     {
@@ -1710,7 +2466,7 @@
       "source_file": "kek_it_inventory/templates/pages/__init__.py",
       "source_location": "L1",
       "id": "kek_it_inventory_templates_pages_init_py",
-      "community": 37,
+      "community": 44,
       "norm_label": "__init__.py"
     },
     {
@@ -1719,7 +2475,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "readme_md",
-      "community": 11,
+      "community": 14,
       "norm_label": "readme.md"
     },
     {
@@ -1728,7 +2484,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "kek_it_inventory_readme_kek_it_inventory",
-      "community": 11,
+      "community": 14,
       "norm_label": "kek it inventory"
     },
     {
@@ -1737,7 +2493,7 @@
       "source_file": "README.md",
       "source_location": "L5",
       "id": "kek_it_inventory_readme_installation",
-      "community": 11,
+      "community": 14,
       "norm_label": "installation"
     },
     {
@@ -1746,7 +2502,7 @@
       "source_file": "README.md",
       "source_location": "L9",
       "id": "kek_it_inventory_readme_codeblock_1",
-      "community": 11,
+      "community": 14,
       "norm_label": "code:bash (cd $path_to_your_bench)"
     },
     {
@@ -1755,7 +2511,7 @@
       "source_file": "README.md",
       "source_location": "L15",
       "id": "kek_it_inventory_readme_contributing",
-      "community": 11,
+      "community": 14,
       "norm_label": "contributing"
     },
     {
@@ -1764,7 +2520,7 @@
       "source_file": "README.md",
       "source_location": "L19",
       "id": "kek_it_inventory_readme_codeblock_2",
-      "community": 11,
+      "community": 14,
       "norm_label": "code:bash (cd apps/kek_it_inventory)"
     },
     {
@@ -1773,7 +2529,7 @@
       "source_file": "README.md",
       "source_location": "L31",
       "id": "kek_it_inventory_readme_license",
-      "community": 11,
+      "community": 14,
       "norm_label": "license"
     },
     {
@@ -1782,7 +2538,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L1",
       "id": "context_md",
-      "community": 2,
+      "community": 4,
       "norm_label": "context.md"
     },
     {
@@ -1791,7 +2547,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L1",
       "id": "kek_it_inventory_context_bounded_context_kek_it_inventory_integration_control_ppkeki",
-      "community": 2,
+      "community": 4,
       "norm_label": "bounded context: kek it inventory integration & control (ppkeki)"
     },
     {
@@ -1800,7 +2556,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L3",
       "id": "kek_it_inventory_context_domain_glossary",
-      "community": 2,
+      "community": 4,
       "norm_label": "domain glossary"
     },
     {
@@ -1809,7 +2565,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L5",
       "id": "kek_it_inventory_context_ppkek",
-      "community": 2,
+      "community": 4,
       "norm_label": "ppkek"
     },
     {
@@ -1818,7 +2574,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L8",
       "id": "kek_it_inventory_context_ppkeki",
-      "community": 2,
+      "community": 4,
       "norm_label": "ppkeki"
     },
     {
@@ -1827,7 +2583,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L11",
       "id": "kek_it_inventory_context_dokumen_awal",
-      "community": 2,
+      "community": 4,
       "norm_label": "dokumen awal"
     },
     {
@@ -1836,7 +2592,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L16",
       "id": "kek_it_inventory_context_dokumen_resmi_ppkek",
-      "community": 2,
+      "community": 4,
       "norm_label": "dokumen resmi ppkek"
     },
     {
@@ -1845,7 +2601,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L20",
       "id": "kek_it_inventory_context_bypassed",
-      "community": 2,
+      "community": 4,
       "norm_label": "bypassed"
     },
     {
@@ -1854,7 +2610,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L23",
       "id": "kek_it_inventory_context_aturan_bisnis_kontrol_dokumen",
-      "community": 2,
+      "community": 4,
       "norm_label": "aturan bisnis & kontrol dokumen"
     },
     {
@@ -1863,7 +2619,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L25",
       "id": "kek_it_inventory_context_1_inbound_enforcement",
-      "community": 2,
+      "community": 4,
       "norm_label": "1. inbound enforcement"
     },
     {
@@ -1872,7 +2628,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L29",
       "id": "kek_it_inventory_context_2_emergency_bypass_policy",
-      "community": 2,
+      "community": 4,
       "norm_label": "2. emergency bypass policy"
     },
     {
@@ -1881,7 +2637,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L33",
       "id": "kek_it_inventory_context_3_mismatch_status_triggers",
-      "community": 2,
+      "community": 4,
       "norm_label": "3. mismatch status triggers"
     },
     {
@@ -1890,7 +2646,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L39",
       "id": "kek_it_inventory_context_panduan_arsitektur_non_intrusif_zero_core_code_changes",
-      "community": 2,
+      "community": 4,
       "norm_label": "panduan arsitektur non-intrusif (zero core code changes)"
     },
     {
@@ -1899,7 +2655,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L46",
       "id": "kek_it_inventory_context_alur_workflow_visual_diagram",
-      "community": 2,
+      "community": 4,
       "norm_label": "alur workflow (visual diagram)"
     },
     {
@@ -1908,7 +2664,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L49",
       "id": "kek_it_inventory_context_1_alur_inbound_pemasukan",
-      "community": 2,
+      "community": 4,
       "norm_label": "1. alur inbound (pemasukan)"
     },
     {
@@ -1917,7 +2673,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L51",
       "id": "kek_it_inventory_context_codeblock_1",
-      "community": 2,
+      "community": 4,
       "norm_label": "code:mermaid (graph td)"
     },
     {
@@ -1926,7 +2682,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L79",
       "id": "kek_it_inventory_context_2_alur_outbound_pengeluaran",
-      "community": 2,
+      "community": 4,
       "norm_label": "2. alur outbound (pengeluaran)"
     },
     {
@@ -1935,7 +2691,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L81",
       "id": "kek_it_inventory_context_codeblock_2",
-      "community": 2,
+      "community": 4,
       "norm_label": "code:mermaid (graph td)"
     },
     {
@@ -1944,7 +2700,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L108",
       "id": "kek_it_inventory_context_panduan_ui_ux_mencegah_kebingungan_user",
-      "community": 2,
+      "community": 4,
       "norm_label": "panduan ui/ux (mencegah kebingungan user)"
     },
     {
@@ -1953,7 +2709,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L112",
       "id": "kek_it_inventory_context_1_indikator_status_visual_status_banner",
-      "community": 2,
+      "community": 4,
       "norm_label": "1. indikator status visual (status banner)"
     },
     {
@@ -1962,7 +2718,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L119",
       "id": "kek_it_inventory_context_2_pesan_blokir_yang_informatif_solutif_actionable_error_message",
-      "community": 2,
+      "community": 4,
       "norm_label": "2. pesan blokir yang informatif & solutif (actionable error message)"
     },
     {
@@ -1971,7 +2727,7 @@
       "source_file": "CONTEXT.md",
       "source_location": "L127",
       "id": "kek_it_inventory_context_3_kendali_akses_kolom_bypass_role_based_visibility",
-      "community": 2,
+      "community": 4,
       "norm_label": "3. kendali akses kolom bypass (role-based visibility)"
     },
     {
@@ -1980,7 +2736,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L1",
       "id": "kek_ppkek_md",
-      "community": 6,
+      "community": 9,
       "norm_label": "kek-ppkek.md"
     },
     {
@@ -1989,7 +2745,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L1",
       "id": "kek_it_inventory_kek_ppkek_panduan_integrasi_ppkek_pemberitahuan_pabean_kawasan_ekonomi_khusus",
-      "community": 6,
+      "community": 9,
       "norm_label": "panduan integrasi ppkek: pemberitahuan pabean kawasan ekonomi khusus"
     },
     {
@@ -1998,7 +2754,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L2",
       "id": "kek_it_inventory_kek_ppkek_kepatuhan_bea_cukai_per_24_bc_2021_berbasis_kek_it_inventory_erpnext",
-      "community": 6,
+      "community": 9,
       "norm_label": "kepatuhan bea cukai per-24/bc/2021 berbasis kek it inventory & erpnext"
     },
     {
@@ -2007,7 +2763,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L9",
       "id": "kek_it_inventory_kek_ppkek_1_hakekat_ppkek_unifikasi_dokumen_kepabeanan_kek",
-      "community": 6,
+      "community": 9,
       "norm_label": "1. hakekat ppkek: unifikasi dokumen kepabeanan kek"
     },
     {
@@ -2016,7 +2772,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L15",
       "id": "kek_it_inventory_kek_ppkek_pemetaan_aktivitas_tradisional_ke_ppkek",
-      "community": 6,
+      "community": 9,
       "norm_label": "\ud83d\udcca pemetaan aktivitas tradisional ke ppkek"
     },
     {
@@ -2025,7 +2781,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L31",
       "id": "kek_it_inventory_kek_ppkek_1_1_penyesuaian_fisik_selisih_pabean_stock_opname_adjustment",
-      "community": 6,
+      "community": 9,
       "norm_label": "1.1 penyesuaian fisik & selisih pabean (stock opname & adjustment)"
     },
     {
@@ -2034,7 +2790,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L35",
       "id": "kek_it_inventory_kek_ppkek_a_penyesuaian_fisik_stock_opname_kode_32",
-      "community": 6,
+      "community": 9,
       "norm_label": "a. penyesuaian fisik (stock opname) - kode `32`"
     },
     {
@@ -2043,7 +2799,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L39",
       "id": "kek_it_inventory_kek_ppkek_b_penyesuaian_lainnya_selisih_adjustment_kode_33",
-      "community": 6,
+      "community": 9,
       "norm_label": "b. penyesuaian lainnya / selisih (adjustment) - kode `33`"
     },
     {
@@ -2052,7 +2808,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L51",
       "id": "kek_it_inventory_kek_ppkek_2_alur_integrasi_spesifik_kasus_subkontrak_maklon",
-      "community": 6,
+      "community": 9,
       "norm_label": "2. alur integrasi spesifik kasus subkontrak (maklon)"
     },
     {
@@ -2061,7 +2817,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L55",
       "id": "kek_it_inventory_kek_ppkek_2_1_outbound_ppkek_pengeluaran_sementara_ex_bc_2_6_1_kode_0407633",
-      "community": 6,
+      "community": 9,
       "norm_label": "2.1 outbound: ppkek pengeluaran sementara (ex-bc 2.6.1) - kode `0407633`"
     },
     {
@@ -2070,7 +2826,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L63",
       "id": "kek_it_inventory_kek_ppkek_2_2_inbound_ppkek_pemasukan_kembali_ex_bc_2_6_2_kode_0407614",
-      "community": 6,
+      "community": 9,
       "norm_label": "2.2 inbound: ppkek pemasukan kembali (ex-bc 2.6.2) - kode `0407614`"
     },
     {
@@ -2079,7 +2835,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L72",
       "id": "kek_it_inventory_kek_ppkek_3_resolusi_masalah_operasional_tingkat_lanjut",
-      "community": 6,
+      "community": 9,
       "norm_label": "3. resolusi masalah operasional tingkat lanjut"
     },
     {
@@ -2088,7 +2844,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L74",
       "id": "kek_it_inventory_kek_ppkek_3_1_penambahan_barang_lokal_tlddp_di_lokasi_subkontraktor",
-      "community": 6,
+      "community": 9,
       "norm_label": "3.1 penambahan barang lokal (tlddp) di lokasi subkontraktor"
     },
     {
@@ -2097,7 +2853,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L81",
       "id": "kek_it_inventory_kek_ppkek_codeblock_1",
-      "community": 6,
+      "community": 9,
       "norm_label": "code:sql (-- contoh pemisahan asal barang pada kek stock ledger)"
     },
     {
@@ -2106,7 +2862,7 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L90",
       "id": "kek_it_inventory_kek_ppkek_3_2_manajemen_selisih_bom_bom_discrepancy_limit_toleransi",
-      "community": 6,
+      "community": 9,
       "norm_label": "3.2 manajemen selisih bom (bom discrepancy & limit toleransi)"
     },
     {
@@ -2115,15 +2871,231 @@
       "source_file": "kek-ppkek.md",
       "source_location": "L93",
       "id": "kek_it_inventory_kek_ppkek_codeblock_2",
-      "community": 6,
+      "community": 9,
       "norm_label": "code:block2 ([ subcontracting receipt di-submit ])"
+    },
+    {
+      "label": "$stepper",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L156",
+      "community": 5,
+      "norm_label": "$stepper",
+      "id": "js_work_order_stepper"
+    },
+    {
+      "label": "$table_body",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L157",
+      "community": 5,
+      "norm_label": "$table_body",
+      "id": "js_work_order_table_body"
+    },
+    {
+      "label": "$step_node",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L186",
+      "community": 5,
+      "norm_label": "$step_node",
+      "id": "js_work_order_step_node"
+    },
+    {
+      "label": "qty_target_formatted",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L212",
+      "community": 5,
+      "norm_label": "qty_target_formatted",
+      "id": "js_work_order_qty_target_formatted"
+    },
+    {
+      "label": "qty_actual_formatted",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L213",
+      "community": 5,
+      "norm_label": "qty_actual_formatted",
+      "id": "js_work_order_qty_actual_formatted"
+    },
+    {
+      "label": "work_order_bak.js",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L1",
+      "community": 19,
+      "norm_label": "work_order_bak.js",
+      "id": "kek_it_inventory_public_js_work_order_bak_js"
+    },
+    {
+      "label": "wo_to_complete",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L8",
+      "community": 19,
+      "norm_label": "wo_to_complete",
+      "id": "js_work_order_bak_wo_to_complete"
+    },
+    {
+      "label": "target_qty",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L9",
+      "community": 19,
+      "norm_label": "target_qty",
+      "id": "js_work_order_bak_target_qty"
+    },
+    {
+      "label": "item_name",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L10",
+      "community": 19,
+      "norm_label": "item_name",
+      "id": "js_work_order_bak_item_name"
+    },
+    {
+      "label": "render_multi_stage_dashboard()",
+      "file_type": "code",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L75",
+      "community": 19,
+      "norm_label": "render_multi_stage_dashboard()",
+      "id": "js_work_order_bak_render_multi_stage_dashboard"
+    },
+    {
+      "label": "Posts a KEK Inventory Transaction to SINSW Gateway following KEK PDF standards.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
+      "source_location": "L82",
+      "community": 7,
+      "norm_label": "posts a kek inventory transaction to sinsw gateway following kek pdf standards.",
+      "id": "api_poster_rationale_82"
+    },
+    {
+      "label": "Finds all QUEUED transactions and attempts to post them.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
+      "source_location": "L212",
+      "community": 7,
+      "norm_label": "finds all queued transactions and attempts to post them.",
+      "id": "api_poster_rationale_212"
+    },
+    {
+      "label": "Retry manual dari UI (baik dari ERPNext DocType maupun KEK Inventory Transaction",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L96",
+      "community": 0,
+      "norm_label": "retry manual dari ui (baik dari erpnext doctype maupun kek inventory transaction",
+      "id": "services_kek_service_rationale_96"
+    },
+    {
+      "label": "Validasi data sebelum kirim",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L129",
+      "community": 0,
+      "norm_label": "validasi data sebelum kirim",
+      "id": "services_kek_service_rationale_129"
+    },
+    {
+      "label": "Dipanggil saat Purchase Order submit     \u2192 memicu bridge connector lalu post ke",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L155",
+      "community": 0,
+      "norm_label": "dipanggil saat purchase order submit     \u2192 memicu bridge connector lalu post ke",
+      "id": "services_kek_service_rationale_155"
+    },
+    {
+      "label": "Dipanggil saat Subcontracting Order submit     \u2192 memicu bridge connector lalu po",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L179",
+      "community": 0,
+      "norm_label": "dipanggil saat subcontracting order submit     \u2192 memicu bridge connector lalu po",
+      "id": "services_kek_service_rationale_179"
+    },
+    {
+      "label": "Menyalin nomor_ppkek dan kek_status dari PO/SO asal ke Receipt.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L203",
+      "community": 13,
+      "norm_label": "menyalin nomor_ppkek dan kek_status dari po/so asal ke receipt.",
+      "id": "services_kek_service_rationale_203"
+    },
+    {
+      "label": "Memvalidasi status PPKEK sebelum receipt disubmit.     Harus berstatus 'ACKNOWLE",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L235",
+      "community": 13,
+      "norm_label": "memvalidasi status ppkek sebelum receipt disubmit.     harus berstatus 'acknowle",
+      "id": "services_kek_service_rationale_235"
+    },
+    {
+      "label": "Membandingkan item & qty di KEK Inventory Transaction dengan source ERPNext docu",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L274",
+      "community": 12,
+      "norm_label": "membandingkan item & qty di kek inventory transaction dengan source erpnext docu",
+      "id": "services_kek_service_rationale_274"
+    },
+    {
+      "label": "Job periodik untuk mengecek seluruh transaksi KEK 30 hari terakhir.",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L339",
+      "community": 12,
+      "norm_label": "job periodik untuk mengecek seluruh transaksi kek 30 hari terakhir.",
+      "id": "services_kek_service_rationale_339"
+    },
+    {
+      "label": "Memvalidasi status PPKEK secara manual oleh KEK Manager.     Mengubah status dok",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L356",
+      "community": 3,
+      "norm_label": "memvalidasi status ppkek secara manual oleh kek manager.     mengubah status dok",
+      "id": "services_kek_service_rationale_356"
+    },
+    {
+      "label": "Generate XLS file containing item details structured for Bea Cukai KEK/CEISA upl",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L384",
+      "community": 3,
+      "norm_label": "generate xls file containing item details structured for bea cukai kek/ceisa upl",
+      "id": "services_kek_service_rationale_384"
+    },
+    {
+      "label": "Dipanggil saat Stock Reconciliation submit     \u2192 memicu bridge connector lalu po",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L416",
+      "community": 0,
+      "norm_label": "dipanggil saat stock reconciliation submit     \u2192 memicu bridge connector lalu po",
+      "id": "services_kek_service_rationale_416"
+    },
+    {
+      "label": "Dipanggil saat Stock Entry submit     \u2192 memicu bridge connector lalu post ke API",
+      "file_type": "rationale",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L446",
+      "community": 0,
+      "norm_label": "dipanggil saat stock entry submit     \u2192 memicu bridge connector lalu post ke api",
+      "id": "services_kek_service_rationale_446"
     },
     {
       "label": "Dipanggil saat Delivery Note draft disimpan     \u2192 memicu bridge connector lalu p",
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L55",
-      "community": 1,
+      "community": 0,
       "norm_label": "dipanggil saat delivery note draft disimpan     \u2192 memicu bridge connector lalu p",
       "id": "services_kek_service_rationale_55"
     },
@@ -2132,7 +3104,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L94",
-      "community": 1,
+      "community": 0,
       "norm_label": "retry manual dari ui (baik dari erpnext doctype maupun kek inventory transaction",
       "id": "services_kek_service_rationale_94"
     },
@@ -2141,7 +3113,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L127",
-      "community": 1,
+      "community": 0,
       "norm_label": "validasi data sebelum kirim",
       "id": "services_kek_service_rationale_127"
     },
@@ -2150,7 +3122,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L153",
-      "community": 1,
+      "community": 0,
       "norm_label": "dipanggil saat purchase order submit     \u2192 memicu bridge connector lalu post ke",
       "id": "services_kek_service_rationale_153"
     },
@@ -2159,7 +3131,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L177",
-      "community": 1,
+      "community": 0,
       "norm_label": "dipanggil saat subcontracting order submit     \u2192 memicu bridge connector lalu po",
       "id": "services_kek_service_rationale_177"
     },
@@ -2168,7 +3140,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L201",
-      "community": 1,
+      "community": 13,
       "norm_label": "menyalin nomor_ppkek dan kek_status dari po/so asal ke receipt.",
       "id": "services_kek_service_rationale_201"
     },
@@ -2177,7 +3149,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L233",
-      "community": 1,
+      "community": 13,
       "norm_label": "memvalidasi status ppkek sebelum receipt disubmit.     harus berstatus 'acknowle",
       "id": "services_kek_service_rationale_233"
     },
@@ -2186,7 +3158,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L272",
-      "community": 4,
+      "community": 12,
       "norm_label": "membandingkan item & qty di kek inventory transaction dengan source erpnext docu",
       "id": "services_kek_service_rationale_272"
     },
@@ -2195,7 +3167,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L337",
-      "community": 4,
+      "community": 12,
       "norm_label": "job periodik untuk mengecek seluruh transaksi kek 30 hari terakhir.",
       "id": "services_kek_service_rationale_337"
     },
@@ -2204,7 +3176,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L354",
-      "community": 4,
+      "community": 3,
       "norm_label": "memvalidasi status ppkek secara manual oleh kek manager.     mengubah status dok",
       "id": "services_kek_service_rationale_354"
     },
@@ -2213,7 +3185,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L382",
-      "community": 8,
+      "community": 3,
       "norm_label": "generate xls file containing item details structured for bea cukai kek/ceisa upl",
       "id": "services_kek_service_rationale_382"
     },
@@ -2222,7 +3194,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L414",
-      "community": 1,
+      "community": 0,
       "norm_label": "dipanggil saat stock reconciliation submit     \u2192 memicu bridge connector lalu po",
       "id": "services_kek_service_rationale_414"
     },
@@ -2231,7 +3203,7 @@
       "file_type": "rationale",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L444",
-      "community": 1,
+      "community": 0,
       "norm_label": "dipanggil saat stock entry submit     \u2192 memicu bridge connector lalu post ke api",
       "id": "services_kek_service_rationale_444"
     }
@@ -2258,6 +3230,26 @@
       "target": "kek_it_inventory_setup_role_setup_test_role_permissions"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/setup_role.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_setup_role_py",
+      "target": "kek_it_inventory_setup_role_setup_kek_manager_permissions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/setup_role.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_setup_role_py",
+      "target": "kek_it_inventory_setup_role_setup_kek_user_permissions"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "INFERRED",
@@ -2267,6 +3259,28 @@
       "weight": 1.0,
       "source": "kek_it_inventory_setup_seed_master_data",
       "target": "kek_it_inventory_setup_role_setup_test_role_permissions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/setup.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "kek_it_inventory_setup_seed_master_data",
+      "target": "kek_it_inventory_setup_role_setup_kek_manager_permissions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/setup.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "kek_it_inventory_setup_seed_master_data",
+      "target": "kek_it_inventory_setup_role_setup_kek_user_permissions"
     },
     {
       "relation": "contains",
@@ -2329,6 +3343,246 @@
       "confidence_score": 1.0,
       "source": "kek_it_inventory_setup_rationale_5",
       "target": "kek_it_inventory_setup_seed_master_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_wo_to_complete"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_target_qty"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_item_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_bom_no"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L59",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_stage_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_wip_wh"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_work_order_no",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L70",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_work_order_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_.js",
+      "source_location": "L87",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_render_multi_stage_dashboard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_.js",
+      "source_location": "L237",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_cetak_bahan_per_tahap"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_.js",
+      "source_location": "L300",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_cetak_seluruh_bahan_gabungan"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L146",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_w"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L106",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_promises"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L115",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_consolidated"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order__.js",
+      "source_location": "L135",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_items_html"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L156",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_stepper"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L157",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_table_body"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L186",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_step_node"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L212",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_qty_target_formatted"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order.js",
+      "source_location": "L213",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_js",
+      "target": "js_work_order_qty_actual_formatted"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_master_js",
+      "target": "js_work_order_master_wo_to_complete"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_master_js",
+      "target": "js_work_order_master_target_qty"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_master_js",
+      "target": "js_work_order_master_item_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_master.js",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_master_js",
+      "target": "js_work_order_master_render_multi_stage_dashboard"
     },
     {
       "relation": "contains",
@@ -2696,6 +3950,16 @@
     {
       "relation": "inherits",
       "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/test_kek_ref_customs_document.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_ref_customs_document_test_kek_ref_customs_document_testkekrefcustomsdocument",
+      "target": "frappetestcase"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/api/test_poster.py",
       "source_location": "L7",
       "weight": 1.0,
@@ -2839,9 +4103,9 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "kek_it_inventory_kek_it_inventory_doctype_kek_inventory_transaction_kek_inventory_transaction_js",
-      "target": "kek_inventory_transaction_kek_inventory_transaction_status_label",
-      "confidence_score": 1.0
+      "target": "kek_inventory_transaction_kek_inventory_transaction_status_label"
     },
     {
       "relation": "contains",
@@ -2849,9 +4113,19 @@
       "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js",
       "source_location": "L44",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "kek_it_inventory_kek_it_inventory_doctype_kek_inventory_transaction_kek_inventory_transaction_js",
-      "target": "kek_inventory_transaction_kek_inventory_transaction_res",
-      "confidence_score": 1.0
+      "target": "kek_inventory_transaction_kek_inventory_transaction_res"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js",
+      "source_location": "L194",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_doctype_kek_inventory_transaction_kek_inventory_transaction_js",
+      "target": "kek_inventory_transaction_kek_inventory_transaction_d"
     },
     {
       "relation": "contains",
@@ -2912,6 +4186,16 @@
       "confidence_score": 1.0,
       "source": "kek_it_inventory_kek_it_inventory_doctype_kek_stock_snapshot_kek_stock_snapshot_py",
       "target": "kek_stock_snapshot_kek_stock_snapshot_kekstocksnapshot"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/test_kek_ref_customs_document.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_doctype_kek_ref_customs_document_test_kek_ref_customs_document_py",
+      "target": "kek_ref_customs_document_test_kek_ref_customs_document_testkekrefcustomsdocument"
     },
     {
       "relation": "contains",
@@ -3033,6 +4317,28 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L420",
+      "weight": 1.0,
+      "source": "services_kek_service_process_stock_reconciliation",
+      "target": "api_bridge_create_kek_transaction"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L450",
+      "weight": 1.0,
+      "source": "services_kek_service_process_stock_entry",
+      "target": "api_bridge_create_kek_transaction"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L158",
       "weight": 1.0,
       "source": "services_kek_service_process_purchase_order",
@@ -3050,26 +4356,159 @@
       "target": "api_bridge_create_kek_transaction"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_api_poster_v0_py",
+      "target": "api_poster_v0_translate_customs_error"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_api_poster_v0_py",
+      "target": "api_poster_v0_get_unique_key"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_api_poster_v0_py",
+      "target": "api_poster_v0_update_reference_doc"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_api_poster_v0_py",
+      "target": "api_poster_v0_post_transaction"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L250",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_api_poster_v0_py",
+      "target": "api_poster_v0_process_queue"
+    },
+    {
       "relation": "calls",
       "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L420",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L229",
       "weight": 1.0,
-      "source": "services_kek_service_process_stock_reconciliation",
-      "target": "api_bridge_create_kek_transaction"
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_post_transaction",
+      "target": "api_poster_v0_translate_customs_error"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_rationale_8",
+      "target": "api_poster_v0_translate_customs_error"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_post_transaction",
+      "target": "api_poster_v0_get_unique_key"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_rationale_41",
+      "target": "api_poster_v0_get_unique_key"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_post_transaction",
+      "target": "api_poster_v0_update_reference_doc"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_rationale_59",
+      "target": "api_poster_v0_update_reference_doc"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L261",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_process_queue",
+      "target": "api_poster_v0_post_transaction"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_rationale_86",
+      "target": "api_poster_v0_post_transaction"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
-      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L450",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L221",
       "weight": 1.0,
-      "source": "services_kek_service_process_stock_entry",
-      "target": "api_bridge_create_kek_transaction"
+      "source": "api_poster_v0_post_transaction",
+      "target": "api_ledger_update_ledger"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster-v0.py",
+      "source_location": "L251",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_v0_rationale_251",
+      "target": "api_poster_v0_process_queue"
     },
     {
       "relation": "contains",
@@ -3199,10 +4638,10 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
-      "source_location": "L82",
+      "source_location": "L86",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "api_poster_rationale_82",
+      "source": "api_poster_rationale_86",
       "target": "api_poster_post_transaction"
     },
     {
@@ -3215,6 +4654,16 @@
       "weight": 1.0,
       "source": "api_poster_post_transaction",
       "target": "api_ledger_update_ledger"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_rationale_82",
+      "target": "api_poster_post_transaction"
     },
     {
       "relation": "calls",
@@ -3314,6 +4763,16 @@
       "weight": 1.0,
       "source": "tests_test_poster_test_post_stock_reconciliation_payload",
       "target": "api_poster_post_transaction"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/api/poster.py",
+      "source_location": "L261",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_poster_rationale_261",
+      "target": "api_poster_process_queue"
     },
     {
       "relation": "rationale_for",
@@ -3611,6 +5070,46 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_kek_service_py",
+      "target": "services_kek_service_delete_delivery_note_kek"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_kek_service_py",
+      "target": "services_kek_service_cancel_delivery_note_kek"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L170",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_kek_service_py",
+      "target": "services_kek_service_sync_existing_kek_transaction"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L216",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_kek_service_py",
+      "target": "services_kek_service_allow_customs_edit_on_submit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L93",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -3728,6 +5227,26 @@
       "target": "services_kek_service_process_stock_entry"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L811",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_kek_service_py",
+      "target": "services_kek_service_diagnose_pr_doc"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L827",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_kek_service_py",
+      "target": "services_kek_service_on_delivery_note_submit"
+    },
+    {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
@@ -3761,6 +5280,47 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L126",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_126",
+      "target": "services_kek_service_delete_delivery_note_kek"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L141",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_141",
+      "target": "services_kek_service_cancel_delivery_note_kek"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L267",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_retry_kek",
+      "target": "services_kek_service_sync_existing_kek_transaction"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L240",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_240",
+      "target": "services_kek_service_retry_kek"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L96",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -3776,6 +5336,16 @@
       "confidence_score": 1.0,
       "source": "services_kek_service_rationale_94",
       "target": "services_kek_service_retry_kek"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L280",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_280",
+      "target": "services_kek_service_validate_only"
     },
     {
       "relation": "rationale_for",
@@ -3801,6 +5371,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L306",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_306",
+      "target": "services_kek_service_process_purchase_order"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L155",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -3816,6 +5396,16 @@
       "confidence_score": 1.0,
       "source": "services_kek_service_rationale_153",
       "target": "services_kek_service_process_purchase_order"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L319",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_319",
+      "target": "services_kek_service_process_subcontracting_order"
     },
     {
       "relation": "rationale_for",
@@ -3852,6 +5442,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L332",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_332",
+      "target": "services_kek_service_copy_parent_kek_details"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L203",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -3867,6 +5467,16 @@
       "confidence_score": 1.0,
       "source": "services_kek_service_rationale_201",
       "target": "services_kek_service_copy_parent_kek_details"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L398",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_398",
+      "target": "services_kek_service_validate_kek_submission"
     },
     {
       "relation": "rationale_for",
@@ -3903,10 +5513,10 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L274",
+      "source_location": "L531",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "services_kek_service_rationale_274",
+      "source": "services_kek_service_rationale_531",
       "target": "services_kek_service_check_for_mismatch"
     },
     {
@@ -3924,11 +5534,31 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L274",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_274",
+      "target": "services_kek_service_check_for_mismatch"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L272",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "services_kek_service_rationale_272",
       "target": "services_kek_service_check_for_mismatch"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L596",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_596",
+      "target": "services_kek_service_run_mismatch_check_job"
     },
     {
       "relation": "rationale_for",
@@ -3954,10 +5584,10 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L356",
+      "source_location": "L613",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "services_kek_service_rationale_356",
+      "source": "services_kek_service_rationale_613",
       "target": "services_kek_service_manual_validate_ppkek"
     },
     {
@@ -3975,6 +5605,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L356",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_356",
+      "target": "services_kek_service_manual_validate_ppkek"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L354",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -3985,10 +5625,10 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
-      "source_location": "L384",
+      "source_location": "L720",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "services_kek_service_rationale_384",
+      "source": "services_kek_service_rationale_720",
       "target": "services_kek_service_download_customs_xls"
     },
     {
@@ -4006,11 +5646,31 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L384",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_384",
+      "target": "services_kek_service_download_customs_xls"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L382",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "services_kek_service_rationale_382",
       "target": "services_kek_service_download_customs_xls"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L752",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_752",
+      "target": "services_kek_service_process_stock_reconciliation"
     },
     {
       "relation": "rationale_for",
@@ -4036,6 +5696,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L782",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_782",
+      "target": "services_kek_service_process_stock_entry"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
       "source_location": "L446",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4051,6 +5721,407 @@
       "confidence_score": 1.0,
       "source": "services_kek_service_rationale_444",
       "target": "services_kek_service_process_stock_entry"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/kek_service.py",
+      "source_location": "L828",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_kek_service_rationale_828",
+      "target": "services_kek_service_on_delivery_note_submit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "target": "services_manufacture_service_ensure_custom_fields"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "target": "services_manufacture_service_check_manufacture_permission"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "target": "services_manufacture_service_get_item_default_warehouse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "target": "services_manufacture_service_get_production_stages"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "target": "services_manufacture_service_get_bom_hierarchy"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L153",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "target": "services_manufacture_service_create_sub_work_orders"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L199",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "target": "services_manufacture_service_complete_production_stage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L250",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_services_manufacture_service_py",
+      "target": "services_manufacture_service_adjust_subsequent_wos"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_get_production_stages",
+      "target": "services_manufacture_service_ensure_custom_fields"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L158",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_create_sub_work_orders",
+      "target": "services_manufacture_service_ensure_custom_fields"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L206",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_complete_production_stage",
+      "target": "services_manufacture_service_ensure_custom_fields"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_rationale_10",
+      "target": "services_manufacture_service_ensure_custom_fields"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_setup",
+      "target": "services_manufacture_service_ensure_custom_fields"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L205",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_complete_production_stage",
+      "target": "services_manufacture_service_check_manufacture_permission"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_rationale_24",
+      "target": "services_manufacture_service_check_manufacture_permission"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_get_production_stages",
+      "target": "services_manufacture_service_get_item_default_warehouse"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L177",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_create_sub_work_orders",
+      "target": "services_manufacture_service_get_item_default_warehouse"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L232",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_complete_production_stage",
+      "target": "services_manufacture_service_get_item_default_warehouse"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_rationale_34",
+      "target": "services_manufacture_service_get_item_default_warehouse"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_get_production_stages",
+      "target": "services_manufacture_service_get_bom_hierarchy"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L252",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_adjust_subsequent_wos",
+      "target": "services_manufacture_service_get_production_stages"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_rationale_51",
+      "target": "services_manufacture_service_get_production_stages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L179",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_ideal_flow",
+      "target": "services_manufacture_service_get_production_stages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L232",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_role_based_permissions",
+      "target": "services_manufacture_service_get_production_stages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L262",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_fuzzy_flow_with_loss",
+      "target": "services_manufacture_service_get_production_stages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L314",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_insufficient_stock_validation",
+      "target": "services_manufacture_service_get_production_stages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L164",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_create_sub_work_orders",
+      "target": "services_manufacture_service_get_bom_hierarchy"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_rationale_123",
+      "target": "services_manufacture_service_get_bom_hierarchy"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L154",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_rationale_154",
+      "target": "services_manufacture_service_create_sub_work_orders"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L246",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_complete_production_stage",
+      "target": "services_manufacture_service_adjust_subsequent_wos"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L200",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_rationale_200",
+      "target": "services_manufacture_service_complete_production_stage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L188",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_ideal_flow",
+      "target": "services_manufacture_service_complete_production_stage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L240",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_role_based_permissions",
+      "target": "services_manufacture_service_complete_production_stage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_fuzzy_flow_with_loss",
+      "target": "services_manufacture_service_complete_production_stage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L321",
+      "weight": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_insufficient_stock_validation",
+      "target": "services_manufacture_service_complete_production_stage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/inspect_item.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_inspect_item_run",
+      "target": "services_manufacture_service_complete_production_stage"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/services/manufacture_service.py",
+      "source_location": "L251",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "services_manufacture_service_rationale_251",
+      "target": "services_manufacture_service_adjust_subsequent_wos"
     },
     {
       "relation": "contains",
@@ -4224,6 +6295,26 @@
       "confidence_score": 1.0,
       "source": "kek_it_inventory_kek_it_inventory_tests_test_bridge_py",
       "target": "tests_test_bridge_test_purchase_receipt_shortage_trigger"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
+      "source_location": "L509",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_tests_test_bridge_py",
+      "target": "tests_test_bridge_test_delivery_note_draft_sync_and_cleanup"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_bridge.py",
+      "source_location": "L570",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_tests_test_bridge_py",
+      "target": "tests_test_bridge_test_delivery_note_mismatch_and_cancellation"
     },
     {
       "relation": "method",
@@ -4404,6 +6495,200 @@
       "confidence_score": 1.0,
       "source": "tests_test_sap_sync_testsapsync",
       "target": "tests_test_sap_sync_testsapsync_test_process_sales_order_async_success"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_tests_test_manufacture_service_py",
+      "target": "tests_test_manufacture_service_testmanufactureservice"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_setup"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_teardown"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_create_item"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L113",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_create_bom"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L137",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_add_stock"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L156",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_test_ideal_flow"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L203",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_test_role_based_permissions"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L245",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_test_fuzzy_flow_with_loss"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L293",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice",
+      "target": "tests_test_manufacture_service_testmanufactureservice_test_insufficient_stock_validation"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_setup",
+      "target": "tests_test_manufacture_service_testmanufactureservice_create_item"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_setup",
+      "target": "tests_test_manufacture_service_testmanufactureservice_create_bom"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_setup",
+      "target": "tests_test_manufacture_service_testmanufactureservice_add_stock"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L300",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_testmanufactureservice_test_insufficient_stock_validation",
+      "target": "tests_test_manufacture_service_testmanufactureservice_add_stock"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_rationale_157",
+      "target": "tests_test_manufacture_service_testmanufactureservice_test_ideal_flow"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L204",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_rationale_204",
+      "target": "tests_test_manufacture_service_testmanufactureservice_test_role_based_permissions"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L246",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_rationale_246",
+      "target": "tests_test_manufacture_service_testmanufactureservice_test_fuzzy_flow_with_loss"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py",
+      "source_location": "L294",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_manufacture_service_rationale_294",
+      "target": "tests_test_manufacture_service_testmanufactureservice_test_insufficient_stock_validation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/kek_it_inventory/tests/inspect_item.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_kek_it_inventory_tests_inspect_item_py",
+      "target": "tests_inspect_item_run"
     },
     {
       "relation": "contains",
@@ -4824,8 +7109,48 @@
       "confidence_score": 1.0,
       "source": "kek_it_inventory_kek_ppkek_3_2_manajemen_selisih_bom_bom_discrepancy_limit_toleransi",
       "target": "kek_it_inventory_kek_ppkek_codeblock_2"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_bak_js",
+      "target": "js_work_order_bak_wo_to_complete"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_bak_js",
+      "target": "js_work_order_bak_target_qty"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_bak_js",
+      "target": "js_work_order_bak_item_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "kek_it_inventory/public/js/work_order_bak.js",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "kek_it_inventory_public_js_work_order_bak_js",
+      "target": "js_work_order_bak_render_multi_stage_dashboard"
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "93cf262205e028146e371040279ad55e7d866a1b"
+  "built_at_commit": "a2fea6a849315cdd75455d3c8453926770a8aafe"
 }

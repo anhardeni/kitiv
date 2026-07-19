@@ -73,10 +73,10 @@ scheduler_events = {
 		"kek_it_inventory.kek_it_inventory.services.kek_service.run_mismatch_check_job"
 	],
 	"cron": {
-		# SAP OData Pull - runs every 15 minutes
+		# SAP OData Pull - runs every 15 minutes for all configured streams
 		# Push endpoint: /api/method/kek_it_inventory.kek_it_inventory.api.sap_sync.receive_sap_document
 		"*/15 * * * *": [
-			"kek_it_inventory.kek_it_inventory.api.sap_sync.run_po_sync"
+			"kek_it_inventory.kek_it_inventory.api.sap_sync.run_all_streams"
 		]
 	},
 	"daily": [
@@ -96,11 +96,11 @@ fixtures = [
 				"Purchase Receipt-custom_bc_registration_date",
 				"Purchase Receipt-custom_bc_registration_no",
 				"Purchase Receipt-custom_bc_document_type",
-				"Purchase Receipt-custom_custom_no_aju",
+				#"Purchase Receipt-custom_custom_no_aju",
 				"Delivery Note-custom_bc_registration_date",
 				"Delivery Note-custom_bc_registration_no",
 				"Delivery Note-custom_bc_document_type",
-				"Delivery Note-custom_no_aju",
+				#"Delivery Note-custom_no_aju",
 			]]
 		]
 	},

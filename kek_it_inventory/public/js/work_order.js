@@ -2,9 +2,9 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Work Order', {
-	setup: function(frm) {
-		// Event delegation for Complete Stage buttons (bound once globally to prevent binding loss or duplicates)
-		$(document).on('click', '.btn-complete-stage', function() {
+	onload: function(frm) {
+		// Event delegation for Complete Stage buttons (bound to form wrapper to prevent duplicates or memory leaks)
+		$(frm.wrapper).off('click', '.btn-complete-stage').on('click', '.btn-complete-stage', function() {
 			let wo_to_complete = $(this).attr('data-wo');
 			let target_qty = flt($(this).attr('data-target'));
 			let item_name = $(this).attr('data-item-name');
@@ -42,12 +42,7 @@ frappe.ui.form.on('Work Order', {
 									message: __('Tahapan selesai! Stock Entry {0} disubmit.', [res.message.stock_entry]),
 									indicator: 'green'
 								});
-								// Reload the document using the current active form
-								if (typeof cur_frm !== "undefined" && cur_frm) {
-									cur_frm.reload_doc();
-								} else {
-									frm.reload_doc();
-								}
+								frm.reload_doc();
 							}
 						}
 					});
@@ -55,6 +50,26 @@ frappe.ui.form.on('Work Order', {
 				__('Konfirmasi Selesai Tahap: {0}', [item_name]),
 				__('Submit Hasil')
 			);
+		});
+
+		// Event delegation untuk cetak per baris tahapan
+		$(frm.wrapper).off('click', '.btn-print-stage-bom').on('click', '.btn-print-stage-bom', function() {
+			let bom_no = $(this).attr('data-bom');
+			let target_qty = flt($(this).attr('data-target'));
+			let stage_name = $(this).attr('data-item-name');
+			let wip_wh = $(this).attr('data-wip-wh');
+			let work_order_no = $(this).attr('data-wo');
+			if (bom_no) {
+				cetak_bahan_per_tahap(bom_no, target_qty, stage_name, wip_wh, work_order_no);
+			} else {
+				frappe.msgprint(__('BOM tidak ditemukan untuk tahap ini.'));
+			}
+		});
+
+		// Event delegation untuk cetak gabungan keseluruhan
+		$(frm.wrapper).off('click', '#btn-print-all-stages-bom').on('click', '#btn-print-all-stages-bom', function() {
+			let work_order_name = $(this).attr('data-main-wo');
+			cetak_seluruh_bahan_gabungan(work_order_name);
 		});
 	},
 	
@@ -107,9 +122,14 @@ function render_multi_stage_dashboard(frm) {
 
 			let hud_html = `
 				<div class="multi-stage-container" style="border: 1px solid #d1d8dd; border-radius: 8px; padding: 20px; background-color: #ffffff; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: left;">
-					<h4 style="margin-top: 0; margin-bottom: 20px; color: #1F2937; font-weight: 600; display: flex; align-items: center; gap: 8px;">
-						<span class="indicator-pill blue" style="width: 10px; height: 10px; border-radius: 50%; background-color: #2563EB; display: inline-block;"></span>
-						Dashboard Produksi Multi-Stage (BOM Multi)
+					<h4 style="margin-top: 0; margin-bottom: 20px; color: #1F2937; font-weight: 600; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+						<span style="display: flex; align-items: center; gap: 8px;">
+							<span class="indicator-pill blue" style="width: 10px; height: 10px; border-radius: 50%; background-color: #2563EB; display: inline-block;"></span>
+							Dashboard Produksi Multi-Stage (BOM Multi)
+						</span>
+						<button id="btn-print-all-stages-bom" data-main-wo="${frm.doc.name}" class="btn btn-primary btn-xs" style="font-weight: 500; font-size: 12px; padding: 4px 10px;">
+							🖨️ Cetak Semua Bahan (Tahap 1-${stages.length})
+						</button>
 					</h4>
 					${banner_html}
 					<div class="stepper-wrapper" style="display: flex; justify-content: space-between; position: relative; margin-bottom: 30px;">
@@ -128,7 +148,7 @@ function render_multi_stage_dashboard(frm) {
 									<th style="width: 120px; text-align: center; color: #4B5563; font-weight: 500;">Qty Target</th>
 									<th style="width: 120px; text-align: center; color: #4B5563; font-weight: 500;">Qty Aktual</th>
 									<th style="width: 130px; text-align: center; color: #4B5563; font-weight: 500;">Status</th>
-									<th style="width: 150px; text-align: center; color: #4B5563; font-weight: 500;">Aksi</th>
+									<th style="width: 180px; text-align: center; color: #4B5563; font-weight: 500;">Aksi</th>
 								</tr>
 							</thead>
 							<tbody id="stages-table-body"></tbody>
@@ -193,13 +213,13 @@ function render_multi_stage_dashboard(frm) {
 				else if (s.status === "In Progress") status_badge_color = "orange";
 				else if (is_active && frm.doc.docstatus === 1) status_badge_color = "blue";
 
-				let action_btn = "";
+				let action_btns = `<button class="btn btn-default btn-xs btn-print-stage-bom" data-wo="${s.work_order || ''}" data-bom="${s.bom_no || ''}" data-target="${s.target_qty || 0}" data-item-name="${s.item_name}" data-wip-wh="${s.wip_warehouse || ''}" style="margin-right: 4px;" title="Cetak Kebutuhan Bahan">🖨️ Cetak</button>`;
 				if (frm.doc.docstatus === 0) {
-					action_btn = `<button class="btn btn-default btn-xs" disabled style="opacity: 0.5; cursor: not-allowed;">Draft Mode</button>`;
+					action_btns += `<button class="btn btn-default btn-xs" disabled style="opacity: 0.5; cursor: not-allowed;">Draft Mode</button>`;
 				} else if (is_active && frm.doc.status !== "Stopped" && frm.doc.status !== "Completed") {
-					action_btn = `<button class="btn btn-primary btn-xs btn-complete-stage" data-wo="${s.work_order}" data-idx="${s.stage_index}" data-target="${s.target_qty}" data-item-name="${s.item_name}" style="background-color: #2563EB; border-color: #2563EB; font-weight: 500; padding: 4px 10px;">Complete</button>`;
+					action_btns += `<button class="btn btn-primary btn-xs btn-complete-stage" data-wo="${s.work_order}" data-idx="${s.stage_index}" data-target="${s.target_qty}" data-item-name="${s.item_name}" style="background-color: #2563EB; border-color: #2563EB; font-weight: 500; padding: 4px 10px;">Complete</button>`;
 				} else {
-					action_btn = `<button class="btn btn-default btn-xs" disabled style="opacity: 0.5;">Waiting</button>`;
+					action_btns += `<button class="btn btn-default btn-xs" disabled style="opacity: 0.5;">Waiting</button>`;
 				}
 
 				let row_style = (is_active && frm.doc.docstatus === 1) ? "background-color: #EFF6FF;" : "";
@@ -222,10 +242,185 @@ function render_multi_stage_dashboard(frm) {
 								${s.status}
 							</span>
 						</td>
-						<td style="text-align: center; vertical-align: middle;">${action_btn}</td>
+						<td style="text-align: center; vertical-align: middle;">${action_btns}</td>
 					</tr>
 				`);
 				$table_body.append($row);
+			});
+		}
+	});
+}
+
+function cetak_bahan_per_tahap(bom_no, target_qty, stage_name, wip_wh, work_order_no) {
+	frappe.call({
+		method: 'frappe.client.get',
+		args: {
+			doctype: 'BOM',
+			name: bom_no
+		},
+		callback: function(r) {
+			if (!r.message) return;
+			let bom = r.message;
+			let items_html = bom.items.map(item => {
+				let req_qty = (flt(item.qty) / flt(bom.quantity)) * target_qty;
+				return `
+					<tr>
+						<td style="border: 1px solid #ddd; padding: 8px;">${item.item_code}</td>
+						<td style="border: 1px solid #ddd; padding: 8px;">${item.item_name || item.item_code}</td>
+						<td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${frappe.format(req_qty, {fieldtype: 'Float'})} ${item.uom}</td>
+						<td style="border: 1px solid #ddd; padding: 8px;"></td>
+						<td style="border: 1px solid #ddd; padding: 8px;"></td>
+					</tr>
+				`;
+			}).join('');
+
+			let print_html = `
+				<html>
+				<head>
+					<title>Cetak Bahan: ${stage_name}</title>
+					<style>
+						body { font-family: sans-serif; padding: 20px; }
+						table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+						th { background-color: #f2f2f2; }
+						th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+					</style>
+				</head>
+				<body>
+					<h2>Kebutuhan Bahan Baku Per Tahap</h2>
+					<p><b>Work Order No:</b> ${work_order_no || '-'}</p>
+					<p><b>Tahap / Item:</b> ${stage_name}</p>
+					<p><b>BOM No:</b> ${bom_no}</p>
+					<p><b>Qty Target:</b> ${frappe.format(target_qty, {fieldtype: 'Float'})}</p>
+					<p><b>Gudang WIP:</b> ${wip_wh || '-'}</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kode Item</th>
+								<th>Nama Item</th>
+								<th>Qty Dibutuhkan</th>
+								<th style="width: 120px;">QTY Receive</th>
+								<th style="width: 150px;">Ket</th>
+							</tr>
+						</thead>
+						<tbody>
+							${items_html}
+						</tbody>
+					</table>
+					<script>
+						window.onload = function() { window.print(); }
+					</script>
+				</body>
+				</html>
+			`;
+			let w = window.open();
+			w.document.write(print_html);
+			w.document.close();
+			w.focus();
+			w.print();
+		}
+	});
+}
+
+function cetak_seluruh_bahan_gabungan(work_order_name) {
+	frappe.call({
+		method: 'kek_it_inventory.kek_it_inventory.services.manufacture_service.get_production_stages',
+		args: {
+			work_order_name: work_order_name
+		},
+		callback: function(r) {
+			if (!r.message) return;
+			let stages = r.message;
+			
+			let promises = stages.filter(s => s.bom_no).map(s => {
+				return new Promise((resolve) => {
+					frappe.call({
+						method: 'frappe.client.get',
+						args: {
+							doctype: 'BOM',
+							name: s.bom_no
+						},
+						callback: function(res) {
+							if (res.message) {
+								resolve({ stage: s, bom: res.message });
+							} else {
+								resolve(null);
+							}
+						}
+					});
+				});
+			});
+
+			Promise.all(promises).then(results => {
+				let consolidated = {};
+				
+				results.forEach(res => {
+					if (!res) return;
+					let target_qty = res.stage.target_qty;
+					let bom = res.bom;
+					bom.items.forEach(item => {
+						let req_qty = (flt(item.qty) / flt(bom.quantity)) * target_qty;
+						if (consolidated[item.item_code]) {
+							consolidated[item.item_code].qty += req_qty;
+						} else {
+							consolidated[item.item_code] = {
+								item_code: item.item_code,
+								item_name: item.item_name || item.item_code,
+								qty: req_qty,
+								uom: item.uom
+							};
+						}
+					});
+				});
+
+				let items_html = Object.values(consolidated).map(item => `
+					<tr>
+						<td style="border: 1px solid #ddd; padding: 8px;">${item.item_code}</td>
+						<td style="border: 1px solid #ddd; padding: 8px;">${item.item_name}</td>
+						<td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${frappe.format(item.qty, {fieldtype: 'Float'})} ${item.uom}</td>
+						<td style="border: 1px solid #ddd; padding: 8px;"></td>
+						<td style="border: 1px solid #ddd; padding: 8px;"></td>
+					</tr>
+				`).join('');
+
+				let print_html = `
+					<html>
+					<head>
+						<title>Cetak Semua Bahan: ${work_order_name}</title>
+						<style>
+							body { font-family: sans-serif; padding: 20px; }
+							table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+							th { background-color: #f2f2f2; }
+							th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+						</style>
+					</head>
+					<body>
+						<h2>Gabungan Kebutuhan Bahan Baku (Tahap 1-${stages.length})</h2>
+						<p><b>Work Order Utama:</b> ${work_order_name}</p>
+						<table>
+							<thead>
+								<tr>
+									<th>Kode Item</th>
+									<th>Nama Item</th>
+									<th>Total Qty</th>
+									<th style="width: 120px;">QTY Receive</th>
+									<th style="width: 150px;">Ket</th>
+								</tr>
+							</thead>
+							<tbody>
+								${items_html}
+							</tbody>
+						</table>
+						<script>
+							window.onload = function() { window.print(); }
+						</script>
+					</body>
+					</html>
+				`;
+				let w = window.open();
+				w.document.write(print_html);
+				w.document.close();
+				w.focus();
+				w.print();
 			});
 		}
 	});

@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:stream_name",
+ "creation": "2026-07-19 21:27:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "stream_name",
+  "erpnext_target_doctype",
+  "po_endpoint",
+  "connection_and_auth",
+  "sap_child_array_key",
+  "default_company",
+  "default_currency",
+  "last_sync_time",
+  "sap_sample_payload",
+  "field_mappings"
+ ],
+ "fields": [
+  {
+   "fieldname": "stream_name",
+   "fieldtype": "Data",
+   "label": "Stream Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "erpnext_target_doctype",
+   "fieldtype": "Link",
+   "label": "Target DocType ERPNext",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "po_endpoint",
+   "fieldtype": "Data",
+   "label": "SAP API Endpoint",
+   "reqd": 1
+  },
+  {
+   "fieldname": "connection_and_auth",
+   "fieldtype": "Code",
+   "options": "JSON",
+   "label": "Authentication JSON",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sap_child_array_key",
+   "fieldtype": "Data",
+   "label": "SAP Child Array Key",
+   "description": "B1: DocumentLines | S4: to_PurchaseOrderItem"
+  },
+  {
+   "fieldname": "default_company",
+   "fieldtype": "Link",
+   "label": "Default Company Fallback",
+   "options": "Company"
+  },
+  {
+   "fieldname": "default_currency",
+   "fieldtype": "Link",
+   "label": "Default Currency Fallback",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "last_sync_time",
+   "fieldtype": "Datetime",
+   "label": "Last Successful Sync Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sap_sample_payload",
+   "fieldtype": "Code",
+   "options": "JSON",
+   "label": "Sample Payload for Testing"
+  },
+  {
+   "fieldname": "field_mappings",
+   "fieldtype": "Table",
+   "label": "Field Mappings",
+   "options": "SAP Field Mapping Line"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-19 21:27:00.000000",
+ "modified_by": "Administrator",
+ "module": "Kek It Inventory",
+ "name": "SAP Integration Config",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -15,6 +15,7 @@
   "status",
   "insw_transaksi_id",
   "nomor_ppkek",
+  "tanggal_ppkek",
   "section_reference",
   "erpnext_reference_doctype",
   "erpnext_reference_name",

@@ -1,9 +1,5 @@
-import frappe
-from frappe.model.document import Document
-
-
-class SAPSyncSettings(Document):
-	frappe.ui.form.on('SAP Sync Settings', {
+// -*- coding: utf-8 -*-
+frappe.ui.form.on('SAP Integration Config', {
     refresh: function(frm) {
         if (!frm.is_new()) {
             
@@ -15,7 +11,7 @@ class SAPSyncSettings(Document):
                 }
                 
                 frappe.call({
-                    method: 'sap_connector.validator.run_automated_mapping_check',
+                    method: 'kek_it_inventory.kek_it_inventory.sap_connector.validator.run_automated_mapping_check',
                     args: { payload: frm.doc.sap_sample_payload },
                     freeze: true,
                     freeze_message: __('Menjalankan Uji Coba Sandbox...'),
@@ -43,7 +39,7 @@ class SAPSyncSettings(Document):
                     __('Apakah Anda yakin ingin mereparasi otomatis kolom tabel pemetaan berdasarkan JSON sampel saat ini?'),
                     function() {
                         frappe.call({
-                            method: 'sap_connector.validator.auto_repair_sap_mappings',
+                            method: 'kek_it_inventory.kek_it_inventory.sap_connector.validator.auto_repair_sap_mappings',
                             args: {
                                 doc_name: frm.doc.name,
                                 payload: frm.doc.sap_sample_payload
