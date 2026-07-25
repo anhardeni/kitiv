@@ -24,7 +24,8 @@ class TestPosterAPI(FrappeTestCase):
 			}).insert()
 
 		# 2. Setup Data Master (API Credential)
-		if not frappe.db.exists("KEK API Credential", {"company_profile": self.company_profile}):
+		cred_name = f"KEK-CRED-TEST-PROFILE-API-DUMMY"
+		if not frappe.db.exists("KEK API Credential", cred_name):
 			frappe.get_doc({
 				"doctype": "KEK API Credential",
 				"company_profile": self.company_profile,
@@ -33,6 +34,10 @@ class TestPosterAPI(FrappeTestCase):
 				"x_unique_key": "dummy-unique",
 				"active": 1
 			}).insert()
+		else:
+			cred = frappe.get_doc("KEK API Credential", cred_name)
+			cred.active = 1
+			cred.save()
 
 		# 3. Setup Data Transaksi dengan Child Table
 		self.txn = frappe.get_doc({

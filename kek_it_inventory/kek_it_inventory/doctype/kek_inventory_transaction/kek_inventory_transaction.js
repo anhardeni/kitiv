@@ -144,6 +144,39 @@ frappe.ui.form.on('KEK Inventory Transaction', {
 			});
 		}
 
+		// 2.5. Tombol [ Update Kode, No dan Tgl Dok Pabean ] (Hanya muncul jika sudah ada insw_transaksi_id)
+		if (frm.doc.insw_transaksi_id && (status === 'SENT' || status === 'ACKNOWLEDGED')) {
+			frm.add_custom_button(__('Update Kode, No dan Tgl Dok Pabean'), function() {
+				frappe.confirm(__('Apakah Anda yakin ingin mengirim perubahan informasi dokumen pabean ke Bea Cukai / SINSW?'), function() {
+					frm.set_working(true);
+					frappe.call({
+						method: 'kek_it_inventory.kek_it_inventory.api.poster.update_customs_documents',
+						args: {
+							docname: frm.doc.name
+						},
+						callback: function(r) {
+							frm.reload_doc();
+							if (r.message === 'Success') {
+								frappe.show_alert({
+									message: __('Info dokumen pabean berhasil diperbarui di SINSW.'),
+									indicator: 'green'
+								});
+							} else {
+								frappe.msgprint({
+									title: __('Gagal Update'),
+									message: r.message,
+									indicator: 'red'
+								});
+							}
+						},
+						always: function() {
+							frm.set_working(false);
+						}
+					});
+				});
+			});
+		}
+
 		// 3. Tombol [ Retry ] (Hanya muncul jika status FAILED - Prominent)
 		if (frm.doc.status === 'FAILED') {
 			frm.add_custom_button(__('Retry Kirim'), function() {

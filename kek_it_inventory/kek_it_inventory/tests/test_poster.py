@@ -74,7 +74,8 @@ class TestPoster(unittest.TestCase):
 			"status": True,
 			"code": "01",
 			"data": {
-				"resultDataTransaksi": [{"idTransaksi": "SINSW-REAL-123"}]
+				"resultDataTransaksi": [{"idTransaksi": "SINSW-REAL-123"}],
+				"resultBarangTransaksi": [{"idBarangTransaksi": "ITEM-INSW-ID-123", "kdBarang": "ITEM001"}]
 			}
 		}
 		mock_post.return_value.status_code = 200
@@ -98,6 +99,7 @@ class TestPoster(unittest.TestCase):
 		self.txn.reload()
 		self.assertEqual(self.txn.status, "SENT")
 		self.assertEqual(self.txn.insw_transaksi_id, "SINSW-REAL-123")
+		self.assertEqual(self.txn.items[0].id_barang_transaksi_insw, "ITEM-INSW-ID-123")
 
 		# 4. Verify Ledger Entry
 		ledger_entries = frappe.get_all("KEK Stock Ledger", 
@@ -119,7 +121,8 @@ class TestPoster(unittest.TestCase):
 			"status": True,
 			"code": "01",
 			"data": {
-				"resultDataTransaksi": [{"idTransaksi": "999"}]
+				"resultDataTransaksi": [{"idTransaksi": "999"}],
+				"resultBarangTransaksi": [{"idBarangTransaksi": "ITEM-INSW-ID-999", "kdBarang": "ITEM001"}]
 			}
 		}
 		mock_post.return_value.status_code = 200
@@ -159,7 +162,8 @@ class TestPoster(unittest.TestCase):
 			"status": True,
 			"code": "01",
 			"data": {
-				"resultDataTransaksi": [{"idTransaksi": "SINSW-OPNAME-999"}]
+				"resultDataTransaksi": [{"idTransaksi": "SINSW-OPNAME-999"}],
+				"resultBarangTransaksi": [{"idBarangTransaksi": "ITEM-INSW-ID-002", "kdBarang": "ITEM002"}]
 			}
 		}
 		mock_post.return_value.status_code = 200
@@ -179,6 +183,71 @@ class TestPoster(unittest.TestCase):
 		txn32.reload()
 		self.assertEqual(txn32.status, "SENT")
 		self.assertEqual(txn32.insw_transaksi_id, "SINSW-OPNAME-999")
+		self.assertEqual(txn32.items[0].id_barang_transaksi_insw, "ITEM-INSW-ID-002")
 
 		# Clean up to prevent test leakage
 		frappe.db.delete("KEK Stock Ledger", {"customs_item_code": "ITEM002"})
+
+	@patch('kek_it_inventory.kek_it_inventory.api.poster.requests.get')
+	@patch('kek_it_inventory.kek_it_inventory.api.poster.requests.put')
+	def test_update_customs_documents(self, mock_put, mock_get):
+		# Setup transaction with insw_transaksi_id and item with id_barang_transaksi_insw
+		self.txn.insw_transaksi_id = "SINSW-REAL-123"
+		self.txn.items[0].id_barang_transaksi_insw = "ITEM-INSW-ID-123"
+		self.txn.save()
+
+		# Add customs doc
+		frappe.get_doc({
+			"doctype": "KEK Item Customs Doc",
+			"parent": self.txn.items[0].name,
+			"parenttype": "KEK Inventory Transaction Item",
+			"parentfield": "customs_docs",
+			"customs_doc_code": "0407611",
+			"customs_doc_number": "NEW-123",
+			"customs_doc_date": "2026-07-21"
+		}).insert(ignore_permissions=True)
+
+		# Mock Unique Key
+		mock_get.return_value.status_code = 200
+		mock_get.return_value.json.return_value = {"uniqueKey": "SECRET-UNIQUE-KEY"}
+
+		# Mock success response for PUT
+		success_res = {"status": True, "code": "01", "message": "Success"}
+		mock_put.return_value.status_code = 200
+		mock_put.return_value.json.return_value = success_res
+		mock_put.return_value.text = json.dumps(success_res)
+
+		# Execute
+		from kek_it_inventory.kek_it_inventory.api.poster import update_customs_documents
+		res = update_customs_documents(self.txn.name)
+
+		# Verify PUT was called with correct payload
+		self.assertEqual(res, "Success")
+		args, kwargs = mock_put.call_args
+		payload = json.loads(kwargs.get('data'))
+		self.assertEqual(payload["idTransaksi"], "SINSW-REAL-123")
+		self.assertEqual(payload["idBarangTransaksi"], "ITEM-INSW-ID-123")
+		self.assertEqual(payload["kodeDokumen"], "0407611")
+		self.assertEqual(payload["nomorDokumen"], "NEW-123")
+		self.assertEqual(payload["tanggalDokumen"], "21-07-2026")
+
+	def test_uniqueness_validation(self):
+		# First ensure the existing one is active
+		self.cred.active = 1
+		self.cred.save()
+
+		new_cred = frappe.new_doc("KEK API Credential")
+		new_cred.company_profile = "TEST COMPANY"
+		new_cred.environment = "REAL"
+		new_cred.active = 1
+		new_cred.base_url = "https://api.sinsw.go.id"
+		new_cred.x_insw_key = "ANOTHER-SECRET"
+		new_cred.x_unique_key = "ANOTHER-UNIQUE"
+
+		self.assertRaises(frappe.ValidationError, new_cred.insert)
+
+	def test_get_decrypted_keys(self):
+		keys = self.cred.get_decrypted_keys()
+		self.assertEqual(keys["x_insw_key"], "SECRET-INSW-KEY")
+		self.assertEqual(keys["x_unique_key"], "SECRET-UNIQUE-KEY")
+

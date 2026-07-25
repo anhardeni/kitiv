@@ -1,290 +1,567 @@
 {
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/hooks.py": {
-    "mtime": 1784262522.25876,
-    "hash": "a5970b608882a8510075472d71066257"
+  "kek_it_inventory/hooks.py": {
+    "mtime": 1784474190.8203218,
+    "ast_hash": "a9ded56fee6b539f6514f7eced481c88",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/sync_schema.py": {
+  "kek_it_inventory/sync_schema.py": {
     "mtime": 1780271077.6362062,
-    "hash": "74e106ffb0a99a3289047a2add3e391a"
+    "ast_hash": "74e106ffb0a99a3289047a2add3e391a",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/__init__.py": {
+  "kek_it_inventory/__init__.py": {
     "mtime": 1778652075.6842403,
-    "hash": "031d2b105914bd41498040b838c6e3b1"
+    "ast_hash": "031d2b105914bd41498040b838c6e3b1",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/setup_role.py": {
+  "kek_it_inventory/setup_role.py": {
     "mtime": 1784065793.3688183,
-    "hash": "901b07f850978c0169fd0daf17f8547e"
+    "ast_hash": "901b07f850978c0169fd0daf17f8547e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/setup.py": {
+  "kek_it_inventory/setup.py": {
     "mtime": 1784115643.5258563,
-    "hash": "a43d8a842c171359e80b6d7f4e67a4b1"
+    "ast_hash": "a43d8a842c171359e80b6d7f4e67a4b1",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/work_order.js": {
+  "kek_it_inventory/public/js/work_order.js": {
     "mtime": 1784457928.7583666,
-    "hash": "4cced61eb7f38de4f8769d06ab0f7b3a"
+    "ast_hash": "4cced61eb7f38de4f8769d06ab0f7b3a",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/delivery_note.js": {
+  "kek_it_inventory/public/js/delivery_note.js": {
     "mtime": 1784247560.3870592,
-    "hash": "7c8ae30ba51b59620836e4255486b2c6"
+    "ast_hash": "7c8ae30ba51b59620836e4255486b2c6",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/purchase_order.js": {
+  "kek_it_inventory/public/js/purchase_order.js": {
     "mtime": 1784089073.7191193,
-    "hash": "9b950de15037ebb387beacdf725ea064"
+    "ast_hash": "9b950de15037ebb387beacdf725ea064",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/purchase_receipt.js": {
+  "kek_it_inventory/public/js/purchase_receipt.js": {
     "mtime": 1784247557.699615,
-    "hash": "e2caa5bb171f53808f065de64fb1af7f"
+    "ast_hash": "e2caa5bb171f53808f065de64fb1af7f",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/work_order_master.js": {
-    "mtime": 1784429859.7980356,
-    "hash": "dabe65c18904830c6f9a59e201c376ca"
-  },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/work_order__.js": {
-    "mtime": 1784431425.4596593,
-    "hash": "2570c7190c6f2f0ffabe937be264b388"
-  },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/public/js/subcontracting_order.js": {
+  "kek_it_inventory/public/js/subcontracting_order.js": {
     "mtime": 1784089078.0890424,
-    "hash": "d5c8815f8e37dec9aaf5e4f7a2913c3a"
+    "ast_hash": "d5c8815f8e37dec9aaf5e4f7a2913c3a",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/config/__init__.py": {
+  "kek_it_inventory/config/__init__.py": {
     "mtime": 1778652075.6803932,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/__init__.py": {
+  "kek_it_inventory/kek_it_inventory/__init__.py": {
     "mtime": 1778652075.6650047,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/create_kek_workspace.py": {
-    "mtime": 1783394306.1595109,
-    "hash": "370bca9fa9063b969db02e7811901812"
+  "kek_it_inventory/kek_it_inventory/create_kek_workspace.py": {
+    "mtime": 1784905572.542473,
+    "ast_hash": "7d8d75aa778eccd6f2b581dfd8504804",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/sim_workflow.py": {
+  "kek_it_inventory/kek_it_inventory/sim_workflow.py": {
     "mtime": 1778663268.997424,
-    "hash": "f6f2173d1f1d9a729139923a3d0b32ed"
+    "ast_hash": "f6f2173d1f1d9a729139923a3d0b32ed",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/sim_delivery.py": {
+  "kek_it_inventory/kek_it_inventory/sim_delivery.py": {
     "mtime": 1778665984.3959432,
-    "hash": "d75f6f8a779de488b3f2f0866d643d9a"
+    "ast_hash": "d75f6f8a779de488b3f2f0866d643d9a",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/utils.py": {
+  "kek_it_inventory/kek_it_inventory/utils.py": {
     "mtime": 1784123719.510347,
-    "hash": "549f21209d1c07ee9f949b5129244c4e"
+    "ast_hash": "549f21209d1c07ee9f949b5129244c4e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tasks.py": {
+  "kek_it_inventory/kek_it_inventory/tasks.py": {
     "mtime": 1778654382.6171944,
-    "hash": "3e0eb2f556f9f201835f34b2ed05c8cc"
+    "ast_hash": "3e0eb2f556f9f201835f34b2ed05c8cc",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/__init__.py": {
+  "kek_it_inventory/kek_it_inventory/sap_connector/validator.py": {
+    "mtime": 1784471161.0644538,
+    "ast_hash": "2c4b7568f6ffa408bb3dcc1e3e3a596c",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/sap_connector/__init__.py": {
+    "mtime": 1784473041.559028,
+    "ast_hash": "db3dc0ae4dea86212afdb11123bfccf5",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/sap_connector/utils.py": {
+    "mtime": 1784474294.2541606,
+    "ast_hash": "52e84c050de3bebcb50deb74769818b4",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/sap_connector/mapping_engine.py": {
+    "mtime": 1784474718.9731064,
+    "ast_hash": "3fa4b729ab02592911c4207730433501",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/__init__.py": {
     "mtime": 1780241437.2924783,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_item_tolerance/kek_item_tolerance.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_item_tolerance/kek_item_tolerance.py": {
     "mtime": 1780271071.1120627,
-    "hash": "2259d3a80aee3e168587a6acaa458ca9"
+    "ast_hash": "2259d3a80aee3e168587a6acaa458ca9",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_api_credential/kek_api_credential.py": {
-    "mtime": 1778652514.1014183,
-    "hash": "355923c68b7232fd9ea64a44926bdea7"
+  "kek_it_inventory/kek_it_inventory/doctype/kek_api_credential/kek_api_credential.js": {
+    "mtime": 1784906058.4475167,
+    "ast_hash": "b4893e4a4520ec08260ed41ae2b6f49e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/__init__.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_api_credential/kek_api_credential.py": {
+    "mtime": 1784910746.0498397,
+    "ast_hash": "cf808148bb313f3d166aad208f579c87",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/__init__.py": {
     "mtime": 1780241437.296557,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/kek_ref_activity_code.js": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/kek_ref_activity_code.js": {
     "mtime": 1780241437.3128717,
-    "hash": "ed9bbce06d93fbf47e6a310fd21719e8"
+    "ast_hash": "ed9bbce06d93fbf47e6a310fd21719e8",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/test_kek_ref_activity_code.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/test_kek_ref_activity_code.py": {
     "mtime": 1780241437.308793,
-    "hash": "1a83f6ead69a5d0c0aaeaf90c6a4afbc"
+    "ast_hash": "1a83f6ead69a5d0c0aaeaf90c6a4afbc",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/kek_ref_activity_code.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/kek_ref_activity_code.py": {
     "mtime": 1778653166.6469407,
-    "hash": "6e968ad9a56b1bef3a5505abaa62e80c"
+    "ast_hash": "6e968ad9a56b1bef3a5505abaa62e80c",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_item_mapping/kek_item_mapping.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_item_mapping/kek_item_mapping.py": {
     "mtime": 1778657036.4446318,
-    "hash": "d5e0bb4ffda79faae473d7632a8878aa"
+    "ast_hash": "d5e0bb4ffda79faae473d7632a8878aa",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_item_mapping/__init__.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_item_mapping/__init__.py": {
     "mtime": 1778657017.8759494,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_unit/kek_ref_unit.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_unit/kek_ref_unit.py": {
     "mtime": 1778652539.4878378,
-    "hash": "c5f3ab255fc7882ecb8d4fc8f702a9a6"
+    "ast_hash": "c5f3ab255fc7882ecb8d4fc8f702a9a6",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_item_customs_doc/__init__.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_item_customs_doc/__init__.py": {
     "mtime": 1778734852.0151384,
-    "hash": "ee3efdddbc48d8022a8313d0dfd67939"
+    "ast_hash": "ee3efdddbc48d8022a8313d0dfd67939",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_item_customs_doc/kek_item_customs_doc.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_item_customs_doc/kek_item_customs_doc.py": {
     "mtime": 1778734741.8970628,
-    "hash": "1cb77cd57d3959b92a50aa154e1813b1"
+    "ast_hash": "1cb77cd57d3959b92a50aa154e1813b1",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_compliance_archive/kek_compliance_archive.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_compliance_archive/kek_compliance_archive.py": {
     "mtime": 1778654594.7016413,
-    "hash": "96df0dd9d4a7392c0fb0af72fe6f3fe3"
+    "ast_hash": "96df0dd9d4a7392c0fb0af72fe6f3fe3",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_company_profile/kek_company_profile.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_company_profile/kek_company_profile.py": {
     "mtime": 1778652402.296864,
-    "hash": "dafece9c3caf1f5665c3f4dd2d3b9174"
+    "ast_hash": "dafece9c3caf1f5665c3f4dd2d3b9174",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction_item/kek_inventory_transaction_item.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/sap_integration_config/sap_integration_config.js": {
+    "mtime": 1784471136.6520367,
+    "ast_hash": "f0f81d6fcb6a8a593a55c19917b18bb2",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/sap_integration_config/sap_integration_config.py": {
+    "mtime": 1784471133.3010721,
+    "ast_hash": "7ad99a736f4cf34399e0151da59484c2",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction_item/kek_inventory_transaction_item.py": {
     "mtime": 1778654280.1106975,
-    "hash": "79aad2639082542bdf6c77be60784b1d"
+    "ast_hash": "79aad2639082542bdf6c77be60784b1d",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.py": {
     "mtime": 1783383249.5169852,
-    "hash": "cb3bc945d518abc49ef435dbd68ab0da"
+    "ast_hash": "cb3bc945d518abc49ef435dbd68ab0da",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_item_category/kek_ref_item_category.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_item_category/kek_ref_item_category.py": {
     "mtime": 1778653179.8680813,
-    "hash": "e57b25fb6b4f24a5d4f4787290acd10a"
+    "ast_hash": "e57b25fb6b4f24a5d4f4787290acd10a",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js": {
-    "mtime": 1784115742.108377,
-    "hash": "8991626cf755b9b450368eefb3dfdb64"
+  "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.js": {
+    "mtime": 1784651352.0634582,
+    "ast_hash": "15e289844252e4b68fad23a81ade9d92",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.py": {
     "mtime": 1778654286.4694662,
-    "hash": "ec2a4e1380c44bde52158132a370f781"
+    "ast_hash": "ec2a4e1380c44bde52158132a370f781",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/sap_sync_settings/sap_sync_settings.py": {
-    "mtime": 1783386183.6514833,
-    "hash": "edb1ff1b4c174b5ca05c6f24a40fe632"
+  "kek_it_inventory/kek_it_inventory/doctype/sap_sync_settings/sap_sync_settings.py": {
+    "mtime": 1784475860.3495686,
+    "ast_hash": "7ea7af5401771eb7dd76ba4c30f2170b",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/sap_integration_log/sap_integration_log.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/sap_integration_log/sap_integration_log.py": {
     "mtime": 1783386173.0527544,
-    "hash": "d7737164d49a5a357b362da5f5c87b92"
+    "ast_hash": "d7737164d49a5a357b362da5f5c87b92",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_transaction_type/kek_ref_transaction_type.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/sap_field_mapping_line/sap_field_mapping_line.py": {
+    "mtime": 1784471126.1824923,
+    "ast_hash": "96db39f1a9ff786d68fd20fc8e481aa1",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_transaction_type/kek_ref_transaction_type.py": {
     "mtime": 1778653189.893747,
-    "hash": "3415771161818fccd0d009910390cc6e"
+    "ast_hash": "3415771161818fccd0d009910390cc6e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_stock_ledger/kek_stock_ledger.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_stock_ledger/kek_stock_ledger.py": {
     "mtime": 1778654579.172887,
-    "hash": "76390a4c6f15bde21ae71ae6aa745886"
+    "ast_hash": "76390a4c6f15bde21ae71ae6aa745886",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_stock_snapshot/kek_stock_snapshot.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_stock_snapshot/kek_stock_snapshot.py": {
     "mtime": 1778654587.5690768,
-    "hash": "8119c549812bd76835f269ac9a1a2e0f"
+    "ast_hash": "8119c549812bd76835f269ac9a1a2e0f",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/__init__.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/__init__.py": {
     "mtime": 1784184041.149842,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/test_kek_ref_customs_document.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/test_kek_ref_customs_document.py": {
     "mtime": 1784184041.165842,
-    "hash": "fc71a06d86a90a890166899411226887"
+    "ast_hash": "fc71a06d86a90a890166899411226887",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.py": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.py": {
     "mtime": 1778653174.243818,
-    "hash": "9c2e6507235c9fb4e561e3d7063bf414"
+    "ast_hash": "9c2e6507235c9fb4e561e3d7063bf414",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.js": {
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.js": {
     "mtime": 1784184041.1698422,
-    "hash": "02305ef12b20c1ad221af27ed4fa4aff"
+    "ast_hash": "02305ef12b20c1ad221af27ed4fa4aff",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/test_poster.py": {
-    "mtime": 1778750269.433217,
-    "hash": "ca13e81a0a9a2c38398a2f7063ea7054"
+  "kek_it_inventory/kek_it_inventory/api/test_poster.py": {
+    "mtime": 1784909566.0033617,
+    "ast_hash": "c8124d5c8ca6538d278511230647be32",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/bridge.py": {
-    "mtime": 1784247554.5998118,
-    "hash": "63cfb76bb9e43090962e62eac0d7c282"
+  "kek_it_inventory/kek_it_inventory/api/bridge.py": {
+    "mtime": 1784645408.3788357,
+    "ast_hash": "bafd37eab32d5aafebfc280c6811cada",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/poster-v0.py": {
+  "kek_it_inventory/kek_it_inventory/api/poster-v0.py": {
     "mtime": 1784245970.3710861,
-    "hash": "528220bab2982424fc6aeb4983028321"
+    "ast_hash": "528220bab2982424fc6aeb4983028321",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/poster.py": {
-    "mtime": 1784245940.469279,
-    "hash": "cade7a2e45c3e9ff6deb95a2cba38b49"
+  "kek_it_inventory/kek_it_inventory/api/poster.py": {
+    "mtime": 1784914181.4370556,
+    "ast_hash": "bfdf55306e55906ca158ff2c1cbebbe5",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/__init__.py": {
+  "kek_it_inventory/kek_it_inventory/api/__init__.py": {
     "mtime": 1778655903.945218,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/sap_sync.py": {
-    "mtime": 1783393324.9696062,
-    "hash": "aadbc0ec96baf9a2b9a7208518d83061"
+  "kek_it_inventory/kek_it_inventory/api/sap_sync.py": {
+    "mtime": 1784904415.7698586,
+    "ast_hash": "07462073c338241842ef4508bdcc84f8",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/api/ledger.py": {
+  "kek_it_inventory/kek_it_inventory/api/ledger.py": {
     "mtime": 1778660963.2326493,
-    "hash": "34a7afe96a6b024073c779aaaf128a27"
+    "ast_hash": "34a7afe96a6b024073c779aaaf128a27",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/services/kek_service.py": {
-    "mtime": 1784247552.6018827,
-    "hash": "0f0d7e96d0ebdadc38cccb6e181f843a"
+  "kek_it_inventory/kek_it_inventory/services/kek_service.py": {
+    "mtime": 1784651339.9101758,
+    "ast_hash": "fcc1e4920f79211ddf6b0e0f510e5457",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/services/manufacture_service.py": {
+  "kek_it_inventory/kek_it_inventory/services/manufacture_service.py": {
     "mtime": 1784005760.698575,
-    "hash": "b19970481d92f39fe726c10d8399e45d"
+    "ast_hash": "b19970481d92f39fe726c10d8399e45d",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.py": {
+  "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.py": {
     "mtime": 1778760450.0139298,
-    "hash": "2e52542bdf5d0650fb00b6c3b437fd2f"
+    "ast_hash": "2e52542bdf5d0650fb00b6c3b437fd2f",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.js": {
+  "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.js": {
     "mtime": 1778760460.3659415,
-    "hash": "b6a3f8bdb1bc18ffb04210022571669f"
+    "ast_hash": "b6a3f8bdb1bc18ffb04210022571669f",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/test_bridge.py": {
-    "mtime": 1784206455.8152797,
-    "hash": "74704c05fae17ff5424339c31bcb3775"
+  "kek_it_inventory/kek_it_inventory/tests/test_bridge.py": {
+    "mtime": 1784913822.8479018,
+    "ast_hash": "4b72f0b547f084ce7b6ca0388f3cf728",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/test_poster.py": {
-    "mtime": 1783432185.742173,
-    "hash": "125958260569b54a5ee181f2c5ccb7aa"
+  "kek_it_inventory/kek_it_inventory/tests/test_poster.py": {
+    "mtime": 1784906072.699752,
+    "ast_hash": "ce1c190ffa4cf0feab87220c8454d3e1",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py": {
-    "mtime": 1783393302.8258872,
-    "hash": "16f3d9fd7e41872685a81214b5469942"
+  "kek_it_inventory/kek_it_inventory/tests/test_sap_sync.py": {
+    "mtime": 1784903311.4405856,
+    "ast_hash": "72d0ecc6952394c562a858874a054f27",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/__init__.py": {
+  "kek_it_inventory/kek_it_inventory/tests/__init__.py": {
     "mtime": 1778655848.1904202,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py": {
+  "kek_it_inventory/kek_it_inventory/tests/test_manufacture_service.py": {
     "mtime": 1784005789.7371445,
-    "hash": "119d5fed210ed67785257ea14a06406a"
+    "ast_hash": "119d5fed210ed67785257ea14a06406a",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/kek_it_inventory/tests/inspect_item.py": {
+  "kek_it_inventory/kek_it_inventory/tests/inspect_item.py": {
     "mtime": 1784013076.5574632,
-    "hash": "0f0bd0ee82a149817ba161f21f12751a"
+    "ast_hash": "0f0bd0ee82a149817ba161f21f12751a",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/templates/__init__.py": {
+  "kek_it_inventory/templates/__init__.py": {
     "mtime": 1778652075.6688519,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/templates/pages/__init__.py": {
+  "kek_it_inventory/templates/pages/__init__.py": {
     "mtime": 1778652075.676546,
-    "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/README.md": {
+  "README.md": {
     "mtime": 1778652078.1073768,
-    "hash": "5e77ac03f2e5427826def8c5a44a0bea"
+    "ast_hash": "5e77ac03f2e5427826def8c5a44a0bea",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/CONTEXT.md": {
-    "mtime": 1782568082.3258214,
-    "hash": "7705ae99151f92898f5871402a7d84b7"
+  "CONTEXT.md": {
+    "mtime": 1784887779.5370286,
+    "ast_hash": "dbdb23d091c92763af450af616f39d16",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek-ppkek.md": {
+  "kek-ppkek.md": {
     "mtime": 1783428733.5616057,
-    "hash": "78acade0d586028c3469768e335d38b3"
+    "ast_hash": "78acade0d586028c3469768e335d38b3",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/license.txt": {
+  "license.txt": {
     "mtime": 1778652078.084294,
-    "hash": "57d76440fc5c9183c79d1747d18d2410"
+    "ast_hash": "57d76440fc5c9183c79d1747d18d2410",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/patches.txt": {
+  "kek_it_inventory/patches.txt": {
     "mtime": 1778652078.0881412,
-    "hash": "2cf399cd92b710a9b6f92e5b668da404"
+    "ast_hash": "2cf399cd92b710a9b6f92e5b668da404",
+    "semantic_hash": ""
   },
-  "/home/acer25/frappe-bench/apps/kek_it_inventory/kek_it_inventory/modules.txt": {
+  "kek_it_inventory/modules.txt": {
     "mtime": 1778652078.084294,
-    "hash": "8cb079a0444062013e4cae9b959311bd"
+    "ast_hash": "8cb079a0444062013e4cae9b959311bd",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/fixtures/custom_field.json": {
+    "mtime": 1784115683.4684927,
+    "ast_hash": "4ad389cf0dd98b9e91aad147554c6824",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/fixtures/kek_ref_activity_code.json": {
+    "mtime": 1783393200.1634154,
+    "ast_hash": "c57c4a7a0b27481bd840f57711770bbc",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/fixtures/kek_ref_customs_document.json": {
+    "mtime": 1784022649.064684,
+    "ast_hash": "de90e4009d3e913685d165c24987eb2f",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/fixtures/kek_ref_item_category.json": {
+    "mtime": 1783393200.0221777,
+    "ast_hash": "099136d5402fe1358c3b79ca7af70ee8",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/fixtures/kek_ref_transaction_type.json": {
+    "mtime": 1783393199.9777575,
+    "ast_hash": "69c3834ce65214a6fcfa423776bf2407",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/fixtures/kek_ref_unit.json": {
+    "mtime": 1783393200.123062,
+    "ast_hash": "62da2d279b89a3f8c3771a57c97c8ead",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/dashboard_chart/kek_filings_history/kek_filings_history.json": {
+    "mtime": 1781700988.7570248,
+    "ast_hash": "7cae371cd8c0c7b1dc1a3e9476a9d61a",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/desktop_icon/kek_transaction_payloads/kek_transaction_payloads.json": {
+    "mtime": 1778751697.013997,
+    "ast_hash": "51f174b3070c9e980443257fa6bc6c39",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_api_credential/test_kek_api_credential.py": {
+    "mtime": 1784910772.329995,
+    "ast_hash": "18cc98f4913b165da3790e55c426c16c",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_company_profile/kek_company_profile.json": {
+    "mtime": 1778765340.1123018,
+    "ast_hash": "d49f518c38750cba7816dc8f4b730005",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_compliance_archive/kek_compliance_archive.json": {
+    "mtime": 1778654557.7397928,
+    "ast_hash": "6b53f4a22627f90efeacd58dade56060",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction/kek_inventory_transaction.json": {
+    "mtime": 1784266492.8336155,
+    "ast_hash": "73dc248425b9a15b95cdcad7a7d0cbf1",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_inventory_transaction_item/kek_inventory_transaction_item.json": {
+    "mtime": 1778734288.0185082,
+    "ast_hash": "10a451e564d01e0966f4fb4e69eedb84",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_item_customs_doc/kek_item_customs_doc.json": {
+    "mtime": 1778734248.8768697,
+    "ast_hash": "745539942b4b5e498616700c7863771d",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_item_mapping/kek_item_mapping.json": {
+    "mtime": 1778657030.1079588,
+    "ast_hash": "8c0ab9d89391266bf115145f78382a75",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_item_tolerance/kek_item_tolerance.json": {
+    "mtime": 1780271069.100247,
+    "ast_hash": "11e73e75a79a24d93ff5614d14451193",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_activity_code/kek_ref_activity_code.json": {
+    "mtime": 1780241759.5543866,
+    "ast_hash": "646e88877cba8ad21562bc7884cd4552",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_customs_document/kek_ref_customs_document.json": {
+    "mtime": 1784184041.1578422,
+    "ast_hash": "39eb1cd544d8ccc17b2a574cab4e1a54",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_item_category/kek_ref_item_category.json": {
+    "mtime": 1778652659.6320128,
+    "ast_hash": "d86a4e3e49be5510d0e1ef5c30bcef09",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_transaction_type/kek_ref_transaction_type.json": {
+    "mtime": 1778652668.009994,
+    "ast_hash": "876a37547075d14b2385c947845a21a7",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_ref_unit/kek_ref_unit.json": {
+    "mtime": 1778652533.0607617,
+    "ast_hash": "2c113352fde5dbaea21ed3b7aa991227",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_stock_ledger/kek_stock_ledger.json": {
+    "mtime": 1778654534.5265856,
+    "ast_hash": "15fa00947f3159653801d31ffe355298",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/kek_stock_snapshot/kek_stock_snapshot.json": {
+    "mtime": 1778654545.504512,
+    "ast_hash": "08993bdcf19651568f1e1628ce4f1d19",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/sap_field_mapping_line/sap_field_mapping_line.json": {
+    "mtime": 1784471122.5810883,
+    "ast_hash": "4a4f88f49227147a1d3b414590182ce5",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/sap_integration_config/sap_integration_config.json": {
+    "mtime": 1784471129.1948152,
+    "ast_hash": "5c6e22d9deb8f0ee5282e3e24a902fd2",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/sap_integration_log/sap_integration_log.json": {
+    "mtime": 1784471140.766697,
+    "ast_hash": "f1d924625c4339d7bc7a04e88011e6be",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/doctype/sap_po_import_job/sap_po_import_job.json": {
+    "mtime": 1783383249.5169852,
+    "ast_hash": "14e52a190cd8f28dcc129b2233da83d6",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/number_card/failed_transmission/failed_transmission.json": {
+    "mtime": 1783394313.0291438,
+    "ast_hash": "b1eae35785bd8fe9a77df10915614cae",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/number_card/pending_ack/pending_ack.json": {
+    "mtime": 1783394312.9971373,
+    "ast_hash": "63195e55b2f618bf16ae28ac073bb0d6",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/number_card/total_kek_transactions/total_kek_transactions.json": {
+    "mtime": 1783394312.97713,
+    "ast_hash": "2875f78a1cf2d8e39c61083901cae3e2",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/report/kek_transaction_payloads/kek_transaction_payloads.json": {
+    "mtime": 1778761993.8902907,
+    "ast_hash": "559a163954b420f2b94e5e11a5f5658a",
+    "semantic_hash": ""
+  },
+  "kek_it_inventory/kek_it_inventory/workspace/kek_it_inventory/kek_it_inventory.json": {
+    "mtime": 1784905970.6251647,
+    "ast_hash": "b1c088726097585481b279581983bb40",
+    "semantic_hash": ""
+  },
+  "pyproject.toml": {
+    "mtime": 1778652075.6842403,
+    "ast_hash": "09b1739945a70fbdbab1df1971099ea8",
+    "semantic_hash": ""
+  },
+  ".pre-commit-config.yaml": {
+    "mtime": 1778652075.6842403,
+    "ast_hash": "9a39051d31b0e91cb30f845d47fa5061",
+    "semantic_hash": ""
+  },
+  "docs/adr/0001-sap-me2n-po-import-strategy.md": {
+    "mtime": 1784887661.1340852,
+    "ast_hash": "fe66998fc25205a5af8379924cb57066",
+    "semantic_hash": ""
   }
 }

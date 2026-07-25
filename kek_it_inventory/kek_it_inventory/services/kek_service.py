@@ -269,8 +269,17 @@ def retry_kek(docname, doctype=None):
                 frappe.log_error(frappe.get_traceback(), "KEK Re-sync Error")
     
     if kek_txn_name:
-        post_transaction(kek_txn_name)
-        return "Retry sent"
+        status = frappe.db.get_value("KEK Inventory Transaction", kek_txn_name, "status")
+        if status in ["SENT", "ACKNOWLEDGED"]:
+            from kek_it_inventory.kek_it_inventory.api.poster import update_customs_documents
+            res = update_customs_documents(kek_txn_name)
+            if res == "Success":
+                return "Update success"
+            else:
+                return f"Update failed: {res}"
+        else:
+            post_transaction(kek_txn_name)
+            return "Retry sent"
     else:
         return "KEK Transaction not found and could not be created."
 

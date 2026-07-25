@@ -65,11 +65,17 @@ def create_kek_transaction(doc, method=None):
 			customs_name = item_master.get("item_name") or item.get("item_name") or item.item_code
 			hs_code = None
 
+		amount_idr = 0.0
+		if doc.doctype == "Stock Reconciliation":
+			rate = item.get("valuation_rate") or 0.0
+			amount_idr = abs(qty) * rate
+
 		kek_txn.append("items", {
 			"customs_item_code": customs_code,
 			"item_name_customs": customs_name,
 			"qty": abs(qty),
 			"uom_code": item.get("uom") or frappe.db.get_value("Item", item.item_code, "stock_uom"),
+			"amount_idr": amount_idr,
 			"origin_type": "TLDDP", 
 			"business_flow_type": "PROCESSING"
 		})

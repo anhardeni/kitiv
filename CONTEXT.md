@@ -20,6 +20,28 @@ Dokumen pabean resmi (PJ.01) hasil pembuatan/transmisi yang didasarkan pada Doku
 ### Bypassed
 Status khusus pada transaksi KEK di mana validasi kepabeanan dilewati secara sengaja karena kondisi darurat (sistem down) menggunakan otorisasi Role `KEK Manager` dengan alasan yang dicatat secara eksplisit.
 
+### SAP PO Import Job (ME2N)
+Mekanisme pengunggahan dan ekstraksi dokumen Purchase Order / Sales Order SAP berformat XLS/XLSX (ekspor transaksi ME2N untuk PO atau VA05 untuk SO) ke dalam ERPNext secara otomatis dan berlatar belakang (chunked background job) yang mengonversi kolom SAP (`Purchasing Document` / `Sales Document`, `Material`, `Order Quantity`, `Net Price`, dll.) menjadi dokumen `Purchase Order` atau `Sales Order` ERPNext.
+
+### Polymorphic Document Import Engine
+Arsitektur penanganan impor file Excel SAP yang secara otomatis mendeteksi tipe dokumen berdasarkan ketersediaan kolom kunci:
+* Jika terdapat `Purchasing Document` / `Supplier` $\rightarrow$ Target dokumen adalah **`Purchase Order`** (disimpan di `custom_sap_po_number`, auto-create `Supplier` & `Item`).
+* Jika terdapat `Sales Document` / `Sold-to Party` / `Customer` $\rightarrow$ Target dokumen adalah **`Sales Order`** (disimpan di `custom_sap_so_number`, auto-create `Customer` & `Item`).
+
+
+### Lazy Master Data Creation
+Prinsip impor otomatis di mana jika `Supplier` atau `Item` yang tercantum dalam file ekspor SAP belum ada di database ERPNext, sistem secara otomatis membuat master data `Supplier` dan `Item` baru dengan atribut default yang diambil dari baris Excel sebelum dokumen `Purchase Order` dibuat.
+
+### custom_sap_po_number
+Field kustom pada dokumen `Purchase Order` ERPNext yang menyimpan nomor `Purchasing Document` dari SAP (misal `4600177687`). Digunakan untuk mengidentifikasi asal transaksi SAP, pengelompokan baris PO, serta mencegah pembuatan dokumen duplikat saat mengimpor kembali file Excel yang sama.
+
+### Initial Draft Status Policy
+Dokumen `Purchase Order` yang baru saja dibuat dari eksekusi `SAP PO Import Job` selalu disimpan dalam status `Draft` untuk memberikan kesempatan verifikasi bagi staf sebelum di-submit dan memicu alur validasi kepabeanan PPKEK.
+
+
+
+
+
 ## Aturan Bisnis & Kontrol Dokumen
 
 ### 1. Inbound Enforcement

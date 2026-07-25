@@ -191,6 +191,14 @@ def main():
             }
         },
         {
+            "id": "XKRVI5TxE6",
+            "type": "card",
+            "data": {
+                "card_name": "SAP",
+                "col": 4
+            }
+        },
+        {
             "id": "kek_card_brk_1",
             "type": "card",
             "data": {
@@ -300,6 +308,44 @@ def main():
             }
         ],
         "links": [
+            {
+                "label": "SAP",
+                "type": "Card Break",
+                "hidden": 0,
+                "onboard": 0
+            },
+            {
+                "label": "SAP Sync Settings",
+                "type": "Link",
+                "link_to": "SAP Sync Settings",
+                "link_type": "DocType",
+                "hidden": 0,
+                "onboard": 0
+            },
+            {
+                "label": "SAP PO Import Job",
+                "type": "Link",
+                "link_to": "SAP PO Import Job",
+                "link_type": "DocType",
+                "hidden": 0,
+                "onboard": 0
+            },
+            {
+                "label": "SAP Integration Config",
+                "type": "Link",
+                "link_to": "SAP Integration Config",
+                "link_type": "DocType",
+                "hidden": 0,
+                "onboard": 0
+            },
+            {
+                "label": "SAP Integration Log",
+                "type": "Link",
+                "link_to": "SAP Integration Log",
+                "link_type": "DocType",
+                "hidden": 0,
+                "onboard": 0
+            },
             {
                 "label": "Filing Master",
                 "type": "Card Break",

@@ -195,3 +195,154 @@ class TestSAPSync(unittest.TestCase):
         from kek_it_inventory.kek_it_inventory.sap_connector.validator import run_automated_mapping_check
         result = run_automated_mapping_check("{NOT JSON}")
         self.assertEqual(result["status"], "Failed")
+
+    # ------------------------------------------------------------------
+    # ME2N / VA05 Excel Import & Lazy Master Data Unit Tests
+    # ------------------------------------------------------------------
+
+    def test_normalize_sap_me2n_columns_po(self):
+        import pandas as pd
+        from kek_it_inventory.kek_it_inventory.api.sap_sync import normalize_sap_me2n_columns
+
+        df_raw = pd.DataFrame([{
+            "Purchasing Document": "4600177687",
+            "Item": "10",
+            "Supplier/Supplying Plant": "8100 Ningbo Supplier",
+            "Material": "R05210.7920.32-64",
+            "Short Text": "Test Description",
+            "Order Quantity": 100,
+            "Net Price": 50.5,
+            "Document Date": "2026-06-26"
+        }])
+
+        df_norm, doc_type = normalize_sap_me2n_columns(df_raw)
+        self.assertEqual(doc_type, "Purchase Order")
+        self.assertEqual(df_norm["po_number"].iloc[0], "4600177687")
+        self.assertEqual(df_norm["item_code"].iloc[0], "R05210.7920.32-64")
+        self.assertEqual(df_norm["supplier"].iloc[0], "8100 Ningbo Supplier")
+        self.assertEqual(df_norm["qty"].iloc[0], 100)
+        self.assertEqual(df_norm["rate"].iloc[0], 50.5)
+
+    def test_normalize_sap_va05_columns_so(self):
+        import pandas as pd
+        from kek_it_inventory.kek_it_inventory.api.sap_sync import normalize_sap_me2n_columns
+
+        df_raw = pd.DataFrame([{
+            "Sales Document": "SO-SAP-9988",
+            "Sold-to Party": "Customer ABC",
+            "Material": "ITEM-SO-01",
+            "Order Quantity": 10
+        }])
+
+        df_norm, doc_type = normalize_sap_me2n_columns(df_raw)
+        self.assertEqual(doc_type, "Sales Order")
+        self.assertEqual(df_norm["so_number"].iloc[0], "SO-SAP-9988")
+        self.assertEqual(df_norm["customer"].iloc[0], "Customer ABC")
+        self.assertEqual(df_norm["item_code"].iloc[0], "ITEM-SO-01")
+
+    def test_lazy_master_data_creation_supplier_and_item(self):
+        from kek_it_inventory.kek_it_inventory.api.sap_sync import ensure_supplier_or_customer, ensure_item
+
+        new_supplier = "LAZY-SUPPLIER-001"
+        new_item = "LAZY-ITEM-001"
+
+        supp_name = ensure_supplier_or_customer(new_supplier, is_supplier=True)
+        self.assertTrue(frappe.db.exists("Supplier", supp_name))
+
+        item_name = ensure_item(new_item, description="Lazy Item Description", uom="Nos")
+        self.assertTrue(frappe.db.exists("Item", item_name))
+
+    def test_sap_me2n_po_creation_in_draft(self):
+        po_num = "4600177687-TEST"
+        supplier_name = "8100 Ningbo Medical Test"
+        item_code = "R05210.7920.32-64-TEST"
+
+        from kek_it_inventory.kek_it_inventory.api.sap_sync import ensure_supplier_or_customer, ensure_item, get_default_warehouse
+        supp = ensure_supplier_or_customer(supplier_name, is_supplier=True)
+        it = ensure_item(item_code, "Test Item", "Nos")
+        wh, comp = get_default_warehouse()
+
+        po_doc = frappe.get_doc({
+            "doctype": "Purchase Order",
+            "company": comp,
+            "supplier": supp,
+            "custom_sap_po_number": po_num,
+            "transaction_date": "2026-06-26",
+            "schedule_date": "2026-06-26",
+            "set_warehouse": wh,
+            "items": [{
+                "item_code": it,
+                "qty": 10,
+                "rate": 100,
+                "warehouse": wh
+            }]
+        })
+        po_doc.insert(ignore_permissions=True)
+
+        self.assertEqual(po_doc.docstatus, 0)  # Draft status
+        self.assertEqual(po_doc.custom_sap_po_number, po_num)
+
+        # Idempotency check: finding existing PO by custom_sap_po_number
+        existing = frappe.db.get_value("Purchase Order", {"custom_sap_po_number": po_num}, "name")
+        self.assertEqual(existing, po_doc.name)
+
+    def test_duplicate_sap_po_number_idempotency(self):
+        """Tests that importing a PO with an already existing custom_sap_po_number does NOT create a duplicate."""
+        po_num = "DUP-PO-9999"
+        supplier_name = "8100 Duplicate Supplier Test"
+        item_code = "ITEM-DUP-01"
+
+        from kek_it_inventory.kek_it_inventory.api.sap_sync import ensure_supplier_or_customer, ensure_item, get_default_warehouse
+        supp = ensure_supplier_or_customer(supplier_name, is_supplier=True)
+        it = ensure_item(item_code, "Duplicate Item", "Nos")
+        wh, comp = get_default_warehouse()
+
+        # First import attempt
+        po_doc1 = frappe.get_doc({
+            "doctype": "Purchase Order",
+            "company": comp,
+            "supplier": supp,
+            "custom_sap_po_number": po_num,
+            "transaction_date": "2026-06-26",
+            "schedule_date": "2026-06-26",
+            "set_warehouse": wh,
+            "items": [{
+                "item_code": it,
+                "qty": 5,
+                "rate": 200,
+                "warehouse": wh
+            }]
+        })
+        po_doc1.insert(ignore_permissions=True)
+
+        # Count after first creation
+        count_after_first = frappe.db.count("Purchase Order", {"custom_sap_po_number": po_num})
+        self.assertEqual(count_after_first, 1)
+
+        # Second import attempt with SAME custom_sap_po_number (simulation of re-running chunked import)
+        existing_po_name = frappe.db.get_value("Purchase Order", {"custom_sap_po_number": po_num}, "name")
+        if not existing_po_name:
+            po_doc2 = frappe.get_doc({
+                "doctype": "Purchase Order",
+                "company": comp,
+                "supplier": supp,
+                "custom_sap_po_number": po_num,
+                "transaction_date": "2026-06-26",
+                "schedule_date": "2026-06-26",
+                "set_warehouse": wh,
+                "items": [{
+                    "item_code": it,
+                    "qty": 5,
+                    "rate": 200,
+                    "warehouse": wh
+                }]
+            })
+            po_doc2.insert(ignore_permissions=True)
+
+        # Count after second attempt MUST still be 1 (No duplicate PO created!)
+        count_after_second = frappe.db.count("Purchase Order", {"custom_sap_po_number": po_num})
+        self.assertEqual(count_after_second, 1)
+
+
+
+

@@ -393,6 +393,13 @@ class TestBridge(unittest.TestCase):
 
 	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
 	def test_stock_reconciliation_trigger(self, mock_post):
+		wh_hash = frappe.generate_hash(length=8)
+		wh_name = f"Test SR Reg Wh {wh_hash} - BCM"
+		frappe.get_doc({
+			"doctype": "Warehouse",
+			"warehouse_name": f"Test SR Reg Wh {wh_hash}",
+			"company": "bcmerak"
+		}).insert()
 		# 1. Create and submit Stock Reconciliation
 		sr = frappe.get_doc({
 			"doctype": "Stock Reconciliation",
@@ -401,8 +408,8 @@ class TestBridge(unittest.TestCase):
 			"posting_date": frappe.utils.today(),
 			"items": [{
 				"item_code": "_Test Item",
-				"warehouse": "Test KEK Warehouse - BCM",
-				"qty": 10,
+				"warehouse": wh_name,
+				"qty": 20,
 				"valuation_rate": 100
 			}]
 		})
@@ -417,6 +424,118 @@ class TestBridge(unittest.TestCase):
 		# 3. Verify KEK Transaction is type "32"
 		doc = frappe.get_doc("KEK Inventory Transaction", kek_txn_name)
 		self.assertEqual(doc.transaction_type, "32")
+
+	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
+	def test_stock_reconciliation_opening_stock_trigger(self, mock_post):
+		wh_hash = frappe.generate_hash(length=8)
+		wh_name = f"Test SR Opening Wh {wh_hash} - BCM"
+		frappe.get_doc({
+			"doctype": "Warehouse",
+			"warehouse_name": f"Test SR Opening Wh {wh_hash}",
+			"company": "bcmerak"
+		}).insert()
+		# 1. Create and submit Stock Reconciliation with purpose "Opening Stock"
+		diff_acc = frappe.db.get_value("Account", {"root_type": "Liability", "company": "bcmerak"}, "name")
+		sr = frappe.get_doc({
+			"doctype": "Stock Reconciliation",
+			"company": "bcmerak",
+			"purpose": "Opening Stock",
+			"expense_account": diff_acc,
+			"posting_date": "2023-06-30",
+			"posting_time": "14:32:10",
+			"nomor_ppkek": "001/SAL/2025",
+			"tanggal_ppkek": "2023-06-30",
+			"items": [{
+				"item_code": "_Test Item",
+				"warehouse": wh_name,
+				"qty": 30,
+				"valuation_rate": 100
+			}]
+		})
+		sr.insert()
+		sr.submit()
+
+		# 2. Verify KEK Transaction was created
+		kek_txn_name = frappe.db.get_value("KEK Inventory Transaction", 
+			{"erpnext_reference_name": sr.name, "erpnext_reference_doctype": "Stock Reconciliation"}, "name")
+		self.assertTrue(kek_txn_name)
+		
+		# 3. Verify amount_idr is populated correctly (Qty 30 * rate 100 = 3000)
+		doc = frappe.get_doc("KEK Inventory Transaction", kek_txn_name)
+		self.assertEqual(doc.items[0].amount_idr, 3000.0)
+
+		# 4. Verify Payload construction and Endpoint redirect
+		# Setup mock credentials and company profile
+		cred_name = frappe.db.get_value("KEK API Credential", {"company_profile": "BC MERAK PROFILE"}, "name")
+		if cred_name:
+			frappe.db.set_value("KEK API Credential", cred_name, {
+				"base_url": "https://sinsw.go.id/api/inventory",
+				"environment": "DUMMY"
+			})
+		else:
+			frappe.get_doc({
+				"doctype": "KEK API Credential",
+				"company_profile": "BC MERAK PROFILE",
+				"active": 1,
+				"base_url": "https://sinsw.go.id/api/inventory",
+				"environment": "DUMMY",
+				"x_insw_key": "dummy",
+				"x_unique_key": "dummy"
+			}).insert()
+		
+		# Let's call post_transaction directly
+		from kek_it_inventory.kek_it_inventory.api.poster import post_transaction
+		import json
+		
+		with patch('requests.post') as mock_req_post, patch('requests.put') as mock_req_put, patch('kek_it_inventory.kek_it_inventory.api.poster.get_unique_key', return_value="dummy"):
+			mock_req_post.return_value.status_code = 200
+			mock_req_post.return_value.json.return_value = {"status": True}
+			mock_req_post.return_value.text = '{"status": true}'
+			
+			mock_req_put.return_value.status_code = 200
+			mock_req_put.return_value.text = '{"message": "Success locking Saldo Awal"}'
+			
+			post_transaction(kek_txn_name)
+			
+			# Check endpoint passed to requests.post
+			self.assertTrue(mock_req_post.called)
+			args, kwargs = mock_req_post.call_args
+			endpoint = args[0]
+			self.assertEqual(endpoint, "https://sinsw.go.id/api/inventory/temp/saldoAwal")
+			
+			# Check PUT was called since it is DUMMY mode
+			self.assertTrue(mock_req_put.called)
+			put_args, put_kwargs = mock_req_put.call_args
+			self.assertEqual(put_args[0], "https://sinsw.go.id/api/inventory/temp/registrasi")
+			self.assertEqual(json.loads(put_kwargs.get("data")), {})
+			
+			# Check request payload saved
+			doc.reload()
+			payload = json.loads(doc.request_payload)
+			data = payload.get("data", {})
+			self.assertEqual(data.get("no_kegiatan"), "001/SAL/2025")
+			self.assertEqual(data.get("tgl_kegiatan"), "30-06-2023 00:00:00")
+			self.assertEqual(len(data.get("barangSaldo", [])), 1)
+			
+			item_data = data.get("barangSaldo")[0]
+			self.assertEqual(item_data.get("kd_barang"), doc.items[0].customs_item_code)
+			self.assertEqual(item_data.get("jumlah"), 30.0)
+			self.assertEqual(item_data.get("nilai"), 3000.0)
+			from frappe.utils import get_datetime
+			self.assertTrue(item_data.get("tanggal_declare"))
+
+		# Now test REAL environment where PUT should not be called
+		frappe.db.set_value("KEK API Credential", cred_name, "environment", "REAL")
+		
+		with patch('requests.post') as mock_req_post, patch('requests.put') as mock_req_put, patch('kek_it_inventory.kek_it_inventory.api.poster.get_unique_key', return_value="dummy"):
+			mock_req_post.return_value.status_code = 200
+			mock_req_post.return_value.json.return_value = {"status": True}
+			mock_req_post.return_value.text = '{"status": true}'
+			
+			post_transaction(kek_txn_name)
+			
+			self.assertTrue(mock_req_post.called)
+			self.assertFalse(mock_req_put.called) # Should NOT call PUT when environment is REAL
 
 	@patch('kek_it_inventory.kek_it_inventory.services.kek_service.post_transaction')
 	def test_stock_entry_trigger(self, mock_post):
@@ -649,6 +768,49 @@ class TestBridge(unittest.TestCase):
 		# Verify KEK Transaction status changes to CANCEL_PENDING
 		txn_status = frappe.db.get_value("KEK Inventory Transaction", kek_txn, "status")
 		self.assertEqual(txn_status, "CANCEL_PENDING")
+
+	def test_cleansing_data_dummy(self):
+		# Create KEK Company Profile with NPWP
+		profile_name = "Test Clean Profile"
+		if not frappe.db.exists("KEK Company Profile", profile_name):
+			frappe.get_doc({
+				"doctype": "KEK Company Profile",
+				"company_name": profile_name,
+				"erpnext_company": "bcmerak",
+				"npwp": "12.345.678.9-012.345", # Will be cleaned to "123456789012345"
+				"nib": "123"
+			}).insert()
+		
+		# Create DUMMY Credential
+		cred = frappe.get_doc({
+			"doctype": "KEK API Credential",
+			"company_profile": profile_name,
+			"environment": "DUMMY",
+			"active": 1,
+			"base_url": "https://sinsw.go.id/api/inventory",
+			"x_insw_key": "dummy",
+			"x_unique_key": "dummy"
+		}).insert()
+		
+		# Mock DELETE request
+		with patch('requests.delete') as mock_delete, patch('kek_it_inventory.kek_it_inventory.api.poster.get_unique_key', return_value="dummy"):
+			mock_delete.return_value.status_code = 200
+			mock_delete.return_value.text = "CLEANED"
+			
+			res = cred.clean_dummy_data()
+			self.assertEqual(res, "CLEANED")
+			
+			# Check DELETE endpoint called
+			mock_delete.assert_called_once()
+			args, kwargs = mock_delete.call_args
+			self.assertEqual(args[0], "https://sinsw.go.id/api/inventory/temp/transaksi?npwp=123456789012345")
+			
+		# Test REAL environment throws exception
+		frappe.db.set_value("KEK API Credential", cred.name, "environment", "REAL")
+		cred.reload()
+		with self.assertRaises(frappe.ValidationError):
+			cred.clean_dummy_data()
+
 
 
 
