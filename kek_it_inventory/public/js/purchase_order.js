@@ -92,5 +92,12 @@ frappe.ui.form.on('Purchase Order', {
 					+ '&docname=' + encodeURIComponent(frm.doc.name));
 			}, __('Actions'));
 		}
+
+		// Hide no_aju / custom_no_aju fields
+		["custom_no_aju", "custom_custom_no_aju", "no_aju"].forEach(fn => {
+			if (frm.fields_dict[fn]) {
+				frm.toggle_display(fn, false);
+			}
+		});
 	}
 });

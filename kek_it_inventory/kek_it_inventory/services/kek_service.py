@@ -640,7 +640,7 @@ def manual_validate_ppkek(doctype, docname, nomor_ppkek, tanggal_ppkek=None, kek
             }, "name", order_by="creation desc")
             
     if not kek_transaction:
-        if doctype not in ["Purchase Order", "Subcontracting Order"]:
+        if doctype not in ["Purchase Order", "Subcontracting Order", "Sales Order"]:
             frappe.throw(f"Tidak ditemukan transaksi KEK yang aktif untuk {doctype} {docname}")
         
     # 2. Update KEK Inventory Transaction dengan nomor PPKEK & tanggal PPKEK if it exists
@@ -733,28 +733,126 @@ def download_customs_xls(doctype, docname):
     
     doc = frappe.get_doc(doctype, docname)
     
-    # Header format based on CEISA / Bea Cukai standard template
-    data = [
-        ["No", "Kode Barang", "Nama Barang", "Kuantitas", "Satuan", "Nilai Barang (IDR)", "Kategori Barang"]
+    # Headers matching Data_Upload_Barang template
+    headers = [
+        'hs_code_format', 'ur_barang', 'merk', 'tipe', 'ukuran', 'spek_lain', 
+        'kd_barang', 'barang_baru', 'kd_negara', 'kd_daerah_asal', 'netto', 
+        'kd_satuan_netto', 'bruto', 'kd_satuan_bruto', 'jml_satuan', 'kd_satuan', 
+        'jml_kemasan', 'kd_kemasan'
     ]
+    data = [headers]
     
-    for idx, item in enumerate(doc.get("items") or [], start=1):
-        customs_uom = item.get("uom_code") or item.get("uom")
+    for item in (doc.get("items") or []):
+        # 1. Fetch KEK Item Mapping
+        mapping = frappe.db.get_value("KEK Item Mapping", 
+            {"erpnext_item": item.item_code}, 
+            ["customs_item_code", "customs_item_name", "hs_code"], 
+            as_dict=True
+        ) or {}
+        
+        # 2. Get Item Master details
+        item_master = frappe.db.get_value("Item", item.item_code, ["item_name", "brand", "weight_per_unit", "weight_uom", "customs_tariff_number"], as_dict=True) or {}
+        
+        # Determine values for columns
+        hs_code = mapping.get("hs_code") or item.get("hs_code") or item_master.get("customs_tariff_number") or ""
+        if hs_code:
+            hs_code_str = str(hs_code).strip()
+            if hs_code_str.endswith(".0"):
+                hs_code_str = hs_code_str[:-2]
+            hs_code_str = hs_code_str.replace(".", "")
+            if hs_code_str.isdigit():
+                hs_code_str = hs_code_str.zfill(8)
+            hs_code = hs_code_str
+        ur_barang = mapping.get("customs_item_name") or item_master.get("item_name") or item.get("item_name") or item.item_code
+        merk = item_master.get("brand") or item.get("brand") or "-"
+        tipe = item.item_code
+        ukuran = "-"
+        spek_lain = "-"
+        kd_barang = mapping.get("customs_item_code") or item.item_code
+        barang_baru = "2 - Baru"
+        
+        # Country of Origin lookup or default
+        kd_negara = "ID - INDONESIA"
+        
+        # Region of Origin
+        kd_daerah_asal = "3173 - Kota Adm. Jakarta Barat"
+        
+        # Weights
+        qty = float(item.get("qty") or 0)
+        net_weight = float(item.get("weight_per_unit") or item_master.get("weight_per_unit") or 0.1)
+        netto = item.get("total_weight") or (qty * net_weight)
+        if netto <= 0:
+            netto = qty
+            
+        kd_satuan_netto = "KGM-Kilogram"
+        
+        # Bruto calculation: 1.05 * netto as fallback fallback
+        bruto = netto * 1.05
+            
+        kd_satuan_bruto = "KGM-Kilogram"
+        
+        # Satuan / UOM
+        uom_str = item.get("uom") or item_master.get("stock_uom") or "Pcs"
+        uom_lower = uom_str.lower()
+        
+        # Map UOM to standard KEK Ref Unit
+        uom_mapping = {
+            "kg": "KGM-Kilogram",
+            "kilogram": "KGM-Kilogram",
+            "g": "GRM-Gram",
+            "gram": "GRM-Gram",
+            "ltr": "LTR-Litre",
+            "litre": "LTR-Litre",
+            "liter": "LTR-Litre",
+            "nos": "Nos-Numbers",
+            "numbers": "Nos-Numbers",
+            "pcs": "PCE-Piece",
+            "piece": "PCE-Piece",
+            "set": "SET-Set",
+        }
+        
+        kd_satuan = uom_mapping.get(uom_lower)
+        if not kd_satuan:
+            # Try to query KEK Ref Unit
+            ref_unit = frappe.db.get_value("KEK Ref Unit", {"code": uom_str}, ["code", "description"], as_dict=True)
+            if not ref_unit:
+                ref_unit = frappe.db.get_value("KEK Ref Unit", {"description": uom_str}, ["code", "description"], as_dict=True)
+            if ref_unit:
+                kd_satuan = f"{ref_unit.code}-{ref_unit.description.title()}"
+            else:
+                kd_satuan = f"{uom_str}-{uom_str}"
+                
+        # Packaging
+        jml_kemasan = 1
+        kd_kemasan = "ZZ - Mutually defined"
+        
         data.append([
-            idx,
-            item.get("item_code"),
-            item.get("item_name") or item.get("item_code"),
-            item.get("qty"),
-            customs_uom,
-            item.get("amount") or (float(item.get("qty") or 0) * float(item.get("rate") or 0)),
-            item.get("category_code") or "1"
+            hs_code,
+            ur_barang,
+            merk,
+            tipe,
+            ukuran,
+            spek_lain,
+            kd_barang,
+            barang_baru,
+            kd_negara,
+            kd_daerah_asal,
+            netto,
+            kd_satuan_netto,
+            bruto,
+            kd_satuan_bruto,
+            qty,
+            kd_satuan,
+            jml_kemasan,
+            kd_kemasan
         ])
         
-    xlsx_file = make_xlsx(data, "Items")
+    xlsx_file = make_xlsx(data, "Data_Upload_Barang")
     
     frappe.response['filename'] = f"KEK_Items_{docname}.xlsx"
     frappe.response['filecontent'] = xlsx_file.getvalue()
     frappe.response['type'] = 'binary'
+
 
 
 def process_stock_reconciliation(doc, method=None):

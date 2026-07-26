@@ -65,6 +65,13 @@ frappe.ui.form.on('Purchase Receipt', {
 		frm.toggle_enable("bypass_reason", is_manager && frm.doc.bypass_kek_validation && frm.doc.docstatus === 0);
 		frm.toggle_reqd("bypass_reason", !!frm.doc.bypass_kek_validation);
 
+		// Hide no_aju / custom_no_aju fields
+		["custom_no_aju", "custom_custom_no_aju", "no_aju"].forEach(fn => {
+			if (frm.fields_dict[fn]) {
+				frm.toggle_display(fn, false);
+			}
+		});
+
 		// Set query filter for kek_transaction link field (1:N matching)
 		frm.set_query("kek_transaction", function() {
 			let parent_po = null;

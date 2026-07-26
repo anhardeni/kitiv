@@ -1,16 +1,16 @@
-# Graph Report - kek_it_inventory  (2026-07-25)
+# Graph Report - kek_it_inventory  (2026-07-26)
 
 ## Corpus Check
-- 109 files · ~34,673 words
+- 109 files · ~35,158 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 454 nodes · 587 edges · 69 communities (45 shown, 24 thin omitted)
+- 450 nodes · 583 edges · 68 communities (45 shown, 23 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f2c5f3ad`
+- Built from commit: `310c5f59`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -41,7 +41,6 @@
 - daily_reconciliation
 - dialog
 - TestKEKAPICredential
-- 1. Strategy Impor Purchasing Order Ekspor SAP ME2N
 - parse_sap_odata_date
 - KEKItemTolerance
 - KEKCompanyProfile
@@ -60,7 +59,6 @@
 - SAPIntegrationConfig
 - SAPIntegrationLog
 - kek_it_inventory
-- normalize_sap_me2n_columns
 
 ## God Nodes (most connected - your core abstractions)
 1. `post_transaction()` - 26 edges
@@ -89,7 +87,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (69 total, 24 thin omitted)
+## Communities (68 total, 23 thin omitted)
 
 ### Community 0 - "SAPPOImportJob"
 Cohesion: 0.29
@@ -136,8 +134,8 @@ Cohesion: 0.12
 Nodes (15): 1.1 Penyesuaian Fisik & Selisih Pabean (Stock Opname & Adjustment), 1. Hakekat PPKEK: Unifikasi Dokumen Kepabeanan KEK, 2.1 Outbound: PPKEK Pengeluaran Sementara (ex-BC 2.6.1) - Kode `0407633`, 2.2 Inbound: PPKEK Pemasukan Kembali (ex-BC 2.6.2) - Kode `0407614`, 2. Alur Integrasi Spesifik Kasus Subkontrak (Maklon), 3.1 Penambahan Barang Lokal (TLDDP) di Lokasi Subkontraktor, 3.2 Manajemen Selisih BOM (BOM Discrepancy & Limit Toleransi), 3. Resolusi Masalah Operasional Tingkat Lanjut (+7 more)
 
 ### Community 11 - "sap_sync.py"
-Cohesion: 0.14
-Nodes (17): create_purchase_order(), create_sales_order(), normalize_uom(), parse_date_string(), parse_float(), process_sap_xls_chunked(), Whitelisted POST endpoint for SAP to push PO/SO data.     Identifies the correct, XLS Chunked Background Processor (Hybrid Method). 	Driven by the 'SAP PO Import (+9 more)
+Cohesion: 0.11
+Nodes (19): create_purchase_order(), create_sales_order(), normalize_sap_me2n_columns(), normalize_uom(), parse_date_string(), parse_float(), process_sap_xls_chunked(), Whitelisted POST endpoint for SAP to push PO/SO data.     Identifies the correct (+11 more)
 
 ### Community 12 - "TestPosterAPI"
 Cohesion: 0.15
@@ -175,28 +173,24 @@ Nodes (4): Document, Document, SAPFieldMappingLine, SAPSyncSettings
 Cohesion: 0.50
 Nodes (3): d, res, status_label
 
-### Community 27 - "1. Strategy Impor Purchasing Order Ekspor SAP ME2N"
-Cohesion: 0.40
-Nodes (4): 1. Strategy Impor Purchasing Order Ekspor SAP ME2N, Keputusan, Konsekuensi, Konteks & Masalah
-
 ## Knowledge Gaps
-- **45 isolated node(s):** `kek_it_inventory`, `Konteks & Masalah`, `Keputusan`, `Konsekuensi`, `wo_to_complete` (+40 more)
+- **42 isolated node(s):** `kek_it_inventory`, `wo_to_complete`, `target_qty`, `item_name`, `bom_no` (+37 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `post_transaction()` connect `kek_service.py` to `update_ledger`, `TestPosterAPI`, `TestBridge`?**
-  _High betweenness centrality (0.111) - this node is a cross-community bridge._
+  _High betweenness centrality (0.113) - this node is a cross-community bridge._
 - **Why does `get_unique_key()` connect `kek_service.py` to `KEKAPICredential`?**
-  _High betweenness centrality (0.098) - this node is a cross-community bridge._
+  _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **Why does `KEKAPICredential` connect `KEKAPICredential` to `kek_service.py`, `Document`?**
-  _High betweenness centrality (0.097) - this node is a cross-community bridge._
+  _High betweenness centrality (0.099) - this node is a cross-community bridge._
 - **Are the 5 inferred relationships involving `post_transaction()` (e.g. with `test_payload_structure_camelcase_and_nested()` and `process_purchase_order()`) actually correct?**
   _`post_transaction()` has 5 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `kek_it_inventory`, `Konteks & Masalah`, `Keputusan` to the rest of the system?**
-  _45 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `kek_it_inventory`, `wo_to_complete`, `target_qty` to the rest of the system?**
+  _42 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `kek_service.py` be split into smaller, more focused modules?**
   _Cohesion score 0.051203277009728626 - nodes in this community are weakly interconnected._
 - **Should `complete_production_stage` be split into smaller, more focused modules?**

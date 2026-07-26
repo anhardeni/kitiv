@@ -108,6 +108,8 @@ frappe.ui.form.on('KEK Inventory Transaction', {
 				args: {
 					docname: frm.doc.name
 				},
+				freeze: true,
+				freeze_message: __('Melakukan validasi data KEK...'),
 				callback: function(r) {
 					if (r.message) {
 						frappe.show_alert({
@@ -129,6 +131,8 @@ frappe.ui.form.on('KEK Inventory Transaction', {
 						args: {
 							docname: frm.doc.name
 						},
+						freeze: true,
+						freeze_message: __('Mengirim data transaksi ke Bea Cukai / SINSW...'),
 						callback: function(r) {
 							frm.reload_doc();
 							frappe.show_alert({
@@ -154,6 +158,8 @@ frappe.ui.form.on('KEK Inventory Transaction', {
 						args: {
 							docname: frm.doc.name
 						},
+						freeze: true,
+						freeze_message: __('Mengupdate info dokumen pabean di SINSW...'),
 						callback: function(r) {
 							frm.reload_doc();
 							if (r.message === 'Success') {
@@ -186,6 +192,8 @@ frappe.ui.form.on('KEK Inventory Transaction', {
 					args: {
 						docname: frm.doc.name
 					},
+					freeze: true,
+					freeze_message: __('Mengirim ulang transaksi KEK...'),
 					callback: function(r) {
 						frm.reload_doc();
 						frappe.show_alert({

@@ -1,8 +1,8 @@
-frappe.ui.form.on('Subcontracting Order', {
+frappe.ui.form.on('Sales Order', {
 	refresh: function(frm) {
 		// Set dynamic form indicator/alert based on KEK status
 		if (frm.doc.docstatus === 1) { // Submitted
-			if (frm.doc.kek_status === 'Validated') {
+			if (frm.doc.kek_status === 'Validated' || frm.doc.kek_status === 'ACKNOWLEDGED') {
 				frm.set_intro(__('Dokumen PPKEK ter-validasi (Green). Nomor PPKEK: {0}', [frm.doc.nomor_ppkek || '-']), 'green');
 			} else if (frm.doc.kek_status === 'BYPASSED') {
 				frm.set_intro(__('Dokumen ini melewati pemeriksaan pabean (Emergency Bypass / Yellow). Alasan: {0}', [frm.doc.bypass_reason || '-']), 'orange');
@@ -17,29 +17,6 @@ frappe.ui.form.on('Subcontracting Order', {
 			}
 
 			// Add action buttons
-			// 1. Kirim/Retry KEK (if status is FAILED or empty)
-			if (!frm.doc.kek_status || frm.doc.kek_status === 'FAILED' || frm.doc.kek_status === 'MISMATCH') {
-				frm.add_custom_button(__('Kirim KEK'), function() {
-					frm.set_working(true);
-					frappe.call({
-						method: 'kek_it_inventory.kek_it_inventory.services.kek_service.retry_kek',
-						args: {
-							docname: frm.doc.name,
-							doctype: frm.doc.doctype
-						},
-						callback: function(r) {
-							frm.reload_doc();
-							frappe.show_alert({
-								message: __('Mencoba mengirim transaksi ke KEK...'),
-								indicator: 'orange'
-							});
-						},
-						always: function() {
-							frm.set_working(false);
-						}
-					});
-				}, __('Actions'));
-			}
 
 			// 2. Lihat Transaksi KEK (if kek_transaction is set)
 			if (frm.doc.kek_transaction) {
@@ -49,7 +26,7 @@ frappe.ui.form.on('Subcontracting Order', {
 			}
 
 			// 3. Input Nomor PPKEK (Manual verification from customs web portal)
-			if (frm.doc.kek_status !== 'Validated' && (frappe.user.has_role('KEK Manager') || frappe.user.has_role('System Manager'))) {
+			if (frm.doc.kek_status !== 'Validated' && frm.doc.kek_status !== 'ACKNOWLEDGED' && (frappe.user.has_role('KEK Manager') || frappe.user.has_role('System Manager'))) {
 				frm.add_custom_button(__('Input Nomor PPKEK'), function() {
 					frappe.prompt([
 						{

@@ -61,7 +61,8 @@ doctype_js = {
 	"Subcontracting Order": "public/js/subcontracting_order.js",
 	"Purchase Receipt": "public/js/purchase_receipt.js",
 	"Delivery Note": "public/js/delivery_note.js",
-	"Work Order": "public/js/work_order.js"
+	"Work Order": "public/js/work_order.js",
+	"Sales Order": "public/js/sales_order.js"
 }
 
 # Scheduled Tasks
@@ -96,11 +97,11 @@ fixtures = [
 				"Purchase Receipt-custom_bc_registration_date",
 				"Purchase Receipt-custom_bc_registration_no",
 				"Purchase Receipt-custom_bc_document_type",
-				#"Purchase Receipt-custom_custom_no_aju",
+				"Purchase Receipt-custom_custom_no_aju",
 				"Delivery Note-custom_bc_registration_date",
 				"Delivery Note-custom_bc_registration_no",
 				"Delivery Note-custom_bc_document_type",
-				#"Delivery Note-custom_no_aju",
+				"Delivery Note-custom_no_aju",
 			]]
 		]
 	},

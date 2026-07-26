@@ -194,6 +194,51 @@ def create_kek_custom_fields():
 				"insert_after": "nomor_ppkek"
 			}
 		],
+		"Sales Order": [
+			{
+				"fieldname": "kek_section",
+				"fieldtype": "Section Break",
+				"label": "KEK IT Inventory Integration",
+				"hidden": 0,
+				"insert_after": "status"
+			},
+			{
+				"fieldname": "kek_status",
+				"fieldtype": "Select",
+				"label": "KEK Status",
+				"options": "\nQUEUED\nSENT\nACKNOWLEDGED\nFAILED\nPENDING\nMISMATCH\nBYPASSED\nValidated",
+				"read_only": 1,
+				"hidden": 0,
+				"insert_after": "kek_section"
+			},
+			{
+				"fieldname": "kek_transaction",
+				"fieldtype": "Link",
+				"label": "KEK Transaction",
+				"options": "KEK Inventory Transaction",
+				"read_only": 1,
+				"hidden": 1,
+				"insert_after": "kek_status"
+			},
+			{
+				"fieldname": "nomor_ppkek",
+				"fieldtype": "Data",
+				"label": "Nomor PPKEK",
+				"read_only": 0,
+				"hidden": 0,
+				"allow_on_submit": 1,
+				"insert_after": "kek_transaction"
+			},
+			{
+				"fieldname": "tanggal_ppkek",
+				"fieldtype": "Date",
+				"label": "Tanggal PPKEK",
+				"read_only": 0,
+				"hidden": 0,
+				"allow_on_submit": 1,
+				"insert_after": "nomor_ppkek"
+			}
+		],
 		"Purchase Receipt": [
 			{
 				"fieldname": "kek_section",
@@ -391,4 +436,12 @@ def create_kek_custom_fields():
 		]
 	}
 	create_custom_fields(custom_fields, ignore_validate=True)
+
+	# Ensure legacy / custom no_aju fields are hidden in DB
+	frappe.db.sql("""
+		UPDATE `tabCustom Field`
+		SET hidden = 1
+		WHERE fieldname IN ('custom_no_aju', 'custom_custom_no_aju', 'no_aju')
+	""")
+
 	frappe.db.commit()
