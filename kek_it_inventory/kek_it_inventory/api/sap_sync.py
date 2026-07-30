@@ -133,10 +133,11 @@ def ensure_supplier_or_customer(entity_name, is_supplier=True):
             existing = frappe.db.get_value("Supplier", {"supplier_name": entity_str}, "name")
             if existing:
                 return existing
+            supp_group = frappe.db.get_value("Supplier Group", {"is_group": 0}, "name") or "All Supplier Groups"
             doc = frappe.get_doc({
                 "doctype": "Supplier",
                 "supplier_name": entity_str,
-                "supplier_group": "All Supplier Groups"
+                "supplier_group": supp_group
             })
             doc.insert(ignore_permissions=True)
             return doc.name
@@ -146,10 +147,11 @@ def ensure_supplier_or_customer(entity_name, is_supplier=True):
             existing = frappe.db.get_value("Customer", {"customer_name": entity_str}, "name")
             if existing:
                 return existing
+            cust_group = frappe.db.get_value("Customer Group", {"is_group": 0}, "name") or "Commercial"
             doc = frappe.get_doc({
                 "doctype": "Customer",
                 "customer_name": entity_str,
-                "customer_group": "All Customer Groups",
+                "customer_group": cust_group,
                 "territory": "All Territories"
             })
             doc.insert(ignore_permissions=True)
@@ -243,14 +245,14 @@ def get_default_warehouse(company=None):
 
 
 @frappe.whitelist()
-def process_sap_xls_chunked(job_name):
+def process_sap_xls_chunked(import_job_name):
     """
     XLS Chunked Background Processor (Hybrid Method).
     Driven by the 'SAP PO Import Job' DocType.
     Supports ME2N (PO) & VA05 (SO) raw SAP Excel exports with Lazy Master Data & Draft PO creation.
     """
     import pandas as pd
-    job = frappe.get_doc("SAP PO Import Job", job_name)
+    job = frappe.get_doc("SAP PO Import Job", import_job_name)
     if job.status == "Completed":
         return
 
@@ -325,6 +327,17 @@ def process_sap_xls_chunked(job_name):
                             "items": po_items
                         })
                         po_doc.insert(ignore_permissions=True)
+                        po_name = po_doc.name
+                        po_is_new = True
+                    else:
+                        po_name = existing_po
+                        po_is_new = False
+
+                    po_link = f'<a href="/app/purchase-order/{po_name}">{po_name}</a>'
+                    if po_is_new:
+                        job.add_comment("Comment", f"Successfully imported Purchase Order: {po_link}")
+                    else:
+                        job.add_comment("Comment", f"Purchase Order already exists: {po_link}")
 
                     sap_payload = {
                         "PurchaseOrder": doc_num_str,
@@ -366,6 +379,17 @@ def process_sap_xls_chunked(job_name):
                             "items": so_items
                         })
                         so_doc.insert(ignore_permissions=True)
+                        so_name = so_doc.name
+                        so_is_new = True
+                    else:
+                        so_name = existing_so
+                        so_is_new = False
+
+                    so_link = f'<a href="/app/sales-order/{so_name}">{so_name}</a>'
+                    if so_is_new:
+                        job.add_comment("Comment", f"Successfully imported Sales Order: {so_link}")
+                    else:
+                        job.add_comment("Comment", f"Sales Order already exists: {so_link}")
 
 
                     sap_payload = {
@@ -400,7 +424,7 @@ def process_sap_xls_chunked(job_name):
             frappe.enqueue(
                 method="kek_it_inventory.kek_it_inventory.api.sap_sync.process_sap_xls_chunked",
                 queue="long",
-                job_name=job_name,
+                import_job_name=import_job_name,
                 timeout=3600
             )
             return
